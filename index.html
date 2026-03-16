@@ -270,10 +270,14 @@ footer { background:var(--footer-bg); border-top:1px solid var(--border); paddin
       <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
       <button id="btn-en" onclick="setLang('en')">EN</button>
     </div>
+    <button class="theme-toggle" id="musicBtn" onclick="toggleMusic()" title="Musique / Music">♪</button>
     <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">☀</button>
     <a href="#visit" class="nav-cta" data-fr="Nous Visiter" data-en="Visit Us">Nous Visiter</a>
   </div>
 </nav>
+
+<!-- AUDIO -->
+<audio id="bgMusic" loop src="music1.mp3" preload="auto"></audio>
 
 <!-- HERO -->
 <div id="hero">
@@ -464,7 +468,7 @@ footer { background:var(--footer-bg); border-top:1px solid var(--border); paddin
     <a href="#visit" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
     <a href="tel:5141232345">514 123-2345</a>
   </div>
-  <p class="fcopy">© 2026 La Palette Gelato · 108 Prince Arthur Est, Montréal</p>
+  <p class="fcopy">© 2024 La Palette Gelato · 108 Prince Arthur Est, Montréal</p>
 </footer>
 
 </div>
@@ -495,7 +499,7 @@ function makeFlake(fromTop){
     // fromTop=false → spread across full visible height for initial fill
     wy: fromTop ? -(Math.random()*0.15) : Math.random(),
     z, baseZ:z,
-    speedY:0.000225+z*0.000024,
+    speedY:0.0000025+z*0.000004,
     speedX:(Math.random()-0.5)*0.00015,
     wobble:Math.random()*Math.PI*2,
     wobbleAmp:0.0004+Math.random()*0.0006,
@@ -579,7 +583,7 @@ function updateFlakes(){
     f.wx+=Math.sin(f.wobble)*f.wobbleAmp+f.speedX;
     f.wy+=f.speedY*(1+f.z*0.5);
     f.wx+=f.vx;f.wy+=f.vy;
-    f.vx*=0.88;f.vy*=0.88;f.vy+=0.00008;
+    f.vx*=0.88;f.vy*=0.88;f.vy+=0.000008;
     const{sx,sy}=project(f.wx,f.wy,f.z);
     const dx=sx-mouse.x,dy=sy-mouse.y,dist=Math.sqrt(dx*dx+dy*dy);
     const er=MR*(0.3+f.z*0.8);
@@ -608,7 +612,51 @@ function drawBackground(){
 function frame(){drawBackground();updateFlakes();drawSnow();requestAnimationFrame(frame);}
 frame();
 
-// ── THEME TOGGLE ──
+// ── MUSIC ──
+const music = document.getElementById('bgMusic');
+let musicPlaying = false;
+
+function fadeInMusic() {
+  music.volume = 0;
+  music.play().then(() => {
+    musicPlaying = true;
+    document.getElementById('musicBtn').textContent = '♫';
+    // Fade volume from 0 to 0.35 over 4 seconds
+    let vol = 0;
+    const step = () => {
+      vol += 0.005;
+      if (vol < 0.35) { music.volume = parseFloat(vol.toFixed(3)); setTimeout(step, 60); }
+      else { music.volume = 0.35; }
+    };
+    step();
+  }).catch(() => {
+    // Autoplay blocked — wait for first user interaction
+    document.addEventListener('click', () => { if (!musicPlaying) fadeInMusic(); }, { once: true });
+  });
+}
+
+function fadeOutMusic(cb) {
+  let vol = music.volume;
+  const step = () => {
+    vol -= 0.01;
+    if (vol > 0) { music.volume = parseFloat(vol.toFixed(3)); setTimeout(step, 40); }
+    else { music.volume = 0; music.pause(); if (cb) cb(); }
+  };
+  step();
+}
+
+function toggleMusic() {
+  const btn = document.getElementById('musicBtn');
+  if (musicPlaying) {
+    fadeOutMusic(() => { musicPlaying = false; btn.textContent = '♪'; });
+  } else {
+    music.currentTime = 0;
+    fadeInMusic();
+  }
+}
+
+// Auto-start on page load (will fade in if browser allows, otherwise waits for click)
+window.addEventListener('load', () => setTimeout(fadeInMusic, 800));
 function toggleTheme(){
   const light=document.body.classList.contains('light');
   document.body.classList.toggle('dark',light);

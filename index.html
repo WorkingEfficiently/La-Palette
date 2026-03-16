@@ -655,8 +655,19 @@ function toggleMusic() {
   }
 }
 
-// Auto-start on page load (will fade in if browser allows, otherwise waits for click)
-window.addEventListener('load', () => setTimeout(fadeInMusic, 800));
+// Browsers block autoplay until user interacts — catch the very first
+// scroll, click, keydown or touch and start music then. Feels instant to the user.
+const startEvents = ['click','scroll','keydown','touchstart','mousemove'];
+function onFirstInteraction() {
+  if (!musicPlaying) fadeInMusic();
+  startEvents.forEach(e => window.removeEventListener(e, onFirstInteraction));
+}
+startEvents.forEach(e => window.addEventListener(e, onFirstInteraction, { once: false, passive: true }));
+
+// Also try immediately on load — works on some browsers / servers
+window.addEventListener('load', () => setTimeout(() => {
+  if (!musicPlaying) fadeInMusic();
+}, 800));
 function toggleTheme(){
   const light=document.body.classList.contains('light');
   document.body.classList.toggle('dark',light);

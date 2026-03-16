@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Palette — Gelato Artisanal · Montréal</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:#000; font-family:'Cormorant Garamond',serif; overflow-x:hidden; transition:background .4s; }
+
+/* ══ DARK THEME (default) ══ */
+body.dark {
+  --bg:#000;
+  --bg3:rgba(255,255,255,0.035);
+  --bg4:rgba(255,255,255,0.07);
+  --text-primary:#ffffff;
+  --text-secondary:#e8e8e8;
+  --text-muted:#c0b8b0;
+  --text-faint:#888078;
+  --border:rgba(255,255,255,0.12);
+  --border2:rgba(255,255,255,0.06);
+  --nav-bg:rgba(0,0,0,0.9);
+  --card-bg:rgba(10,10,16,0.8);
+  --card-hover:rgba(255,255,255,0.05);
+  --input-bg:rgba(255,255,255,0.06);
+  --btn-primary-bg:rgba(255,255,255,0.08);
+  --btn-primary-border:rgba(255,255,255,0.55);
+  --btn-primary-text:#fff;
+  --tag-bg:rgba(255,255,255,0.06);
+  --tag-border:rgba(255,255,255,0.15);
+  --tag-text:rgba(255,255,255,0.5);
+  --stat-num:#fff;
+  --section-num:rgba(255,255,255,0.07);
+  --hours-day:#999;
+  --hours-time:#d0c8c0;
+  --price:#c0b8b0;
+  --menu-name:#e8e0d8;
+  --footer-bg:rgba(0,0,0,0.6);
+  --toggle-bg:rgba(255,255,255,0.08);
+  --toggle-border:rgba(255,255,255,0.2);
+  --toggle-icon:#fff;
+}
+
+/* ══ LIGHT THEME ══ */
+body.light {
+  --bg:#f4efe6;
+  --bg3:rgba(0,0,0,0.04);
+  --bg4:rgba(0,0,0,0.08);
+  --text-primary:#0d0b08;
+  --text-secondary:#1c1914;
+  --text-muted:#3e3830;
+  --text-faint:#6a6258;
+  --border:rgba(0,0,0,0.13);
+  --border2:rgba(0,0,0,0.07);
+  --nav-bg:rgba(244,239,230,0.95);
+  --card-bg:rgba(255,252,246,0.85);
+  --card-hover:rgba(255,255,255,1);
+  --input-bg:rgba(0,0,0,0.04);
+  --btn-primary-bg:rgba(0,0,0,0.06);
+  --btn-primary-border:rgba(0,0,0,0.45);
+  --btn-primary-text:#0d0b08;
+  --tag-bg:rgba(0,0,0,0.05);
+  --tag-border:rgba(0,0,0,0.13);
+  --tag-text:#5a5248;
+  --stat-num:#0d0b08;
+  --section-num:rgba(0,0,0,0.07);
+  --hours-day:#7a7268;
+  --hours-time:#2a2420;
+  --price:#3a3428;
+  --menu-name:#1a1612;
+  --footer-bg:rgba(232,226,214,0.9);
+  --toggle-bg:rgba(0,0,0,0.07);
+  --toggle-border:rgba(0,0,0,0.18);
+  --toggle-icon:#0d0b08;
+}
+
+canvas#scene {
+  position:fixed; inset:0; width:100%; height:100%; display:block; z-index:0;
+  transition:opacity .5s;
+}
+body.light canvas#scene { opacity:0.15; }
+
+#site { position:relative; z-index:10; }
+
+/* Light mode semi-opaque overlay */
+body.light #site::before {
+  content:''; position:fixed; inset:0; z-index:1;
+  background:var(--bg); opacity:0.85; pointer-events:none;
+}
+#site > * { position:relative; z-index:2; }
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:0 56px; height:68px;
+  background:var(--nav-bg); backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border2); transition:background .4s, border-color .4s;
+}
+.nav-logo { display:flex; flex-direction:column; line-height:1; text-decoration:none; }
+.nav-logo-main { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:8px; color:var(--text-primary); transition:color .4s; }
+.nav-logo-sub { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--text-faint); margin-top:2px; transition:color .4s; }
+.nav-center { display:flex; gap:30px; align-items:center; }
+.nav-center a { font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); text-decoration:none; transition:color .3s; }
+.nav-center a:hover { color:var(--text-primary); }
+.nav-right { display:flex; gap:12px; align-items:center; }
+
+.lang-toggle { display:flex; border:1px solid var(--border); border-radius:2px; overflow:hidden; transition:border-color .4s; }
+.lang-toggle button { background:transparent; border:none; cursor:pointer; padding:5px 11px; font-size:11px; letter-spacing:2px; font-family:'DM Sans',sans-serif; color:var(--text-faint); transition:all .2s; }
+.lang-toggle button.active { background:var(--text-primary); color:var(--bg); }
+.lang-toggle button:hover:not(.active) { color:var(--text-primary); }
+
+.theme-toggle { width:34px; height:34px; border-radius:50%; background:var(--toggle-bg); border:1px solid var(--toggle-border); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:15px; transition:all .3s; color:var(--toggle-icon); }
+.theme-toggle:hover { background:var(--bg4); transform:scale(1.1); }
+
+.nav-cta { padding:7px 18px; border:1px solid var(--border); color:var(--text-secondary); font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; text-decoration:none; border-radius:2px; transition:all .3s; white-space:nowrap; }
+.nav-cta:hover { background:var(--bg3); color:var(--text-primary); }
+
+/* ── HERO ── */
+#hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 60px 80px; position:relative; }
+.hero-eyebrow { font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:7px; text-transform:uppercase; color:var(--text-faint); margin-bottom:22px; transition:color .4s; }
+.hero-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(68px,10vw,124px); letter-spacing:12px; line-height:0.92; color:var(--text-primary); transition:color .4s; }
+.hero-italic { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300; font-size:clamp(22px,3.2vw,44px); letter-spacing:6px; color:var(--text-muted); display:block; margin:10px 0 30px; transition:color .4s; }
+.hero-desc { max-width:440px; font-size:17px; font-weight:400; line-height:1.95; color:var(--text-muted); letter-spacing:.3px; margin-bottom:42px; transition:color .4s; }
+.hero-btns { display:flex; gap:13px; justify-content:center; flex-wrap:wrap; }
+.btn { font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:4px; text-transform:uppercase; padding:13px 30px; border-radius:2px; cursor:pointer; transition:all .3s; text-decoration:none; display:inline-block; }
+.btn-p { background:var(--btn-primary-bg); border:1px solid var(--btn-primary-border); color:var(--btn-primary-text); }
+.btn-p:hover { background:var(--bg4); }
+.btn-s { background:transparent; border:1px solid var(--border); color:var(--text-muted); }
+.btn-s:hover { color:var(--text-primary); background:var(--bg3); }
+.scroll-hint { position:absolute; bottom:30px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; font-family:'DM Sans',sans-serif; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--text-faint); animation:bounce 2s infinite; transition:color .4s; }
+.scroll-hint::after { content:''; width:1px; height:26px; background:linear-gradient(to bottom,var(--text-faint),transparent); }
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
+
+/* ── SHARED SECTION ── */
+.sw { max-width:1080px; margin:0 auto; padding:88px 56px; }
+.s-label { font-family:'DM Sans',sans-serif; font-size:9px; letter-spacing:6px; text-transform:uppercase; color:var(--text-faint); margin-bottom:16px; transition:color .4s; }
+.s-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,5vw,60px); letter-spacing:5px; color:var(--text-primary); line-height:1; margin-bottom:12px; transition:color .4s; }
+.s-sub { font-size:17px; font-weight:400; font-style:italic; color:var(--text-muted); line-height:1.85; max-width:480px; transition:color .4s; }
+.rule { width:36px; height:1px; background:var(--border); margin:26px 0; transition:background .4s; }
+
+/* ── STORY ── */
+.story-inner { display:grid; grid-template-columns:1.1fr 0.9fr; gap:68px; align-items:start; }
+.story-text p { font-size:17px; font-weight:400; line-height:1.95; color:var(--text-muted); margin-bottom:16px; transition:color .4s; }
+.stats { display:flex; flex-direction:column; gap:12px; }
+.stat { border:1px solid var(--border); padding:24px 26px; background:var(--bg3); transition:all .4s; }
+.stat:hover { background:var(--card-hover); }
+.stat-n { font-family:'Bebas Neue',sans-serif; font-size:50px; letter-spacing:2px; color:var(--stat-num); line-height:1; transition:color .4s; }
+.stat-l { font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--text-faint); margin-top:4px; transition:color .4s; }
+
+/* ── GALLERY ── */
+.gallery { display:grid; grid-template-columns:repeat(5,1fr); gap:2px; height:230px; overflow:hidden; }
+.gcell { background:var(--bg3); display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:34px; border:1px solid var(--border2); transition:background .3s; gap:9px; }
+.gcell:hover { background:var(--card-hover); }
+.gcell span { font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-faint); transition:color .4s; }
+
+/* ── FLAVOURS ── */
+.fgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(218px,1fr)); gap:1px; background:var(--border2); border:1px solid var(--border2); margin-top:50px; transition:background .4s; }
+.fcard { padding:30px 24px; background:var(--card-bg); transition:background .3s; cursor:default; }
+.fcard:hover { background:var(--card-hover); }
+.fdot { width:10px; height:10px; border-radius:50%; margin-bottom:16px; }
+.fname { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:600; color:var(--text-primary); margin-bottom:7px; transition:color .4s; }
+.fdesc { font-family:'DM Sans',sans-serif; font-size:12px; color:var(--text-muted); line-height:1.75; transition:color .4s; }
+.ftag { display:inline-block; margin-top:13px; font-family:'DM Sans',sans-serif; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--tag-text); border:1px solid var(--tag-border); background:var(--tag-bg); padding:3px 9px; border-radius:1px; transition:all .4s; }
+
+/* ── SEASONAL ── */
+.seasonal { margin:0 56px; border:1px solid var(--border); background:var(--bg3); padding:42px 50px; display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap; transition:all .4s; }
+.seasonal h3 { font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:4px; color:var(--text-primary); margin-bottom:9px; transition:color .4s; }
+.seasonal p { font-size:16px; font-weight:400; font-style:italic; color:var(--text-muted); max-width:380px; line-height:1.8; transition:color .4s; }
+
+/* ── PROCESS ── */
+.psteps { display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:50px; border-left:1px solid var(--border); transition:border-color .4s; }
+.pstep { padding:0 30px 0 26px; border-right:1px solid var(--border); transition:border-color .4s; }
+.pnum { font-family:'Bebas Neue',sans-serif; font-size:58px; color:var(--section-num); line-height:1; margin-bottom:16px; transition:color .4s; }
+.pstep h4 { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:var(--text-secondary); margin-bottom:9px; transition:color .4s; }
+.pstep p { font-family:'DM Sans',sans-serif; font-size:13px; color:var(--text-muted); line-height:1.8; transition:color .4s; }
+
+/* ── MENU ── */
+.mcols { display:grid; grid-template-columns:1fr 1fr; gap:50px; margin-top:50px; }
+.mcat h3 { font-family:'Bebas Neue',sans-serif; font-size:19px; letter-spacing:4px; color:var(--text-muted); margin-bottom:18px; padding-bottom:11px; border-bottom:1px solid var(--border); transition:all .4s; }
+.mitem { display:flex; justify-content:space-between; align-items:baseline; padding:10px 0; border-bottom:1px solid var(--border2); transition:border-color .4s; }
+.mitem:last-child { border-bottom:none; }
+.mname { font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--menu-name); transition:color .4s; }
+.mnote { font-family:'DM Sans',sans-serif; font-size:11px; color:var(--text-faint); margin-left:5px; transition:color .4s; }
+.mprice { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; color:var(--price); white-space:nowrap; margin-left:12px; transition:color .4s; }
+
+/* ── TESTI ── */
+.tgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border2); border:1px solid var(--border2); margin-top:50px; transition:background .4s; }
+.tcard { background:var(--card-bg); padding:30px 26px; transition:background .3s; }
+.tcard:hover { background:var(--card-hover); }
+.tstars { color:var(--text-muted); font-size:13px; letter-spacing:3px; margin-bottom:14px; transition:color .4s; }
+.ttext { font-size:16px; font-weight:400; font-style:italic; line-height:1.85; color:var(--text-muted); margin-bottom:18px; transition:color .4s; }
+.tauthor { font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-faint); transition:color .4s; }
+
+/* ── VISIT ── */
+.vgrid { display:grid; grid-template-columns:1fr 1fr; gap:50px; margin-top:50px; }
+.iblock { margin-bottom:30px; }
+.ilabel { font-family:'DM Sans',sans-serif; font-size:9px; letter-spacing:5px; text-transform:uppercase; color:var(--text-faint); margin-bottom:9px; transition:color .4s; }
+.ival { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:var(--text-secondary); line-height:1.7; transition:color .4s; }
+.ival a { color:var(--text-secondary); text-decoration:none; transition:color .3s; }
+.ival a:hover { color:var(--text-primary); text-decoration:underline; }
+.hgrid { display:grid; grid-template-columns:auto 1fr; gap:5px 20px; }
+.hday { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--hours-day); transition:color .4s; }
+.htime { font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--hours-time); transition:color .4s; }
+.mapbox { border:1px solid var(--border); background:var(--bg3); position:relative; overflow:hidden; min-height:310px; transition:all .4s; }
+#mapCanvas { width:100%; min-height:310px; display:block; }
+.maplabel { position:absolute; bottom:14px; left:14px; background:var(--card-bg); border:1px solid var(--border); padding:11px 14px; transition:all .4s; }
+.maplabel strong { font-family:'Cormorant Garamond',serif; font-size:15px; font-weight:600; color:var(--text-primary); display:block; margin-bottom:3px; transition:color .4s; }
+.maplabel p { font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:1px; color:var(--text-faint); line-height:1.6; transition:color .4s; }
+
+/* ── NEWSLETTER ── */
+.newsband { margin:0 56px 88px; border:1px solid var(--border); background:var(--bg3); padding:50px; text-align:center; transition:all .4s; }
+.newsband h3 { font-family:'Bebas Neue',sans-serif; font-size:40px; letter-spacing:6px; color:var(--text-primary); margin-bottom:11px; transition:color .4s; }
+.newsband p { font-size:16px; font-weight:400; font-style:italic; color:var(--text-muted); margin-bottom:30px; transition:color .4s; }
+.nform { display:flex; max-width:430px; margin:0 auto; border:1px solid var(--border); transition:border-color .4s; }
+.nform input { flex:1; padding:12px 16px; background:var(--input-bg); border:none; outline:none; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--text-primary); transition:all .4s; }
+.nform input::placeholder { color:var(--text-faint); }
+.nform button { padding:12px 22px; background:var(--bg4); border:none; border-left:1px solid var(--border); color:var(--text-muted); font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; cursor:pointer; transition:all .3s; white-space:nowrap; }
+.nform button:hover { background:var(--bg3); color:var(--text-primary); }
+
+/* ── FOOTER ── */
+footer { background:var(--footer-bg); border-top:1px solid var(--border); padding:34px 56px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; transition:all .4s; }
+.flogo { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:6px; color:var(--text-faint); transition:color .4s; }
+.flinks { display:flex; gap:26px; flex-wrap:wrap; }
+.flinks a { font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-faint); text-decoration:none; transition:color .3s; }
+.flinks a:hover { color:var(--text-primary); }
+.fcopy { font-family:'DM Sans',sans-serif; font-size:10px; color:var(--text-faint); letter-spacing:1px; transition:color .4s; }
+
+/* ── FADE IN ── */
+.fi { opacity:0; transform:translateY(18px); transition:opacity .85s ease, transform .85s ease; }
+.fi.vis { opacity:1; transform:none; }
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  nav{padding:0 18px;} .nav-center{display:none;}
+  .sw{padding:60px 20px;}
+  .story-inner{grid-template-columns:1fr;gap:32px;}
+  .mcols{grid-template-columns:1fr;}
+  .vgrid{grid-template-columns:1fr;}
+  .tgrid{grid-template-columns:1fr;}
+  .psteps{grid-template-columns:1fr 1fr;}
+  .gallery{grid-template-columns:repeat(3,1fr);height:150px;}
+  .seasonal,.newsband{margin:0 20px 60px;padding:28px 20px;}
+  footer{padding:28px 20px;flex-direction:column;}
+}
+</style>
+</head>
+<body class="dark">
+
+<canvas id="scene"></canvas>
+
+<div id="site">
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">
+    <span class="nav-logo-main">La Palette</span>
+    <span class="nav-logo-sub" data-fr="Gelato Artisanal · Montréal" data-en="Artisan Gelato · Montréal">Gelato Artisanal · Montréal</span>
+  </a>
+  <div class="nav-center">
+    <a href="#story" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</a>
+    <a href="#flavours" data-fr="Saveurs" data-en="Flavours">Saveurs</a>
+    <a href="#menu" data-fr="Menu" data-en="Menu">Menu</a>
+    <a href="#visit" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">☀</button>
+    <a href="#visit" class="nav-cta" data-fr="Nous Visiter" data-en="Visit Us">Nous Visiter</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <p class="hero-eyebrow fi" data-fr="Fait à la main à Montréal depuis 2024" data-en="Handcrafted in Montréal since 2024">Fait à la main à Montréal depuis 2024</p>
+  <h1 class="hero-title fi">La Palette</h1>
+  <span class="hero-italic fi" data-fr="Gelato Artisanal" data-en="Artisan Gelato">Gelato Artisanal</span>
+  <p class="hero-desc fi" data-fr="Là où la tradition italienne rencontre le terroir québécois. Chaque boule est une petite peinture — préparée chaque jour, servie avec amour sur Prince Arthur." data-en="Where Italian tradition meets Québec terroir. Every scoop is a small painting — crafted daily, served with love on Prince Arthur.">Là où la tradition italienne rencontre le terroir québécois. Chaque boule est une petite peinture — préparée chaque jour, servie avec amour sur Prince Arthur.</p>
+  <div class="hero-btns fi">
+    <a href="#flavours" class="btn btn-p" data-fr="Explorer les Saveurs" data-en="Explore Flavours">Explorer les Saveurs</a>
+    <a href="#visit" class="btn btn-s" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
+  </div>
+  <div class="scroll-hint fi" data-fr="Défiler" data-en="Scroll">Défiler</div>
+</div>
+
+<!-- STORY -->
+<section id="story">
+  <div class="sw">
+    <div class="story-inner fi">
+      <div class="story-text">
+        <p class="s-label" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</p>
+        <h2 class="s-title" data-fr="Art. Saveur.<br>Caractère." data-en="Craft. Colour.<br>Character.">Art. Saveur.<br>Caractère.</h2>
+        <div class="rule"></div>
+        <p data-fr="La Palette est née d'une seule obsession : que le gelato, à son meilleur, n'est pas qu'un dessert — c'est un moment de pur plaisir sensoriel. Nous sélectionnons les meilleurs ingrédients locaux des fermes québécoises et les associons à une technique italienne traditionnelle transmise sur trois générations." data-en="La Palette was born from a single obsession: that gelato, at its finest, is not just a dessert — it is a moment of pure sensory pleasure. We source the finest local ingredients from Québec farms and pair them with traditional Italian technique passed down through three generations.">La Palette est née d'une seule obsession : que le gelato, à son meilleur, n'est pas qu'un dessert — c'est un moment de pur plaisir sensoriel. Nous sélectionnons les meilleurs ingrédients locaux des fermes québécoises et les associons à une technique italienne traditionnelle transmise sur trois générations.</p>
+        <p data-fr="Chaque fournée est préparée à la main chaque matin dans notre cuisine ouverte. Aucun stabilisant, aucune saveur artificielle. Seulement du lait, de la crème, des fruits de saison et une quantité déraisonnable de soin." data-en="Every batch is churned fresh each morning in our open kitchen. No stabilisers, no artificial flavours. Just milk, cream, seasonal fruit, and an unreasonable amount of care.">Chaque fournée est préparée à la main chaque matin dans notre cuisine ouverte. Aucun stabilisant, aucune saveur artificielle. Seulement du lait, de la crème, des fruits de saison et une quantité déraisonnable de soin.</p>
+        <p data-fr="Venez nous retrouver sur Prince Arthur — le cœur battant du Plateau — où chaque jour nous repeignons le menu à nouveau." data-en="Come find us on Prince Arthur — the beating heart of the Plateau — where every day we paint the menu anew.">Venez nous retrouver sur Prince Arthur — le cœur battant du Plateau — où chaque jour nous repeignons le menu à nouveau.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-n">24+</div><div class="stat-l" data-fr="Saveurs en rotation quotidienne" data-en="Rotating flavours daily">Saveurs en rotation quotidienne</div></div>
+        <div class="stat"><div class="stat-n">100%</div><div class="stat-l" data-fr="Ingrédients naturels" data-en="Natural ingredients">Ingrédients naturels</div></div>
+        <div class="stat"><div class="stat-n">3</div><div class="stat-l" data-fr="Générations de savoir-faire" data-en="Generations of craft">Générations de savoir-faire</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<div class="gallery fi">
+  <div class="gcell">🍨<span data-fr="Pistache" data-en="Pistachio">Pistache</span></div>
+  <div class="gcell">🫐<span data-fr="Myrtille" data-en="Blueberry">Myrtille</span></div>
+  <div class="gcell">🍫<span data-fr="Chocolat" data-en="Chocolate">Chocolat</span></div>
+  <div class="gcell">🍓<span data-fr="Fraise" data-en="Strawberry">Fraise</span></div>
+  <div class="gcell">🌿<span data-fr="Basilic & Citron" data-en="Basil & Lemon">Basilic & Citron</span></div>
+</div>
+
+<!-- FLAVOURS -->
+<section id="flavours">
+  <div class="sw">
+    <p class="s-label fi" data-fr="La Palette du Jour" data-en="Today's Palette">La Palette du Jour</p>
+    <h2 class="s-title fi" data-fr="Nos Saveurs" data-en="Our Flavours">Nos Saveurs</h2>
+    <p class="s-sub fi" data-fr="Préparées chaque matin. En rotation avec les saisons et l'humeur de la cuisine." data-en="Crafted each morning. Rotating with the seasons and the mood of the kitchen.">Préparées chaque matin. En rotation avec les saisons et l'humeur de la cuisine.</p>
+    <div class="fgrid fi">
+      <div class="fcard"><div class="fdot" style="background:#c9a96e;"></div><div class="fname">Fior di Latte</div><div class="fdesc" data-fr="Notre gelato le plus pur — crème douce, rien de plus. La toile sur laquelle tout le reste est peint." data-en="Our purest gelato — sweet cream, nothing more. The canvas upon which everything else is painted.">Notre gelato le plus pur — crème douce, rien de plus. La toile sur laquelle tout le reste est peint.</div><span class="ftag" data-fr="Classique" data-en="Classic">Classique</span></div>
+      <div class="fcard"><div class="fdot" style="background:#8fbc5e;"></div><div class="fname">Pistacchio di Sicilia</div><div class="fdesc" data-fr="Pistaches Bronte torréfiées importées, mélangées en un gelato riche et intensément noisette. Iconique." data-en="Imported roasted Bronte pistachios blended into a rich, deeply nutty gelato. Iconic.">Pistaches Bronte torréfiées importées, mélangées en un gelato riche et intensément noisette. Iconique.</div><span class="ftag" data-fr="Signature" data-en="Signature">Signature</span></div>
+      <div class="fcard"><div class="fdot" style="background:#3d1f0a;"></div><div class="fname">Cioccolato Fondente</div><div class="fdesc" data-fr="Chocolat noir 72% d'origine unique du Pérou. Intense, amer-doux, inoubliable." data-en="Single-origin 72% dark chocolate from Peru. Intense, bittersweet, unforgettable.">Chocolat noir 72% d'origine unique du Pérou. Intense, amer-doux, inoubliable.</div><span class="ftag" data-fr="Signature" data-en="Signature">Signature</span></div>
+      <div class="fcard"><div class="fdot" style="background:#e8a0b0;"></div><div class="fname" data-fr="Fraise du Québec" data-en="Fraise du Québec">Fraise du Québec</div><div class="fdesc" data-fr="Fraises saisonnières du Québec provenant des fermes de l'Île d'Orléans. Disponible juin–août." data-en="Seasonal Québec strawberries from Île d'Orléans farms. Available June–August.">Fraises saisonnières du Québec provenant des fermes de l'Île d'Orléans. Disponible juin–août.</div><span class="ftag" data-fr="Saisonnier" data-en="Seasonal">Saisonnier</span></div>
+      <div class="fcard"><div class="fdot" style="background:#f5e27a;"></div><div class="fname" data-fr="Citron & Basilic" data-en="Lemon & Basil">Citron & Basilic</div><div class="fdesc" data-fr="Sorbet au citron de Sorrente avec du basilic local frais. Vif, herbacé, étonnamment parfait." data-en="Sorrento lemon sorbet with fresh local basil. Bright, herbal, unexpectedly perfect.">Sorbet au citron de Sorrente avec du basilic local frais. Vif, herbacé, étonnamment parfait.</div><span class="ftag">Sorbetto</span></div>
+      <div class="fcard"><div class="fdot" style="background:#7a5c9e;"></div><div class="fname" data-fr="Lavande & Miel" data-en="Lavender & Honey">Lavande & Miel</div><div class="fdesc" data-fr="Miel de fleurs sauvages du Québec avec lavande biologique des Cantons-de-l'Est. Profondément floral." data-en="Québec wildflower honey with organic lavender from the Eastern Townships. Deeply floral.">Miel de fleurs sauvages du Québec avec lavande biologique des Cantons-de-l'Est. Profondément floral.</div><span class="ftag" data-fr="Saisonnier" data-en="Seasonal">Saisonnier</span></div>
+      <div class="fcard"><div class="fdot" style="background:#c97a3a;"></div><div class="fname" data-fr="Caramel Fleur de Sel" data-en="Caramel Fleur de Sel">Caramel Fleur de Sel</div><div class="fdesc" data-fr="Caramel cuit lentement avec cristaux de fleur de sel de l'Île de Ré. Sucré, salé, addictif." data-en="Slow-cooked caramel with Île de Ré fleur de sel crystals. Sweet, salty, addictive.">Caramel cuit lentement avec cristaux de fleur de sel de l'Île de Ré. Sucré, salé, addictif.</div><span class="ftag" data-fr="Classique" data-en="Classic">Classique</span></div>
+      <div class="fcard"><div class="fdot" style="background:#a0522d;"></div><div class="fname">Nocciola Piemonte</div><div class="fdesc" data-fr="Noisettes du Piémont certifiées IGP, torréfiées sur place. Notre deuxième saveur la plus aimée." data-en="IGP-certified Piedmont hazelnuts, slow-roasted in-house. Our second most loved flavour.">Noisettes du Piémont certifiées IGP, torréfiées sur place. Notre deuxième saveur la plus aimée.</div><span class="ftag" data-fr="Signature" data-en="Signature">Signature</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEASONAL -->
+<div class="seasonal fi">
+  <div>
+    <h3 data-fr="Spécial Hiver" data-en="Winter Special">Spécial Hiver</h3>
+    <p data-fr="Cette saison : un affogato au chocolat chaud — une boule de Cioccolato Fondente noyée dans notre cacao épicé maison. Disponible tant que l'hiver dure." data-en="This season: a hot chocolate affogato — a scoop of Cioccolato Fondente drowned in our house-made spiced cocoa. Available while winter lasts.">Cette saison : un affogato au chocolat chaud — une boule de Cioccolato Fondente noyée dans notre cacao épicé maison. Disponible tant que l'hiver dure.</p>
+  </div>
+  <a href="#menu" class="btn btn-p" data-fr="Voir le Menu" data-en="See Full Menu">Voir le Menu</a>
+</div>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="sw">
+    <p class="s-label fi" data-fr="Notre Méthode" data-en="How We Make It">Notre Méthode</p>
+    <h2 class="s-title fi" data-fr="Le Processus" data-en="The Process">Le Processus</h2>
+    <div class="psteps fi">
+      <div class="pstep"><div class="pnum">01</div><h4 data-fr="Sélection" data-en="Source">Sélection</h4><p data-fr="Nous visitons nos fournisseurs — fermes québécoises, importateurs italiens, producteurs locaux. Les ingrédients arrivent frais chaque jour." data-en="We visit our suppliers personally — Québec farms, Italian importers, local producers. Ingredients arrive fresh daily.">Nous visitons nos fournisseurs — fermes québécoises, importateurs italiens, producteurs locaux. Les ingrédients arrivent frais chaque jour.</p></div>
+      <div class="pstep"><div class="pnum">02</div><h4 data-fr="Préparation" data-en="Craft">Préparation</h4><p data-fr="Chaque base est préparée à la main chaque matin. Aucun prémélange. Aucun raccourci. Cuite, refroidie et vieillie pour une texture optimale." data-en="Every base is prepared by hand each morning. No premixes. No shortcuts. Cooked, cooled, and aged for optimal texture.">Chaque base est préparée à la main chaque matin. Aucun prémélange. Aucun raccourci. Cuite, refroidie et vieillie pour une texture optimale.</p></div>
+      <div class="pstep"><div class="pnum">03</div><h4 data-fr="Turbinage" data-en="Churn">Turbinage</h4><p data-fr="Nos turbines italiennes fonctionnent avec un foisonnement plus faible — donnant au gelato sa texture dense et soyeuse caractéristique." data-en="Our Italian batch freezers run at lower overrun — giving gelato its signature dense, silky body.">Nos turbines italiennes fonctionnent avec un foisonnement plus faible — donnant au gelato sa texture dense et soyeuse caractéristique.</p></div>
+      <div class="pstep"><div class="pnum">04</div><h4 data-fr="Service" data-en="Serve">Service</h4><p data-fr="Le gelato est servi à -11°C — plus chaud que la crème glacée — pour que chaque saveur s'épanouisse pleinement en bouche." data-en="Gelato is served at -11°C — warmer than ice cream — so every flavour blooms fully on the palate.">Le gelato est servi à -11°C — plus chaud que la crème glacée — pour que chaque saveur s'épanouisse pleinement en bouche.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="sw">
+    <p class="s-label fi" data-fr="Menu & Tarifs" data-en="Menu & Pricing">Menu & Tarifs</p>
+    <h2 class="s-title fi" data-fr="Commander" data-en="Order">Commander</h2>
+    <p class="s-sub fi" data-fr="Tout le gelato est préparé frais chaque jour. Prix en CAD, taxes incluses." data-en="All gelato is made fresh daily. Prices in CAD, taxes included.">Tout le gelato est préparé frais chaque jour. Prix en CAD, taxes incluses.</p>
+    <div class="mcols fi">
+      <div class="mcat">
+        <h3 data-fr="Gelato & Sorbetto" data-en="Gelato & Sorbetto">Gelato & Sorbetto</h3>
+        <div class="mitem"><span class="mname">Piccolo <span class="mnote" data-fr="1 boule" data-en="1 scoop">1 boule</span></span><span class="mprice">4,75 $</span></div>
+        <div class="mitem"><span class="mname">Medio <span class="mnote" data-fr="2 boules" data-en="2 scoops">2 boules</span></span><span class="mprice">6,50 $</span></div>
+        <div class="mitem"><span class="mname">Grande <span class="mnote" data-fr="3 boules" data-en="3 scoops">3 boules</span></span><span class="mprice">8,25 $</span></div>
+        <div class="mitem"><span class="mname">Coppa Speciale <span class="mnote" data-fr="4 boules + garnitures" data-en="4 scoops + toppings">4 boules + garnitures</span></span><span class="mprice">11,50 $</span></div>
+        <div class="mitem"><span class="mname" data-fr="Cornet Gaufré" data-en="Waffle Cone">Cornet Gaufré <span class="mnote" data-fr="supplément" data-en="add-on">supplément</span></span><span class="mprice">+1,50 $</span></div>
+      </div>
+      <div class="mcat">
+        <h3 data-fr="Spécialités" data-en="Specialties">Spécialités</h3>
+        <div class="mitem"><span class="mname">Affogato <span class="mnote" data-fr="gelato + espresso" data-en="gelato + espresso">gelato + espresso</span></span><span class="mprice">7,50 $</span></div>
+        <div class="mitem"><span class="mname">Brioche con Gelato</span><span class="mprice">9,00 $</span></div>
+        <div class="mitem"><span class="mname" data-fr="Sandwich Gelato" data-en="Gelato Sandwich">Sandwich Gelato</span><span class="mprice">8,50 $</span></div>
+        <div class="mitem"><span class="mname" data-fr="Pinte à Emporter" data-en="Pint To-Go">Pinte à Emporter <span class="mnote">500ml</span></span><span class="mprice">14,00 $</span></div>
+        <div class="mitem"><span class="mname" data-fr="Traiteur / Événements" data-en="Catering / Events">Traiteur / Événements</span><span class="mprice" data-fr="Sur demande" data-en="On request">Sur demande</span></div>
+      </div>
+      <div class="mcat">
+        <h3 data-fr="Boissons Chaudes" data-en="Hot Drinks">Boissons Chaudes</h3>
+        <div class="mitem"><span class="mname">Espresso</span><span class="mprice">3,25 $</span></div>
+        <div class="mitem"><span class="mname">Cappuccino</span><span class="mprice">5,00 $</span></div>
+        <div class="mitem"><span class="mname">Cioccolata Calda <span class="mnote" data-fr="chocolat chaud" data-en="hot chocolate">chocolat chaud</span></span><span class="mprice">5,50 $</span></div>
+        <div class="mitem"><span class="mname" data-fr="Latte Chai" data-en="Chai Latte">Latte Chai</span><span class="mprice">5,00 $</span></div>
+      </div>
+      <div class="mcat">
+        <h3 data-fr="Garnitures" data-en="Toppings">Garnitures</h3>
+        <div class="mitem"><span class="mname" data-fr="Coulis de fruits frais" data-en="Fresh fruit coulis">Coulis de fruits frais</span><span class="mprice">1,00 $</span></div>
+        <div class="mitem"><span class="mname" data-fr="Noix torréfiées" data-en="Roasted nuts">Noix torréfiées</span><span class="mprice">1,00 $</span></div>
+        <div class="mitem"><span class="mname" data-fr="Sauce chocolat chaud" data-en="Hot fudge">Sauce chocolat chaud</span><span class="mprice">1,00 $</span></div>
+        <div class="mitem"><span class="mname" data-fr="Crème fouettée" data-en="Whipped cream">Crème fouettée</span><span class="mprice">0,75 $</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="sw">
+    <p class="s-label fi" data-fr="Ce Que Disent Les Gens" data-en="What People Say">Ce Que Disent Les Gens</p>
+    <h2 class="s-title fi" data-fr="Avis" data-en="Reviews">Avis</h2>
+    <div class="tgrid fi">
+      <div class="tcard"><div class="tstars">★★★★★</div><p class="ttext" data-fr="« Le gelato à la pistache est le meilleur que j'aie jamais goûté en dehors de la Sicile. Je viens ici chaque week-end. La Palette fait maintenant partie de ma routine sur le Plateau. »" data-en="&ldquo;The pistachio gelato is the finest I've had outside of Sicily. I come here every weekend. La Palette has become part of my Plateau routine.&rdquo;">« Le gelato à la pistache est le meilleur que j'aie jamais goûté en dehors de la Sicile. Je viens ici chaque week-end. La Palette fait maintenant partie de ma routine sur le Plateau. »</p><p class="tauthor">— Sophie L., Plateau-Mont-Royal</p></div>
+      <div class="tcard"><div class="tstars">★★★★★</div><p class="ttext" data-fr="« En tant qu'Italien vivant à Montréal, trouver un vrai gelato authentique semblait impossible — jusqu'à La Palette. La texture, l'intensité des saveurs, la fraîcheur. Perfetto. »" data-en="&ldquo;As an Italian living in Montréal, finding authentic gelato felt impossible — until La Palette. The texture, the flavour intensity, the freshness. Perfetto.&rdquo;">« En tant qu'Italien vivant à Montréal, trouver un vrai gelato authentique semblait impossible — jusqu'à La Palette. La texture, l'intensité des saveurs, la fraîcheur. Perfetto. »</p><p class="tauthor">— Marco R., Mile-End</p></div>
+      <div class="tcard"><div class="tstars">★★★★★</div><p class="ttext" data-fr="« La saveur lavande-miel est comme rien d'autre que j'ai goûté. Ça ressemble à l'été dans les Cantons-de-l'Est. Je pourrais manger ça chaque jour. »" data-en="&ldquo;The lavender honey flavour is unlike anything I've tried. It tastes like summer in the Eastern Townships. I could eat this every single day.&rdquo;">« La saveur lavande-miel est comme rien d'autre que j'ai goûté. Ça ressemble à l'été dans les Cantons-de-l'Est. Je pourrais manger ça chaque jour. »</p><p class="tauthor">— Chloé T., Rosemont</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit">
+  <div class="sw">
+    <p class="s-label fi" data-fr="Venez Nous Voir" data-en="Come See Us">Venez Nous Voir</p>
+    <h2 class="s-title fi" data-fr="Trouver La Palette" data-en="Find La Palette">Trouver La Palette</h2>
+    <p class="s-sub fi" data-fr="Nous sommes sur le tronçon piétonnier de Prince Arthur — la rue gastronomique la plus aimée de Montréal." data-en="We're on the pedestrian stretch of Prince Arthur — Montréal's most beloved food street.">Nous sommes sur le tronçon piétonnier de Prince Arthur — la rue gastronomique la plus aimée de Montréal.</p>
+    <div class="vgrid fi">
+      <div>
+        <div class="iblock"><p class="ilabel" data-fr="Adresse" data-en="Address">Adresse</p><p class="ival">108 Prince Arthur Est<br>Montréal, QC H2X 1B4</p></div>
+        <div class="iblock"><p class="ilabel" data-fr="Téléphone" data-en="Phone">Téléphone</p><p class="ival"><a href="tel:5141232345">514 123-2345</a></p></div>
+        <div class="iblock"><p class="ilabel" data-fr="Courriel" data-en="Email">Courriel</p><p class="ival"><a href="mailto:bonjour@lapalette.ca">bonjour@lapalette.ca</a></p></div>
+        <div class="iblock">
+          <p class="ilabel" data-fr="Heures d'Ouverture" data-en="Hours">Heures d'Ouverture</p>
+          <div class="hgrid ival">
+            <span class="hday" data-fr="Lun – Jeu" data-en="Mon – Thu">Lun – Jeu</span><span class="htime">11h – 22h</span>
+            <span class="hday" data-fr="Ven – Sam" data-en="Fri – Sat">Ven – Sam</span><span class="htime">11h – 23h</span>
+            <span class="hday" data-fr="Dimanche" data-en="Sunday">Dimanche</span><span class="htime">12h – 22h</span>
+          </div>
+        </div>
+        <div class="iblock"><p class="ilabel" data-fr="Métro" data-en="Nearest Metro">Métro</p><p class="ival" data-fr="Sherbrooke (Ligne Orange)<br><small style='color:var(--text-faint)'>5 min à pied vers l'est sur Prince Arthur</small>" data-en="Sherbrooke (Orange Line)<br><small style='color:var(--text-faint)'>5 min walk east on Prince Arthur</small>">Sherbrooke (Ligne Orange)<br><small style="color:var(--text-faint)">5 min à pied vers l'est sur Prince Arthur</small></p></div>
+      </div>
+      <div class="mapbox">
+        <canvas id="mapCanvas"></canvas>
+        <div class="maplabel"><strong>La Palette Gelato</strong><p>108 Prince Arthur Est<br>Montréal, QC</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsband fi">
+  <h3 data-fr="Restez Informé" data-en="Stay in the Loop">Restez Informé</h3>
+  <p data-fr="Nouvelles saveurs, spéciaux saisonniers et coulisses de notre cuisine — directement dans votre boîte courriel." data-en="New flavours, seasonal specials, and behind-the-scenes from our kitchen — straight to your inbox.">Nouvelles saveurs, spéciaux saisonniers et coulisses de notre cuisine — directement dans votre boîte courriel.</p>
+  <div class="nform">
+    <input type="email" placeholder="Votre adresse courriel" data-fr-ph="Votre adresse courriel" data-en-ph="Your email address"/>
+    <button data-fr="S'inscrire" data-en="Subscribe">S'inscrire</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flogo">La Palette</div>
+  <div class="flinks">
+    <a href="#story" data-fr="Histoire" data-en="Story">Histoire</a>
+    <a href="#flavours" data-fr="Saveurs" data-en="Flavours">Saveurs</a>
+    <a href="#menu">Menu</a>
+    <a href="#visit" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
+    <a href="tel:5141232345">514 123-2345</a>
+  </div>
+  <p class="fcopy">© 2024 La Palette Gelato · 108 Prince Arthur Est, Montréal</p>
+</footer>
+
+</div>
+
+<!-- ══ BACKGROUND ENGINE — UNCHANGED ══ -->
+<script>
+const canvas = document.getElementById('scene');
+const ctx = canvas.getContext('2d');
+let W,H,cx,cy;
+let mouse={x:-9999,y:-9999}, mouseVel={x:0,y:0}, lastMouse={x:-9999,y:-9999};
+
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;cx=W/2;cy=H/2;}
+resize(); window.addEventListener('resize',resize);
+
+window.addEventListener('mousemove',e=>{
+  mouseVel.x=e.clientX-lastMouse.x; mouseVel.y=e.clientY-lastMouse.y;
+  lastMouse.x=mouse.x; lastMouse.y=mouse.y; mouse.x=e.clientX; mouse.y=e.clientY;
+});
+
+const COUNT=80; const flakes=[];
+for(let i=0;i<COUNT;i++) flakes.push(makeFlake(false));
+
+function makeFlake(fromTop){
+  const z=Math.random();
+  return {
+    wx:(Math.random()-0.5)*2,
+    // All flakes begin above the visible top of the viewport
+    wy: fromTop ? -0.02 - Math.random()*0.06 : -(Math.random()*1.5),
+    z, baseZ:z,
+    speedY:0.00018+z*0.00032,
+    speedX:(Math.random()-0.5)*0.00015,
+    wobble:Math.random()*Math.PI*2,
+    wobbleAmp:0.0004+Math.random()*0.0006,
+    wobbleSpeed:0.012+Math.random()*0.018,
+    vx:0,vy:0,
+    baseRadius:1.0+z*3.2,
+    opacity:0.15+z*0.7,
+  };
+}
+
+function project(wx,wy,z){
+  const scale=0.35+z*0.65;
+  const sx=cx+wx*cx*scale;
+  const sy=cy*0.5+wy*H*0.55*scale+cy*0.12;
+  return{sx,sy,scale};
+}
+
+function drawUFrame(){
+  const thickness=0.072*W, armH=H*0.92, curveDepth=H*0.36, innerW=W-thickness*2, layers=18;
+  for(let i=layers;i>=0;i--){
+    const t=i/layers, ls=0.28+t*0.72, alpha=0.03+t*0.09, le=t>0.92;
+    const lt=thickness*ls, lW=cx+(cx-thickness)*ls, lH=armH*(0.5+t*0.5);
+    const lCY=H-curveDepth*(1-t*0.6), lL=cx-lW, lR=cx+lW, lTop=H*0.04*(1-t);
+    ctx.save();
+    ctx.beginPath();ctx.rect(lL,lTop,lt,lH);
+    ctx.fillStyle=le?`rgba(40,40,55,${alpha*3})`:`rgba(8,8,14,${alpha})`;ctx.fill();
+    ctx.beginPath();ctx.rect(lR-lt,lTop,lt,lH);
+    ctx.fillStyle=le?`rgba(40,40,55,${alpha*3})`:`rgba(8,8,14,${alpha})`;ctx.fill();
+    ctx.beginPath();ctx.ellipse(cx,lCY,lW-lt/2,curveDepth*ls*0.7,0,0,Math.PI);
+    ctx.strokeStyle=le?`rgba(60,60,80,${alpha*4})`:`rgba(12,12,20,${alpha*1.5})`;
+    ctx.lineWidth=lt;ctx.stroke();ctx.restore();
+  }
+  const fGL=ctx.createLinearGradient(0,0,thickness*1.1,0);
+  fGL.addColorStop(0,'rgba(0,0,0,1)');fGL.addColorStop(0.4,'rgba(6,6,12,0.95)');
+  fGL.addColorStop(0.85,'rgba(14,14,24,0.85)');fGL.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=fGL;ctx.fillRect(0,0,thickness*1.4,H);
+  const fGR=ctx.createLinearGradient(W,0,W-thickness*1.1,0);
+  fGR.addColorStop(0,'rgba(0,0,0,1)');fGR.addColorStop(0.4,'rgba(6,6,12,0.95)');
+  fGR.addColorStop(0.85,'rgba(14,14,24,0.85)');fGR.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=fGR;ctx.fillRect(W-thickness*1.4,0,thickness*1.4,H);
+  const bG=ctx.createRadialGradient(cx,H+H*0.1,0,cx,H+H*0.1,H*0.72);
+  bG.addColorStop(0,'rgba(0,0,0,1)');bG.addColorStop(0.3,'rgba(0,0,0,0.97)');
+  bG.addColorStop(0.55,'rgba(0,0,0,0.8)');bG.addColorStop(0.75,'rgba(0,0,0,0.4)');
+  bG.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=bG;ctx.fillRect(0,0,W,H);
+  const rGL=ctx.createLinearGradient(thickness,0,thickness+3,0);
+  rGL.addColorStop(0,'rgba(120,120,160,0.18)');rGL.addColorStop(1,'rgba(120,120,160,0)');
+  ctx.fillStyle=rGL;ctx.fillRect(thickness,H*0.05,6,H*0.82);
+  const rGR=ctx.createLinearGradient(W-thickness-3,0,W-thickness,0);
+  rGR.addColorStop(0,'rgba(120,120,160,0)');rGR.addColorStop(1,'rgba(120,120,160,0.18)');
+  ctx.fillStyle=rGR;ctx.fillRect(W-thickness-6,H*0.05,6,H*0.82);
+  ctx.beginPath();ctx.ellipse(cx,H-curveDepth*0.55,(innerW/2)*0.88,curveDepth*0.42,0,0,Math.PI);
+  ctx.strokeStyle='rgba(100,100,140,0.07)';ctx.lineWidth=3;ctx.stroke();
+}
+
+function drawSnow(){
+  const light=document.body.classList.contains('light');
+  const[sr,sg,sb]=light?[60,50,35]:[220,230,255];
+  flakes.sort((a,b)=>a.z-b.z);
+  for(const f of flakes){
+    const{sx,sy}=project(f.wx,f.wy,f.z);
+    const r=f.baseRadius*(0.3+f.z*0.7);
+    const alpha=f.opacity*Math.min(1,Math.max(0,1-f.wy*0.8));
+    if(alpha<0.01)continue;
+    ctx.beginPath();ctx.arc(sx,sy,r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(${sr},${sg},${sb},${alpha})`;ctx.fill();
+    if(f.z>0.5){
+      const gr=r*(2.5+f.z*2);
+      const glow=ctx.createRadialGradient(sx,sy,0,sx,sy,gr);
+      glow.addColorStop(0,`rgba(${sr},${sg},${sb},${alpha*0.18*f.z})`);
+      glow.addColorStop(1,`rgba(${sr},${sg},${sb},0)`);
+      ctx.beginPath();ctx.arc(sx,sy,gr,0,Math.PI*2);ctx.fillStyle=glow;ctx.fill();
+    }
+  }
+}
+
+function updateFlakes(){
+  const MR=90,MF=0.018;
+  for(const f of flakes){
+    f.wobble+=f.wobbleSpeed;
+    f.wx+=Math.sin(f.wobble)*f.wobbleAmp+f.speedX;
+    f.wy+=f.speedY*(1+f.z*0.5);
+    f.wx+=f.vx;f.wy+=f.vy;
+    f.vx*=0.91;f.vy*=0.91;f.vy+=0.0003;
+    const{sx,sy}=project(f.wx,f.wy,f.z);
+    const dx=sx-mouse.x,dy=sy-mouse.y,dist=Math.sqrt(dx*dx+dy*dy);
+    const er=MR*(0.3+f.z*0.8);
+    if(dist<er&&dist>0.1){
+      const force=(1-dist/er)*MF,nx=dx/dist,ny=dy/dist;
+      f.vx+=nx*force*(0.3+f.z*0.7);f.vy+=ny*force*(0.3+f.z*0.7);
+      const mp=force*0.4;
+      f.vx+=(mouseVel.x*0.002)*mp*12;f.vy+=(mouseVel.y*0.002)*mp*12;
+    }
+    if(f.wy>0.7){const ps=(f.wy-0.7)*0.003;f.wx-=f.wx*ps;}
+    if(f.wy>1.3||f.wx<-1.6||f.wx>1.6){Object.assign(f,makeFlake(true));f.wx=(Math.random()-0.5)*2;}
+  }
+  mouseVel.x*=0.75;mouseVel.y*=0.75;
+}
+
+function drawBackground(){
+  ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
+  const a=ctx.createRadialGradient(cx,cy*0.6,0,cx,cy*0.6,W*0.7);
+  a.addColorStop(0,'rgba(12,10,20,1)');a.addColorStop(0.5,'rgba(6,5,12,1)');a.addColorStop(1,'rgba(0,0,0,1)');
+  ctx.fillStyle=a;ctx.fillRect(0,0,W,H);
+  const c=ctx.createRadialGradient(cx,0,0,cx,0,H*0.6);
+  c.addColorStop(0,'rgba(20,18,32,0.6)');c.addColorStop(0.5,'rgba(8,7,16,0.3)');c.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=c;ctx.fillRect(0,0,W,H);
+}
+
+function frame(){drawBackground();drawUFrame();updateFlakes();drawSnow();requestAnimationFrame(frame);}
+frame();
+
+// ── THEME TOGGLE ──
+function toggleTheme(){
+  const light=document.body.classList.contains('light');
+  document.body.classList.toggle('dark',light);
+  document.body.classList.toggle('light',!light);
+  document.getElementById('themeBtn').textContent=light?'☀':'☾';
+  setTimeout(drawMap,50);
+}
+
+// ── LANGUAGE ──
+let lang='fr';
+function setLang(l){
+  lang=l; document.documentElement.lang=l;
+  document.getElementById('btn-fr').classList.toggle('active',l==='fr');
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  document.querySelectorAll('[data-fr][data-en]').forEach(el=>{
+    const v=el.getAttribute('data-'+l); if(v) el.innerHTML=v;
+  });
+  const ph=document.querySelector('[data-fr-ph]');
+  if(ph) ph.placeholder=ph.getAttribute('data-'+l+'-ph');
+}
+
+// ── MAP ──
+function drawMap(){
+  const mc=document.getElementById('mapCanvas');
+  if(!mc||!mc.offsetWidth) return;
+  const light=document.body.classList.contains('light');
+  const dpr=window.devicePixelRatio||1;
+  mc.width=mc.offsetWidth*dpr; mc.height=mc.offsetHeight*dpr;
+  const m=mc.getContext('2d'); m.scale(dpr,dpr);
+  const W2=mc.offsetWidth,H2=mc.offsetHeight;
+
+  m.fillStyle=light?'#e8e2d4':'#04040a'; m.fillRect(0,0,W2,H2);
+
+  m.strokeStyle=light?'rgba(0,0,0,0.07)':'rgba(255,255,255,0.04)'; m.lineWidth=0.5;
+  for(let x=0;x<W2;x+=55){m.beginPath();m.moveTo(x,0);m.lineTo(x,H2);m.stroke();}
+  for(let y=0;y<H2;y+=42){m.beginPath();m.moveTo(0,y);m.lineTo(W2,y);m.stroke();}
+
+  const rc=light?'rgba(0,0,0,0.2)':'rgba(255,255,255,0.11)';
+  const rc2=light?'rgba(0,0,0,0.1)':'rgba(255,255,255,0.06)';
+  [[0,H2*.5,W2,H2*.5,3,rc],[W2*.38,0,W2*.38,H2,2.5,rc],[W2*.55,0,W2*.55,H2,1.5,rc2],[W2*.22,0,W2*.22,H2,1.5,rc2],[0,H2*.75,W2,H2*.75,2,rc2],[0,H2*.28,W2,H2*.28,1.5,rc2]].forEach(([x1,y1,x2,y2,w,c])=>{
+    m.beginPath();m.moveTo(x1,y1);m.lineTo(x2,y2);m.strokeStyle=c;m.lineWidth=w;m.stroke();
+  });
+
+  const tc=light?'rgba(0,0,0,0.4)':'rgba(255,255,255,0.22)';
+  const tc2=light?'rgba(0,0,0,0.25)':'rgba(255,255,255,0.14)';
+  m.font='9px DM Sans,sans-serif';
+  m.fillStyle=tc; m.fillText('Prince Arthur Est',8,H2*.5-7);
+  m.fillStyle=tc2; m.fillText('Sherbrooke',8,H2*.75-6); m.fillText('Rachel',8,H2*.28-6);
+  m.save();m.translate(W2*.38+6,H2*.85);m.rotate(-Math.PI/2);m.fillText('St-Laurent',0,0);m.restore();
+
+  m.fillStyle=light?'rgba(60,110,60,0.2)':'rgba(40,80,40,0.25)';
+  m.fillRect(W2*.38,H2*.28,W2*.17,H2*.22);
+  m.font='9px DM Sans'; m.fillStyle=light?'rgba(20,80,20,0.5)':'rgba(60,120,60,0.4)';
+  m.fillText('Parc du Portugal',W2*.39,H2*.42);
+
+  m.beginPath();m.arc(W2*.22,H2*.75,6,0,Math.PI*2);
+  m.fillStyle='rgba(255,140,60,0.75)';m.fill();
+  m.fillStyle=light?'rgba(160,70,0,0.9)':'rgba(255,150,70,0.9)';
+  m.font='bold 9px DM Sans';m.fillText('M Sherbrooke',W2*.22+10,H2*.75+4);
+
+  const px=W2*.52,py=H2*.5;
+  const pg=m.createRadialGradient(px,py,0,px,py,30);
+  pg.addColorStop(0,light?'rgba(0,0,200,0.18)':'rgba(200,220,255,0.22)');
+  pg.addColorStop(1,'rgba(0,0,200,0)');
+  m.beginPath();m.arc(px,py,30,0,Math.PI*2);m.fillStyle=pg;m.fill();
+  m.beginPath();m.arc(px,py,14,0,Math.PI*2);
+  m.strokeStyle=light?'rgba(0,0,180,0.35)':'rgba(200,220,255,0.28)';m.lineWidth=1;m.stroke();
+  m.beginPath();m.arc(px,py,6,0,Math.PI*2);
+  m.fillStyle=light?'#111':'#fff';m.fill();
+  m.fillStyle=light?'rgba(0,0,0,0.88)':'rgba(255,255,255,0.92)';
+  m.font='bold 11px DM Sans';m.fillText('La Palette',px+12,py-6);
+  m.fillStyle=light?'rgba(0,0,0,0.5)':'rgba(255,255,255,0.5)';
+  m.font='10px DM Sans';m.fillText('108 Prince Arthur Est',px+12,py+8);
+}
+
+window.addEventListener('load',()=>setTimeout(drawMap,200));
+window.addEventListener('resize',()=>setTimeout(drawMap,200));
+
+// ── SCROLL FADE IN ──
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:0.1});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

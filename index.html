@@ -7,10 +7,13 @@
 <meta name="description" content="La Palette Gelato offre du gelato artisanal préparé avec des ingrédients de qualité. Découvrez nos saveurs uniques et desserts rafraîchissants au Québec.">
 <meta name="author" content="La Palette Gelato">
 <link rel="icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+html { }
 body { font-family:'Cormorant Garamond',serif; overflow-x:hidden; }
 
 body {
@@ -549,6 +552,15 @@ footer {
 </div><!-- #site -->
 
 <script>
+// ── SMOOTH SCROLL (no URL/history change) ──
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
 // ── THEME TOGGLE ──
 function toggleTheme(){
   const dark = document.body.classList.toggle('dark');

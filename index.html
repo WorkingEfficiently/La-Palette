@@ -287,21 +287,42 @@ nav {
 .pstep h4 { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:var(--text-secondary); margin-bottom:9px; }
 .pstep p { font-family:'DM Sans',sans-serif; font-size:13px; color:var(--text-muted); line-height:1.8; }
 
-/* ── MENU ── */
-.mcols { display:grid; grid-template-columns:1fr 1fr; gap:50px; margin-top:50px; }
-.mcat h3 {
-  font-family:'Bebas Neue',sans-serif; font-size:19px; letter-spacing:4px;
-  color:var(--text-muted); margin-bottom:18px; padding-bottom:11px;
-  border-bottom:1px solid var(--border);
+/* ── MENU COMING SOON ── */
+.menu-soon {
+  margin-top:50px; border:1px solid var(--border);
+  background:var(--card-bg); position:relative; overflow:hidden;
 }
-.mitem {
-  display:flex; justify-content:space-between; align-items:baseline;
-  padding:10px 0; border-bottom:1px solid var(--border2);
+.menu-soon::before {
+  content:''; position:absolute; inset:0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent, transparent 18px,
+    rgba(112,93,81,0.025) 18px, rgba(112,93,81,0.025) 19px
+  );
+  pointer-events:none;
 }
-.mitem:last-child { border-bottom:none; }
-.mname { font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--menu-name); }
-.mnote { font-family:'DM Sans',sans-serif; font-size:11px; color:var(--text-faint); margin-left:5px; }
-.mprice { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; color:var(--price); white-space:nowrap; margin-left:12px; }
+.menu-soon::after {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,230,136,0.08), transparent);
+  pointer-events:none;
+}
+.menu-soon-inner {
+  position:relative; z-index:1;
+  display:flex; flex-direction:column; align-items:center;
+  text-align:center; padding:72px 40px;
+}
+.menu-soon-icon {
+  font-size:36px; color:var(--gold); margin-bottom:24px; opacity:.7;
+  display:block; line-height:1;
+}
+.menu-soon-title {
+  font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,4vw,48px);
+  letter-spacing:6px; color:var(--text-primary); margin-bottom:16px;
+}
+.menu-soon-desc {
+  font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic;
+  color:var(--text-muted); max-width:420px; line-height:1.85;
+}
 
 /* ── VISIT ── */
 .vgrid { display:grid; grid-template-columns:1fr 1fr; gap:50px; margin-top:50px; }
@@ -391,7 +412,7 @@ footer {
 
 <!-- HERO -->
 <div id="hero">
-  <p class="hero-eyebrow fi" data-fr="Fait à la main à Montréal depuis 2026" data-en="Handcrafted in Montréal since 2026">Fait à la main à Montréal depuis 2026</p>
+  <p class="hero-eyebrow fi" data-fr="Fait à la main à Montréal depuis 2024" data-en="Handcrafted in Montréal since 2024">Fait à la main à Montréal depuis 2024</p>
   <img class="hero-logo-img fi" src="logo.svg" alt="La Palette Gelato">
   <span class="hero-italic fi" data-fr="Gelato Artisanal" data-en="Artisan Gelato">Gelato Artisanal</span>
   <p class="hero-desc fi" data-fr="Là où la tradition italienne rencontre le terroir québécois. Chaque boule est une petite peinture — préparée chaque jour, servie avec amour sur Prince Arthur." data-en="Where Italian tradition meets Québec terroir. Every scoop is a small painting — crafted daily, served with love on Prince Arthur.">Là où la tradition italienne rencontre le terroir québécois. Chaque boule est une petite peinture — préparée chaque jour, servie avec amour sur Prince Arthur.</p>
@@ -432,57 +453,20 @@ footer {
   <div class="sw">
     <p class="s-label fi" data-fr="La Palette du Jour" data-en="Today's Palette">La Palette du Jour</p>
     <h2 class="s-title fi" data-fr="Nos Saveurs" data-en="Our Flavours">Nos Saveurs</h2>
-    <p class="s-sub fi" data-fr="Notre carte des saveurs est en cours de finalisation. Revenez bientôt — quelque chose d'extraordinaire se prépare." data-en="Our flavour menu is being finalised. Check back soon — something extraordinary is brewing.">Notre carte des saveurs est en cours de finalisation. Revenez bientôt — quelque chose d'extraordinaire se prépare.</p>
-    <div class="fgrid fi">
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#c9a96e;"></div><div class="fname">Fior di Latte</div><div class="fdesc" data-fr="Crème douce, rien de plus. La toile sur laquelle tout le reste est peint." data-en="Sweet cream, nothing more. The canvas upon which everything else is painted.">Crème douce, rien de plus. La toile sur laquelle tout le reste est peint.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#8fbc5e;"></div><div class="fname">Pistacchio di Sicilia</div><div class="fdesc" data-fr="Pistaches Bronte torréfiées importées, mélangées en un gelato riche et intensément noisette." data-en="Imported roasted Bronte pistachios blended into a rich, deeply nutty gelato.">Pistaches Bronte torréfiées importées, mélangées en un gelato riche et intensément noisette.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#3d1f0a;"></div><div class="fname">Cioccolato Fondente</div><div class="fdesc" data-fr="Chocolat noir 72% d'origine unique du Pérou. Intense, amer-doux, inoubliable." data-en="Single-origin 72% dark chocolate from Peru. Intense, bittersweet, unforgettable.">Chocolat noir 72% d'origine unique du Pérou. Intense, amer-doux, inoubliable.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#e8a0b0;"></div><div class="fname" data-fr="Fraise du Québec" data-en="Fraise du Québec">Fraise du Québec</div><div class="fdesc" data-fr="Fraises saisonnières de l'Île d'Orléans. Disponible en saison." data-en="Seasonal strawberries from Île d'Orléans farms.">Fraises saisonnières de l'Île d'Orléans. Disponible en saison.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#f5e27a;"></div><div class="fname" data-fr="Citron & Basilic" data-en="Lemon & Basil">Citron & Basilic</div><div class="fdesc" data-fr="Sorbet au citron de Sorrente avec du basilic local frais. Vif, herbacé, parfait." data-en="Sorrento lemon sorbet with fresh local basil. Bright, herbal, unexpectedly perfect.">Sorbet au citron de Sorrente avec du basilic local frais. Vif, herbacé, parfait.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#7a5c9e;"></div><div class="fname" data-fr="Lavande & Miel" data-en="Lavender & Honey">Lavande & Miel</div><div class="fdesc" data-fr="Miel de fleurs sauvages du Québec avec lavande bio des Cantons-de-l'Est." data-en="Québec wildflower honey with organic lavender from the Eastern Townships.">Miel de fleurs sauvages du Québec avec lavande bio des Cantons-de-l'Est.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#c97a3a;"></div><div class="fname" data-fr="Caramel Fleur de Sel" data-en="Caramel Fleur de Sel">Caramel Fleur de Sel</div><div class="fdesc" data-fr="Caramel cuit lentement avec cristaux de fleur de sel de l'Île de Ré. Sucré, salé, addictif." data-en="Slow-cooked caramel with Île de Ré fleur de sel crystals. Sweet, salty, addictive.">Caramel cuit lentement avec cristaux de fleur de sel de l'Île de Ré. Sucré, salé, addictif.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#a0522d;"></div><div class="fname">Nocciola Piemonte</div><div class="fdesc" data-fr="Noisettes IGP du Piémont, torréfiées sur place." data-en="IGP-certified Piedmont hazelnuts, slow-roasted in-house.">Noisettes IGP du Piémont, torréfiées sur place.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#d4a5c9;"></div><div class="fname" data-fr="Rose & Litchi" data-en="Rose & Lychee">Rose & Litchi</div><div class="fdesc" data-fr="Eau de rose du Maroc et litchis frais. Délicat, parfumé, envoûtant." data-en="Moroccan rose water and fresh lychees. Delicate, fragrant, bewitching.">Eau de rose du Maroc et litchis frais. Délicat, parfumé, envoûtant.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#4a6741;"></div><div class="fname" data-fr="Thé Matcha" data-en="Matcha Tea">Thé Matcha</div><div class="fdesc" data-fr="Matcha de cérémonie d'Uji, Japon. Légèrement amer, d'une élégance absolue." data-en="Ceremony-grade matcha from Uji, Japan. Gently bitter, absolutely elegant.">Matcha de cérémonie d'Uji, Japon. Légèrement amer, d'une élégance absolue.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#f5c842;"></div><div class="fname" data-fr="Mangue Alphonso" data-en="Alphonso Mango">Mangue Alphonso</div><div class="fdesc" data-fr="La reine des mangues, importée en saison. Sorbetto tropical, soleil dans chaque boule." data-en="The queen of mangoes, imported in season. Tropical sorbetto, sunshine in every scoop.">La reine des mangues, importée en saison. Sorbetto tropical, soleil dans chaque boule.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#6a4e3a;"></div><div class="fname">Tiramisù</div><div class="fdesc" data-fr="Mascarpone, espresso ristretto et biscuits Savoiardi émiettés. L'Italie dans une boule." data-en="Mascarpone, ristretto espresso and crumbled Savoiardi. Italy in a single scoop.">Mascarpone, espresso ristretto et biscuits Savoiardi émiettés. L'Italie dans une boule.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#c0392b;"></div><div class="fname" data-fr="Cerise Noire & Kirsch" data-en="Black Cherry & Kirsch">Cerise Noire & Kirsch</div><div class="fdesc" data-fr="Cerises noires Morello et pointe de kirsch artisanal. Profond, riche, adulte." data-en="Morello black cherries and a hint of artisanal kirsch. Deep, rich, grown-up.">Cerises noires Morello et pointe de kirsch artisanal. Profond, riche, adulte.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#e8d5c0;"></div><div class="fname" data-fr="Vanille Bourbon" data-en="Bourbon Vanilla">Vanille Bourbon</div><div class="fdesc" data-fr="Gousses de vanille Bourbon de Madagascar. Simple, honnête, extraordinairement bon." data-en="Bourbon vanilla pods from Madagascar. Simple, honest, extraordinarily good.">Gousses de vanille Bourbon de Madagascar. Simple, honnête, extraordinairement bon.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#2e4a6e;"></div><div class="fname" data-fr="Myrtille Sauvage" data-en="Wild Blueberry">Myrtille Sauvage</div><div class="fdesc" data-fr="Bleuets sauvages du Lac-Saint-Jean. Intense, légèrement acidulé, fièrement québécois." data-en="Wild blueberries from Lac-Saint-Jean. Intense, slightly tart, proudly Québécois.">Bleuets sauvages du Lac-Saint-Jean. Intense, légèrement acidulé, fièrement québécois.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#b5a642;"></div><div class="fname" data-fr="Sirop d'Érable" data-en="Maple Syrup">Sirop d'Érable</div><div class="fdesc" data-fr="Érable pur du Québec, récolté localement. Doux, caramélisé, irrésistiblement d'ici." data-en="Pure Québec maple, harvested locally. Soft, caramelised, irresistibly from here.">Érable pur du Québec, récolté localement. Doux, caramélisé, irrésistiblement d'ici.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
-      <div class="fcard fcard-soon"><div class="fdot" style="background:#d9cdc5;"></div><div class="fname">🐾 <span data-fr="Gelato pour Chiens" data-en="Dog Gelato">Gelato pour Chiens</span></div><div class="fdesc" data-fr="Une création spéciale sans sucre, sans lactose, à base de caroube et de banane — conçue avec amour pour nos amis à quatre pattes." data-en="A special sugar-free, lactose-free creation with carob and banana — lovingly made for our four-legged friends.">Une création spéciale sans sucre, sans lactose, à base de caroube et de banane — conçue avec amour pour nos amis à quatre pattes.</div><span class="ftag-soon" data-fr="Bientôt" data-en="Coming Soon">Bientôt</span></div>
-
+    <div class="menu-soon fi" style="margin-top:50px;">
+      <div class="menu-soon-inner">
+        <div class="menu-soon-icon">☽</div>
+        <p class="menu-soon-title" data-fr="Saveurs bientôt révélées" data-en="Flavours to be revealed">Saveurs bientôt révélées</p>
+        <p class="menu-soon-desc" data-fr="Notre palette est en préparation. Les saveurs seront dévoilées à l'ouverture — revenez nous voir bientôt." data-en="Our palette is in preparation. Flavours will be revealed at opening — come back and see us soon.">Notre palette est en préparation. Les saveurs seront dévoilées à l'ouverture — revenez nous voir bientôt.</p>
+        <a href="#visit" class="btn btn-p" style="margin-top:28px;" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
+      </div>
     </div>
   </div>
 </section>
 
 <div class="gold-rule"></div>
 
-<!-- SEASONAL -->
-<div class="seasonal fi">
-  <div>
-    <h3 data-fr="Spécial Saison" data-en="Seasonal Special">Spécial Saison</h3>
-    <p data-fr="Cette saison : un affogato au chocolat chaud — une boule de Cioccolato Fondente noyée dans notre cacao épicé maison. Disponible tant que la saison dure." data-en="This season: a hot chocolate affogato — a scoop of Cioccolato Fondente drowned in our house-made spiced cocoa. Available while the season lasts.">Cette saison : un affogato au chocolat chaud — une boule de Cioccolato Fondente noyée dans notre cacao épicé maison. Disponible tant que la saison dure.</p>
-  </div>
-  <a href="#menu" class="btn btn-p" data-fr="Voir le Menu" data-en="See Full Menu">Voir le Menu</a>
-</div>
+
 
 <!-- PROCESS -->
 <section id="process">
@@ -504,28 +488,13 @@ footer {
 <section id="menu">
   <div class="sw">
     <p class="s-label fi" data-fr="Menu & Tarifs" data-en="Menu & Pricing">Menu & Tarifs</p>
-    <h2 class="s-title fi" data-fr="Commander" data-en="Order">Commander</h2>
-    <p class="s-sub fi" data-fr="Tout le gelato est préparé frais chaque jour. Prix en CAD, taxes incluses." data-en="All gelato is made fresh daily. Prices in CAD, taxes included.">Tout le gelato est préparé frais chaque jour. Prix en CAD, taxes incluses.</p>
-    <div class="mcols fi">
-      <div class="mcat">
-        <h3 data-fr="Gelato & Sorbetto" data-en="Gelato & Sorbetto">Gelato & Sorbetto</h3>
-        <div class="mitem"><span class="mname">Piccolo <span class="mnote" data-fr="1 boule" data-en="1 scoop">1 boule</span></span><span class="mprice">4,75 $</span></div>
-        <div class="mitem"><span class="mname">Medio <span class="mnote" data-fr="2 boules" data-en="2 scoops">2 boules</span></span><span class="mprice">6,50 $</span></div>
-        <div class="mitem"><span class="mname">Grande <span class="mnote" data-fr="3 boules" data-en="3 scoops">3 boules</span></span><span class="mprice">8,25 $</span></div>
-        <div class="mitem"><span class="mname">Coppa Speciale <span class="mnote" data-fr="4 boules + garnitures" data-en="4 scoops + toppings">4 boules + garnitures</span></span><span class="mprice">11,50 $</span></div>
-        <div class="mitem"><span class="mname" data-fr="Cornet Gaufré" data-en="Waffle Cone">Cornet Gaufré <span class="mnote" data-fr="supplément" data-en="add-on">supplément</span></span><span class="mprice">+1,50 $</span></div>
-      </div>
-      <div class="mcat">
-        <h3 data-fr="Garnitures" data-en="Toppings">Garnitures</h3>
-        <div class="mitem"><span class="mname" data-fr="Coulis de fruits frais" data-en="Fresh fruit coulis">Coulis de fruits frais</span><span class="mprice">1,00 $</span></div>
-        <div class="mitem"><span class="mname" data-fr="Noix torréfiées" data-en="Roasted nuts">Noix torréfiées</span><span class="mprice">1,00 $</span></div>
-        <div class="mitem"><span class="mname" data-fr="Sauce chocolat chaud" data-en="Hot fudge">Sauce chocolat chaud</span><span class="mprice">1,00 $</span></div>
-        <div class="mitem"><span class="mname" data-fr="Crème fouettée" data-en="Whipped cream">Crème fouettée</span><span class="mprice">0,75 $</span></div>
-      </div>
-      <div class="mcat">
-        <h3 data-fr="Traiteur / Événements" data-en="Catering / Events">Traiteur / Événements</h3>
-        <div class="mitem"><span class="mname" data-fr="Pinte à Emporter" data-en="Pint To-Go">Pinte à Emporter <span class="mnote">500ml</span></span><span class="mprice">14,00 $</span></div>
-        <div class="mitem"><span class="mname" data-fr="Traiteur / Événements" data-en="Catering / Events">Traiteur / Événements</span><span class="mprice" data-fr="Sur demande" data-en="On request">Sur demande</span></div>
+    <h2 class="s-title fi" data-fr="Notre Menu" data-en="Our Menu">Notre Menu</h2>
+    <div class="menu-soon fi">
+      <div class="menu-soon-inner">
+        <div class="menu-soon-icon">☽</div>
+        <p class="menu-soon-title" data-fr="Le menu arrive bientôt" data-en="Menu coming soon">Le menu arrive bientôt</p>
+        <p class="menu-soon-desc" data-fr="Nous finalisons notre carte — saveurs, tarifs et spécialités. Revenez nous voir à l'ouverture." data-en="We're finalising our menu — flavours, pricing, and specialties. Come back and see us at opening.">Nous finalisons notre carte — saveurs, tarifs et spécialités. Revenez nous voir à l'ouverture.</p>
+        <a href="#visit" class="btn btn-p" style="margin-top:28px;" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
       </div>
     </div>
   </div>
@@ -573,7 +542,7 @@ footer {
     <a href="#visit" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
     <a href="tel:5141232345">514 123-2345</a>
   </div>
-  <p class="fcopy">© 2026 La Palette Gelato · 108 Prince Arthur Est, Montréal</p>
+  <p class="fcopy">© 2024 La Palette Gelato · 108 Prince Arthur Est, Montréal</p>
 </footer>
 
 </div><!-- #site -->

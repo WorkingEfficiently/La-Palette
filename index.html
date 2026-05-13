@@ -416,7 +416,7 @@ footer {
 
 <!-- HERO -->
 <div id="hero">
-  <p class="hero-eyebrow fi" data-fr="Fait à la main à Montréal depuis 2024" data-en="Handcrafted in Montréal since 2024">Fait à la main à Montréal depuis 2024</p>
+  <p class="hero-eyebrow fi" data-fr="Fait à la main à Montréal depuis 2026" data-en="Handcrafted in Montréal since 2026">Fait à la main à Montréal depuis 2026</p>
   <img class="hero-logo-img fi" src="logo.svg" alt="La Palette Gelato">
   <span class="hero-italic fi" data-fr="Gelato Artisanal" data-en="Artisan Gelato">Gelato Artisanal</span>
   <p class="hero-desc fi" data-fr="Là où la tradition italienne rencontre le terroir québécois. Chaque boule est une petite peinture — préparée chaque jour, servie avec amour sur Prince Arthur." data-en="Where Italian tradition meets Québec terroir. Every scoop is a small painting — crafted daily, served with love on Prince Arthur.">Là où la tradition italienne rencontre le terroir québécois. Chaque boule est une petite peinture — préparée chaque jour, servie avec amour sur Prince Arthur.</p>
@@ -521,7 +521,7 @@ footer {
           <p class="ilabel" data-fr="Heures d'Ouverture" data-en="Hours">Heures d'Ouverture</p>
           <p class="ival" style="font-style:italic; color:var(--text-faint);" data-fr="À déterminer — suivez-nous pour les mises à jour." data-en="To be determined — follow us for updates.">À déterminer — suivez-nous pour les mises à jour.</p>
         </div>
-        <div class="iblock"><p class="ilabel" data-fr="Métro" data-en="Nearest Metro">Métro</p><p class="ival" data-fr="Sherbrooke (Ligne Orange)<br><small style='color:var(--text-faint)'>5 min à pied vers l'est sur Prince Arthur</small>" data-en="Sherbrooke (Orange Line)<br><small style='color:var(--text-faint)'>5 min walk east on Prince Arthur</small>">Sherbrooke (Ligne Orange)<br><small style="color:var(--text-faint)">5 min à pied vers l'est sur Prince Arthur</small></p></div>
+        <div class="iblock"><p class="ilabel" data-fr="Métro" data-en="Nearest Metro">Métro</p><p class="ival" data-fr="Sherbrooke (Ligne Orange)<br><small style='color:var(--text-faint)'>7 min à pied vers le sud sur St-Denis</small>" data-en="Sherbrooke (Orange Line)<br><small style='color:var(--text-faint)'>7 min walk south on St-Denis</small>">Sherbrooke (Ligne Orange)<br><small style="color:var(--text-faint)">7 min à pied vers le sud sur St-Denis</small></p></div>
       </div>
       <div class="mapbox" onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=108+Prince+Arthur+E,+Montreal,+QC','_blank')" style="cursor:pointer;">
         <canvas id="mapCanvas"></canvas>
@@ -579,7 +579,11 @@ function setLang(l){
   if(ph) ph.placeholder = ph.getAttribute('data-' + l + '-ph');
 }
 
-// ── MAP (improved readability) ──
+// ── MAP (accurate: 108 Prince Arthur Est, Plateau-Mont-Royal) ──
+// Real layout: Prince Arthur runs E-W (pedestrian). St-Laurent is ~3 blocks west,
+// St-Denis is ~2 blocks east. Sherbrooke runs E-W to the south.
+// Metro Sherbrooke (Orange) is at St-Denis & Sherbrooke, ~7 min walk south.
+// Square Saint-Louis is just NE of the address.
 function drawMap(){
   const mc = document.getElementById('mapCanvas');
   if(!mc || !mc.offsetWidth) return;
@@ -591,181 +595,213 @@ function drawMap(){
   m.scale(dpr, dpr);
   const W = mc.offsetWidth, H = mc.offsetHeight;
 
-  // ── Background (land) ──
+  // Background
   m.fillStyle = dark ? '#1e1810' : '#f0e8d8';
   m.fillRect(0, 0, W, H);
 
-  // ── City blocks ──
-  const blockColor  = dark ? 'rgba(255,240,200,0.06)' : 'rgba(180,150,110,0.12)';
-  const blockStroke = dark ? 'rgba(255,240,200,0.04)' : 'rgba(160,130,95,0.09)';
-  const blocks = [
-    [0, 0, W*0.3, H*0.44],
-    [W*0.44, 0, W*0.56, H*0.44],
-    [W*0.63, 0, W, H*0.44],
-    [0, H*0.56, W*0.3, H],
-    [W*0.44, H*0.56, W*0.56, H],
-    [W*0.63, H*0.56, W, H],
-  ];
-  blocks.forEach(([x,y,x2,y2]) => {
-    m.fillStyle = blockColor;
-    m.fillRect(x, y, x2-x, y2-y);
-    m.strokeStyle = blockStroke;
-    m.lineWidth = 0.5;
-    m.strokeRect(x, y, x2-x, y2-y);
+  // ── Road positions (proportional) ──
+  // Horizontal roads
+  const yPrinceArthur = H * 0.42;   // Prince Arthur Est — main road, upper-mid
+  const ySherbrooke   = H * 0.82;   // Sherbrooke — bottom area
+  const yRachel       = H * 0.08;   // Rachel — top
+  const yRoy          = H * 0.72;   // Rue Roy — between Prince Arthur & Sherbrooke
+
+  // Vertical roads
+  const xStLaurent    = W * 0.12;   // St-Laurent — far left
+  const xStUrbain     = W * 0.28;   // St-Urbain
+  const xHotelDeVille = W * 0.44;   // De l'Hôtel-de-Ville
+  const xStDenis      = W * 0.62;   // St-Denis — right of centre
+  const xBerri        = W * 0.78;   // Berri — far right
+
+  const roadW  = 9;   // main road half-width
+  const roadW2 = 6;   // secondary road half-width
+
+  // ── City block fill ──
+  const blockFill = dark ? 'rgba(255,235,190,0.055)' : 'rgba(170,140,100,0.11)';
+  // Fill all blocks between roads
+  const vLines = [0, xStLaurent, xStUrbain, xHotelDeVille, xStDenis, xBerri, W];
+  const hLines = [0, yRachel, yPrinceArthur, yRoy, ySherbrooke, H];
+  for (let i = 0; i < vLines.length - 1; i++) {
+    for (let j = 0; j < hLines.length - 1; j++) {
+      m.fillStyle = (i + j) % 2 === 0 ? blockFill : 'transparent';
+      m.fillRect(vLines[i], hLines[j], vLines[i+1]-vLines[i], hLines[j+1]-hLines[j]);
+    }
+  }
+
+  // ── Square Saint-Louis (park, NE of address) ──
+  const sqX = xStDenis + 8, sqY = yRachel + 6;
+  const sqW = xBerri - xStDenis - 16, sqH = yPrinceArthur - yRachel - 12;
+  m.fillStyle = dark ? 'rgba(45,85,45,0.5)' : 'rgba(95,150,75,0.3)';
+  m.fillRect(sqX, sqY, sqW, sqH);
+  for (let i = 0; i < 15; i++) {
+    m.fillStyle = dark ? 'rgba(70,130,60,0.35)' : 'rgba(50,100,35,0.22)';
+    m.beginPath();
+    m.arc(sqX + 8 + (i % 5) * (sqW - 16) / 4, sqY + 8 + Math.floor(i / 5) * (sqH - 16) / 2, 2.5, 0, Math.PI * 2);
+    m.fill();
+  }
+  m.strokeStyle = dark ? 'rgba(70,130,60,0.45)' : 'rgba(45,100,30,0.35)';
+  m.lineWidth = 1; m.strokeRect(sqX, sqY, sqW, sqH);
+
+  // ── Draw roads (fill first, then stroke) ──
+  const rfMain = dark ? 'rgba(58,46,34,0.95)' : 'rgba(212,196,172,1)';
+  const rfSec  = dark ? 'rgba(48,38,28,0.85)' : 'rgba(202,186,162,0.9)';
+
+  // Horizontal fills
+  [[yPrinceArthur, roadW, rfMain], [ySherbrooke, roadW, rfMain],
+   [yRachel, roadW2, rfSec], [yRoy, roadW2, rfSec]
+  ].forEach(([y, hw, fill]) => {
+    m.fillStyle = fill; m.fillRect(0, y - hw, W, hw * 2);
   });
 
-  // ── Park (between roads, upper right) ──
-  const parkX = W*0.44, parkY = H*0.04, parkW = W*0.19, parkH = H*0.4;
-  m.fillStyle = dark ? 'rgba(50,90,50,0.45)' : 'rgba(100,155,80,0.28)';
-  m.fillRect(parkX, parkY, parkW, parkH);
-  // Park texture dots
-  m.fillStyle = dark ? 'rgba(80,140,70,0.3)' : 'rgba(60,110,40,0.2)';
-  for(let i=0; i<18; i++){
-    const tx = parkX + 8 + (i%6)*(parkW-16)/5;
-    const ty = parkY + 10 + Math.floor(i/6)*(parkH-20)/2;
-    m.beginPath(); m.arc(tx, ty, 2.5, 0, Math.PI*2); m.fill();
-  }
-  m.strokeStyle = dark ? 'rgba(80,140,70,0.4)' : 'rgba(50,110,40,0.3)';
-  m.lineWidth = 1; m.strokeRect(parkX, parkY, parkW, parkH);
+  // Vertical fills
+  [[xStLaurent, roadW2, rfSec], [xStUrbain, roadW2, rfSec],
+   [xHotelDeVille, roadW2, rfSec], [xStDenis, roadW, rfMain], [xBerri, roadW2, rfSec]
+  ].forEach(([x, hw, fill]) => {
+    m.fillStyle = fill; m.fillRect(x - hw, 0, hw * 2, H);
+  });
 
-  // ── Roads — horizontal ──
-  const roadFill = dark ? 'rgba(60,48,36,0.9)' : 'rgba(215,200,178,1)';
-  const roadFill2 = dark ? 'rgba(50,40,30,0.8)' : 'rgba(205,190,168,0.9)';
+  // ── Road edge lines ──
+  const edgeMain  = dark ? 'rgba(190,150,55,0.4)'  : 'rgba(120,92,58,0.55)';
+  const edgeSec   = dark ? 'rgba(190,150,55,0.2)'  : 'rgba(120,92,58,0.3)';
+  [
+    [0, yPrinceArthur - roadW, W, yPrinceArthur - roadW, edgeMain],
+    [0, yPrinceArthur + roadW, W, yPrinceArthur + roadW, edgeMain],
+    [0, ySherbrooke - roadW,   W, ySherbrooke - roadW,   edgeMain],
+    [0, ySherbrooke + roadW,   W, ySherbrooke + roadW,   edgeMain],
+    [xStDenis - roadW, 0, xStDenis - roadW, H, edgeMain],
+    [xStDenis + roadW, 0, xStDenis + roadW, H, edgeMain],
+  ].forEach(([x1,y1,x2,y2,c]) => {
+    m.beginPath(); m.moveTo(x1,y1); m.lineTo(x2,y2);
+    m.strokeStyle = c; m.lineWidth = 0.8; m.stroke();
+  });
 
-  // Prince Arthur Est (main road, mid-height)
-  m.fillStyle = roadFill;
-  m.fillRect(0, H*0.44, W, H*0.12);
-
-  // Secondary horizontals
-  m.fillStyle = roadFill2;
-  m.fillRect(0, H*0.0,  W, H*0.04);   // top
-  m.fillRect(0, H*0.76, W, H*0.08);   // Sherbrooke
-  m.fillRect(0, H*0.92, W, H*0.08);   // bottom
-
-  // ── Roads — vertical ──
-  m.fillStyle = roadFill2;
-  m.fillRect(W*0.3, 0, W*0.14, H);    // St-Laurent
-  m.fillStyle = roadFill;
-  m.fillRect(W*0.56, 0, W*0.07, H);   // Coloniale / main vertical
-  m.fillStyle = roadFill2;
-  m.fillRect(0,    0, W*0.04, H);     // left edge
-  m.fillRect(W*0.96, 0, W*0.04, H);   // right edge
-
-  // ── Road centerlines (dashes) ──
-  m.setLineDash([6, 8]);
+  // ── Dashed centre lines ──
+  m.setLineDash([5, 7]);
   m.lineWidth = 1;
-  m.strokeStyle = dark ? 'rgba(200,160,80,0.25)' : 'rgba(160,130,90,0.4)';
-  // Prince Arthur centerline
-  m.beginPath(); m.moveTo(0, H*0.5); m.lineTo(W, H*0.5); m.stroke();
-  // Sherbrooke centerline
-  m.beginPath(); m.moveTo(0, H*0.8); m.lineTo(W, H*0.8); m.stroke();
+  m.strokeStyle = dark ? 'rgba(190,150,55,0.22)' : 'rgba(140,108,65,0.38)';
+  [[0, yPrinceArthur, W, yPrinceArthur],
+   [0, ySherbrooke,   W, ySherbrooke],
+   [xStDenis, 0, xStDenis, H]
+  ].forEach(([x1,y1,x2,y2]) => {
+    m.beginPath(); m.moveTo(x1,y1); m.lineTo(x2,y2); m.stroke();
+  });
   m.setLineDash([]);
 
-  // ── Road outlines ──
-  m.lineWidth = 1;
-  m.strokeStyle = dark ? 'rgba(200,160,60,0.35)' : 'rgba(130,100,65,0.55)';
-  // Prince Arthur
-  m.beginPath(); m.moveTo(0, H*0.44); m.lineTo(W, H*0.44); m.stroke();
-  m.beginPath(); m.moveTo(0, H*0.56); m.lineTo(W, H*0.56); m.stroke();
-  // Sherbrooke
-  m.strokeStyle = dark ? 'rgba(200,160,60,0.2)' : 'rgba(130,100,65,0.3)';
-  m.beginPath(); m.moveTo(0, H*0.76); m.lineTo(W, H*0.76); m.stroke();
-  m.beginPath(); m.moveTo(0, H*0.84); m.lineTo(W, H*0.84); m.stroke();
-
   // ── Road labels ──
-  const labelDark  = dark ? 'rgba(240,210,160,0.9)' : 'rgba(70,45,20,0.9)';
-  const labelFaint = dark ? 'rgba(180,150,100,0.65)' : 'rgba(100,75,45,0.65)';
+  const lc  = dark ? 'rgba(235,205,155,0.92)' : 'rgba(65,42,18,0.92)';
+  const lc2 = dark ? 'rgba(175,145,95,0.68)'  : 'rgba(95,70,38,0.68)';
 
-  m.font = 'bold 11px "DM Sans", sans-serif';
-  m.fillStyle = labelDark;
-  m.fillText('Prince Arthur Est', 10, H*0.42);
+  m.font = 'bold 11px "DM Sans",sans-serif';
+  m.fillStyle = lc;
+  m.fillText('Prince Arthur Est', xStLaurent + 12, yPrinceArthur - roadW - 5);
 
-  m.font = '10px "DM Sans", sans-serif';
-  m.fillStyle = labelFaint;
-  m.fillText('Sherbrooke', 10, H*0.74);
+  m.font = 'bold 11px "DM Sans",sans-serif';
+  m.fillStyle = lc;
+  m.fillText('Sherbrooke', xStLaurent + 12, ySherbrooke - roadW - 5);
 
-  // St-Laurent (vertical, rotated)
-  m.save();
-  m.translate(W*0.32, H*0.88);
-  m.rotate(-Math.PI/2);
-  m.fillStyle = labelFaint;
-  m.font = '10px "DM Sans", sans-serif';
-  m.fillText('St-Laurent', 0, 0);
-  m.restore();
+  m.font = '9px "DM Sans",sans-serif';
+  m.fillStyle = lc2;
+  m.fillText('Rachel', xStLaurent + 12, yRachel - roadW2 - 4);
+  m.fillText('Roy', xStLaurent + 12, yRoy - roadW2 - 4);
 
-  // Park label
-  m.fillStyle = dark ? 'rgba(110,180,90,0.75)' : 'rgba(40,90,30,0.7)';
-  m.font = 'italic 9px "DM Sans", sans-serif';
-  m.fillText('Parc du Portugal', W*0.45, H*0.29);
-
-  // ── Metro station ──
-  const mx = W*0.17, my = H*0.8;
-  // Halo
-  const mg = m.createRadialGradient(mx, my, 0, mx, my, 20);
-  mg.addColorStop(0, dark ? 'rgba(220,100,30,0.4)'  : 'rgba(200,80,20,0.3)');
-  mg.addColorStop(1, 'rgba(200,80,20,0)');
-  m.beginPath(); m.arc(mx, my, 20, 0, Math.PI*2); m.fillStyle = mg; m.fill();
-  // Circle
-  m.beginPath(); m.arc(mx, my, 8, 0, Math.PI*2);
-  m.fillStyle   = dark ? '#e07830' : '#cc5010'; m.fill();
-  m.strokeStyle = 'rgba(255,255,255,0.5)'; m.lineWidth = 1.5; m.stroke();
-  // M label
-  m.fillStyle = '#fff';
-  m.font = 'bold 9px "DM Sans", sans-serif';
-  m.textAlign = 'center';
-  m.fillText('M', mx, my+3);
-  m.textAlign = 'left';
-  m.fillStyle = dark ? 'rgba(220,170,100,0.85)' : 'rgba(90,55,20,0.85)';
-  m.font = 'bold 10px "DM Sans", sans-serif';
-  m.fillText('Sherbrooke', mx+14, my+4);
-
-  // ── Destination pin ──
-  const px = W*0.68, py = H*0.5;
-
-  // Pulse rings
-  [36, 24].forEach((r, i) => {
-    const pg = m.createRadialGradient(px, py, 0, px, py, r);
-    pg.addColorStop(0, dark ? `rgba(200,151,58,${0.18-i*0.06})` : `rgba(160,110,40,${0.16-i*0.05})`);
-    pg.addColorStop(1, 'rgba(180,120,40,0)');
-    m.beginPath(); m.arc(px, py, r, 0, Math.PI*2);
-    m.fillStyle = pg; m.fill();
+  // Vertical labels (rotated)
+  [
+    [xStLaurent, 'St-Laurent', lc],
+    [xStUrbain,  'St-Urbain',  lc2],
+    [xHotelDeVille, 'Hôtel-de-Ville', lc2],
+    [xStDenis,   'St-Denis',   lc],
+    [xBerri,     'Berri',      lc2],
+  ].forEach(([x, label, color]) => {
+    m.save();
+    m.translate(x + 4, H - 10);
+    m.rotate(-Math.PI / 2);
+    m.fillStyle = color;
+    m.font = x === xStDenis || x === xStLaurent ? 'bold 10px "DM Sans",sans-serif' : '9px "DM Sans",sans-serif';
+    m.fillText(label, 0, 0);
+    m.restore();
   });
 
-  // Pin shadow
-  m.beginPath(); m.arc(px+2, py+2, 10, 0, Math.PI*2);
-  m.fillStyle = dark ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.15)'; m.fill();
+  // Square Saint-Louis label
+  m.fillStyle = dark ? 'rgba(100,170,80,0.8)' : 'rgba(35,85,25,0.75)';
+  m.font = 'italic 8.5px "DM Sans",sans-serif';
+  m.textAlign = 'center';
+  m.fillText('Square', sqX + sqW / 2, sqY + sqH / 2 - 5);
+  m.fillText('Saint-Louis', sqX + sqW / 2, sqY + sqH / 2 + 7);
+  m.textAlign = 'left';
 
-  // Pin body
-  m.beginPath(); m.arc(px, py, 10, 0, Math.PI*2);
-  m.fillStyle = dark ? '#c8973a' : '#705d51'; m.fill();
-  m.strokeStyle = 'rgba(255,255,255,0.6)'; m.lineWidth = 2; m.stroke();
+  // ── Metro Sherbrooke — at St-Denis & Sherbrooke ──
+  const mx = xStDenis, my = ySherbrooke;
+  const mg = m.createRadialGradient(mx, my, 0, mx, my, 22);
+  mg.addColorStop(0, dark ? 'rgba(210,95,25,0.45)' : 'rgba(195,75,15,0.35)');
+  mg.addColorStop(1, 'rgba(195,75,15,0)');
+  m.beginPath(); m.arc(mx, my, 22, 0, Math.PI * 2); m.fillStyle = mg; m.fill();
 
-  // Pin dot
-  m.beginPath(); m.arc(px, py, 4, 0, Math.PI*2);
-  m.fillStyle = 'rgba(255,255,255,0.85)'; m.fill();
+  m.beginPath(); m.arc(mx, my, 9, 0, Math.PI * 2);
+  m.fillStyle = dark ? '#d97025' : '#c04010'; m.fill();
+  m.strokeStyle = 'rgba(255,255,255,0.55)'; m.lineWidth = 1.5; m.stroke();
 
-  // Label bubble
-  const lx = px + 16, ly = py - 8;
-  const lw = 148, lh = 40;
+  m.fillStyle = '#fff';
+  m.font = 'bold 9px "DM Sans",sans-serif';
+  m.textAlign = 'center';
+  m.fillText('M', mx, my + 3.5);
+  m.textAlign = 'left';
+
+  m.fillStyle = dark ? 'rgba(215,165,95,0.9)' : 'rgba(85,50,15,0.9)';
+  m.font = 'bold 10px "DM Sans",sans-serif';
+  m.fillText('Sherbrooke', mx + 14, my - 4);
+  m.font = '9px "DM Sans",sans-serif';
+  m.fillStyle = dark ? 'rgba(175,140,85,0.7)' : 'rgba(110,80,40,0.7)';
+  m.fillText('Ligne Orange · 7 min', mx + 14, my + 8);
+
+  // ── Destination pin — 108 Prince Arthur, between Hôtel-de-Ville & St-Denis ──
+  const px = (xHotelDeVille + xStDenis) / 2 + 10;
+  const py = yPrinceArthur;
+
+  // Pulse halos
+  [40, 26].forEach((r, i) => {
+    const pg = m.createRadialGradient(px, py, 0, px, py, r);
+    pg.addColorStop(0, dark ? `rgba(200,151,58,${0.2 - i * 0.07})` : `rgba(155,108,38,${0.18 - i * 0.06})`);
+    pg.addColorStop(1, 'rgba(0,0,0,0)');
+    m.beginPath(); m.arc(px, py, r, 0, Math.PI * 2); m.fillStyle = pg; m.fill();
+  });
+
   // Shadow
-  m.fillStyle = dark ? 'rgba(0,0,0,0.25)' : 'rgba(0,0,0,0.1)';
-  m.beginPath(); m.roundRect(lx-2, ly-2, lw+4, lh+4, 4); m.fill();
-  // Background
-  m.fillStyle = dark ? 'rgba(28,22,16,0.96)' : 'rgba(255,252,247,0.97)';
-  m.beginPath(); m.roundRect(lx, ly-14, lw, lh, 4); m.fill();
-  m.strokeStyle = dark ? 'rgba(255,230,136,0.2)' : 'rgba(112,93,81,0.2)';
-  m.lineWidth = 0.75; m.stroke();
-  // Gold top border
-  m.strokeStyle = dark ? 'rgba(200,151,58,0.6)' : 'rgba(160,110,40,0.5)';
-  m.lineWidth = 1.5;
-  m.beginPath(); m.moveTo(lx+4, ly-14); m.lineTo(lx+lw-4, ly-14); m.stroke();
+  m.beginPath(); m.arc(px + 2, py + 2, 11, 0, Math.PI * 2);
+  m.fillStyle = dark ? 'rgba(0,0,0,0.32)' : 'rgba(0,0,0,0.14)'; m.fill();
 
-  m.fillStyle = dark ? 'rgba(240,225,195,1)' : 'rgba(46,34,25,1)';
-  m.font = 'bold 12px "DM Sans", sans-serif';
-  m.fillText('La Palette', lx+8, ly-1);
-  m.fillStyle = dark ? 'rgba(180,155,115,0.8)' : 'rgba(112,93,81,0.8)';
-  m.font = '10px "DM Sans", sans-serif';
-  m.fillText('108 Prince Arthur Est', lx+8, ly+13);
+  // Pin
+  m.beginPath(); m.arc(px, py, 11, 0, Math.PI * 2);
+  m.fillStyle = dark ? '#c8973a' : '#705d51'; m.fill();
+  m.strokeStyle = 'rgba(255,255,255,0.65)'; m.lineWidth = 2; m.stroke();
+  m.beginPath(); m.arc(px, py, 4.5, 0, Math.PI * 2);
+  m.fillStyle = 'rgba(255,255,255,0.88)'; m.fill();
+
+  // Label bubble — positioned above so it doesn't overlap Sherbrooke
+  const lx = px - 74, ly = py - 52;
+  const lw = 152, lh = 42;
+  m.fillStyle = dark ? 'rgba(0,0,0,0.22)' : 'rgba(0,0,0,0.09)';
+  m.beginPath(); m.roundRect(lx - 2, ly - 2, lw + 4, lh + 4, 4); m.fill();
+  m.fillStyle = dark ? 'rgba(26,20,14,0.97)' : 'rgba(255,252,246,0.97)';
+  m.beginPath(); m.roundRect(lx, ly, lw, lh, 4); m.fill();
+  m.strokeStyle = dark ? 'rgba(255,220,120,0.18)' : 'rgba(112,93,81,0.2)';
+  m.lineWidth = 0.75; m.stroke();
+  // Gold accent line
+  m.strokeStyle = dark ? 'rgba(200,151,58,0.65)' : 'rgba(155,108,38,0.5)';
+  m.lineWidth = 1.5;
+  m.beginPath(); m.moveTo(lx + 5, ly); m.lineTo(lx + lw - 5, ly); m.stroke();
+  // Connector line from bubble to pin
+  m.strokeStyle = dark ? 'rgba(200,151,58,0.4)' : 'rgba(112,93,81,0.35)';
+  m.lineWidth = 1;
+  m.setLineDash([2, 3]);
+  m.beginPath(); m.moveTo(lx + lw / 2, ly + lh); m.lineTo(px, py - 12); m.stroke();
+  m.setLineDash([]);
+
+  m.fillStyle = dark ? 'rgba(240,222,192,1)' : 'rgba(44,32,22,1)';
+  m.font = 'bold 12px "DM Sans",sans-serif';
+  m.fillText('La Palette', lx + 10, ly + 16);
+  m.fillStyle = dark ? 'rgba(178,150,108,0.82)' : 'rgba(110,90,65,0.82)';
+  m.font = '10px "DM Sans",sans-serif';
+  m.fillText('108 Prince Arthur Est', lx + 10, ly + 30);
 }
 
 window.addEventListener('load', () => setTimeout(drawMap, 200));

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Palette — Gelato Artisanal · Montréal</title>
+<title>La Palette Gelato Artisanal · Montréal</title>
 <meta name="description" content="La Palette Gelato offre du gelato artisanal préparé avec des ingrédients de qualité. Découvrez nos saveurs uniques et desserts rafraîchissants au Québec.">
 <meta name="author" content="La Palette Gelato">
 <link rel="icon" href="favicon.ico">
@@ -13,7 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-html { }
+html { scroll-behavior:smooth; }
 body { font-family:'Cormorant Garamond',serif; overflow-x:hidden; }
 
 body {
@@ -80,6 +80,11 @@ body.dark {
   --footer-bg:  rgba(18,14,10,0.95);
 }
 
+body.dark nav {
+  border-bottom-color:rgba(255,230,136,0.22);
+  box-shadow:0 8px 24px rgba(0,0,0,0.28);
+}
+
 body { background:var(--bg); transition:background .4s; }
 
 body::before {
@@ -93,41 +98,47 @@ body::before {
 
 nav {
   position:fixed; top:0; left:0; right:0; z-index:200;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:0 56px; height:68px;
+  display:grid; grid-template-columns:minmax(120px,1fr) auto minmax(260px,1fr);
+  align-items:center; column-gap:24px;
+  padding:0 56px; height:82px;
   background:var(--nav-bg); backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--border2); transition:background .4s, border-color .4s;
+  border-bottom:1px solid rgba(112,93,81,0.32);
+  box-shadow:0 8px 24px rgba(46,34,25,0.08);
+  transition:background .4s, border-color .4s, box-shadow .4s;
 }
-.nav-logo-img { height:44px; width:auto; max-width:200px; object-fit:contain; display:block; }
-.nav-logo { display:flex; align-items:center; text-decoration:none; }
-.nav-center { display:flex; gap:30px; align-items:center; }
+.nav-logo-img { height:56px; width:auto; max-width:220px; object-fit:contain; display:block; }
+.nav-logo { display:flex; align-items:center; justify-self:start; text-decoration:none; position:relative; z-index:2; }
+.nav-center {
+  display:flex; gap:28px; align-items:center; justify-content:center;
+  min-width:0; white-space:nowrap;
+}
 .nav-center a {
-  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:3px;
+  font-family:'DM Sans',sans-serif; font-size:13px; letter-spacing:2px;
   text-transform:uppercase; color:var(--text-muted); text-decoration:none; transition:color .3s;
 }
 .nav-center a:hover { color:var(--text-primary); }
-.nav-right { display:flex; gap:12px; align-items:center; }
+.nav-right { display:flex; gap:12px; align-items:center; justify-self:end; min-width:0; position:relative; z-index:2; }
 
 .lang-toggle { display:flex; border:1px solid var(--border); border-radius:2px; overflow:hidden; }
 .lang-toggle button {
-  background:transparent; border:none; cursor:pointer; padding:5px 11px;
-  font-size:11px; letter-spacing:2px; font-family:'DM Sans',sans-serif;
+  background:transparent; border:none; cursor:pointer; padding:7px 12px;
+  font-size:12px; letter-spacing:1.5px; font-family:'DM Sans',sans-serif;
   color:var(--text-faint); transition:all .2s;
 }
 .lang-toggle button.active { background:var(--warm-brown); color:#fff; }
 .lang-toggle button:hover:not(.active) { color:var(--text-primary); }
 
 .theme-toggle {
-  width:34px; height:34px; border-radius:50%;
+  width:38px; height:38px; border-radius:50%;
   background:var(--bg3); border:1px solid var(--border);
   cursor:pointer; display:flex; align-items:center; justify-content:center;
-  font-size:15px; transition:all .3s; color:var(--text-muted);
+  font-size:17px; transition:all .3s; color:var(--text-muted);
 }
 .theme-toggle:hover { background:var(--bg4); transform:scale(1.1); }
 
 .nav-cta {
-  padding:7px 18px; border:1px solid var(--border); color:var(--text-secondary);
-  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:3px;
+  padding:9px 20px; border:1px solid var(--border); color:var(--text-secondary);
+  font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:2px;
   text-transform:uppercase; text-decoration:none; border-radius:2px;
   transition:all .3s; white-space:nowrap;
 }
@@ -141,7 +152,7 @@ nav {
               var(--bg);
 }
 .hero-eyebrow {
-  font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:7px;
+  font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:5px;
   text-transform:uppercase; color:var(--text-faint); margin-bottom:22px;
 }
 .hero-logo-img {
@@ -150,18 +161,18 @@ nav {
 }
 .hero-italic {
   font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300;
-  font-size:clamp(18px,2.8vw,36px); letter-spacing:6px; color:var(--text-muted);
+  font-size:clamp(24px,3vw,40px); letter-spacing:4px; color:var(--text-muted);
   display:block; margin:6px 0 28px;
 }
 .hero-desc {
-  max-width:440px; font-size:17px; font-weight:400; line-height:1.95;
+  max-width:560px; font-size:22px; font-weight:400; line-height:1.75;
   color:var(--text-muted); letter-spacing:.3px; margin-bottom:42px;
 }
 .hero-btns { display:flex; gap:13px; justify-content:center; flex-wrap:wrap; }
 
 .btn {
-  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:4px;
-  text-transform:uppercase; padding:13px 30px; border-radius:2px;
+  font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:3px;
+  text-transform:uppercase; padding:15px 30px; border-radius:2px;
   cursor:pointer; transition:all .3s; text-decoration:none; display:inline-block;
 }
 .btn-p { background:var(--warm-brown); border:1px solid var(--warm-brown); color:#fff; }
@@ -172,7 +183,7 @@ nav {
 .scroll-hint {
   position:absolute; bottom:30px; left:50%; transform:translateX(-50%);
   display:flex; flex-direction:column; align-items:center; gap:8px;
-  font-family:'DM Sans',sans-serif; font-size:9px; letter-spacing:4px;
+  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:3px;
   text-transform:uppercase; color:var(--text-faint);
   animation:bounce 2s infinite;
 }
@@ -190,21 +201,21 @@ nav {
 
 .sw { max-width:1080px; margin:0 auto; padding:88px 56px; }
 .s-label {
-  font-family:'DM Sans',sans-serif; font-size:9px; letter-spacing:6px;
+  font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:4px;
   text-transform:uppercase; color:var(--text-faint); margin-bottom:16px;
 }
 .s-title {
-  font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,5vw,60px);
+  font-family:'Bebas Neue',sans-serif; font-size:clamp(42px,5.2vw,64px);
   letter-spacing:5px; color:var(--text-primary); line-height:1; margin-bottom:12px;
 }
 .s-sub {
-  font-size:17px; font-weight:400; font-style:italic; color:var(--text-muted);
-  line-height:1.85; max-width:480px;
+  font-size:21px; font-weight:400; font-style:italic; color:var(--text-muted);
+  line-height:1.75; max-width:560px;
 }
 .rule { width:36px; height:1px; background:var(--gold); opacity:.6; margin:26px 0; }
 
 .story-inner { display:grid; grid-template-columns:1.1fr 0.9fr; gap:68px; align-items:start; }
-.story-text p { font-size:17px; font-weight:400; line-height:1.95; color:var(--text-muted); margin-bottom:16px; }
+.story-text p { font-size:20px; font-weight:400; line-height:1.8; color:var(--text-muted); margin-bottom:18px; }
 .stats { display:flex; flex-direction:column; gap:12px; }
 .stat {
   border:1px solid var(--border); padding:24px 26px;
@@ -218,7 +229,7 @@ nav {
 }
 .stat:hover { background:var(--card-hover); box-shadow:0 4px 20px rgba(112,93,81,.08); }
 .stat-n { font-family:'Bebas Neue',sans-serif; font-size:50px; letter-spacing:2px; color:var(--gold); line-height:1; }
-.stat-l { font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--text-faint); margin-top:4px; }
+.stat-l { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-faint); margin-top:6px; }
 
 /* ── FLAVOURS COMING SOON GRID ── */
 .fgrid {
@@ -234,21 +245,21 @@ nav {
 }
 .fdot { width:10px; height:10px; border-radius:50%; margin-bottom:16px; }
 .fname {
-  font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:600;
+  font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600;
   color:var(--text-primary); margin-bottom:7px;
 }
-.fdesc { font-family:'DM Sans',sans-serif; font-size:12px; color:var(--text-muted); line-height:1.75; }
+.fdesc { font-family:'DM Sans',sans-serif; font-size:15px; color:var(--text-muted); line-height:1.7; }
 
 /* Teaser / coming-soon badge */
 .ftag {
   display:inline-block; margin-top:13px;
-  font-family:'DM Sans',sans-serif; font-size:9px; letter-spacing:3px;
+  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:2px;
   text-transform:uppercase; color:var(--tag-text); border:1px solid var(--tag-border);
   background:var(--tag-bg); padding:3px 9px; border-radius:1px;
 }
 .ftag-soon {
   display:inline-block; margin-top:13px;
-  font-family:'DM Sans',sans-serif; font-size:9px; letter-spacing:3px;
+  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:2px;
   text-transform:uppercase; color:var(--gold);
   border:1px solid rgba(200,151,58,0.4);
   background:rgba(200,151,58,0.08); padding:3px 9px; border-radius:1px;
@@ -279,17 +290,17 @@ nav {
   background:linear-gradient(135deg, rgba(255,230,136,.09) 0%, transparent 60%);
   pointer-events:none;
 }
-.seasonal h3 { font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:4px; color:var(--text-primary); margin-bottom:9px; }
-.seasonal p { font-size:16px; font-weight:400; font-style:italic; color:var(--text-muted); max-width:380px; line-height:1.8; }
+.seasonal h3 { font-family:'Bebas Neue',sans-serif; font-size:36px; letter-spacing:4px; color:var(--text-primary); margin-bottom:9px; }
+.seasonal p { font-size:19px; font-weight:400; font-style:italic; color:var(--text-muted); max-width:460px; line-height:1.7; }
 
 .psteps {
-  display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:36px 0;
   margin-top:50px; border-left:1px solid var(--border);
 }
-.pstep { padding:0 30px 0 26px; border-right:1px solid var(--border); }
+.pstep { padding:0 38px 0 30px; border-right:1px solid var(--border); }
 .pnum { font-family:'Bebas Neue',sans-serif; font-size:58px; color:var(--gold-light); opacity:.7; line-height:1; margin-bottom:16px; }
-.pstep h4 { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:var(--text-secondary); margin-bottom:9px; }
-.pstep p { font-family:'DM Sans',sans-serif; font-size:13px; color:var(--text-muted); line-height:1.8; }
+.pstep h4 { font-family:'Cormorant Garamond',serif; font-size:23px; font-weight:600; color:var(--text-secondary); margin-bottom:10px; }
+.pstep p { font-family:'DM Sans',sans-serif; font-size:18px; color:var(--text-muted); line-height:1.65; }
 
 /* ── MENU COMING SOON ── */
 .menu-soon {
@@ -320,40 +331,50 @@ nav {
   display:block; line-height:1;
 }
 .menu-soon-title {
-  font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,4vw,48px);
+  font-family:'Bebas Neue',sans-serif; font-size:clamp(34px,4vw,52px);
   letter-spacing:6px; color:var(--text-primary); margin-bottom:16px;
 }
 .menu-soon-desc {
-  font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic;
-  color:var(--text-muted); max-width:420px; line-height:1.85;
+  font-family:'Cormorant Garamond',serif; font-size:22px; font-style:italic;
+  color:var(--text-muted); max-width:540px; line-height:1.7;
 }
 
 /* ── VISIT ── */
-.vgrid { display:grid; grid-template-columns:1fr 1fr; gap:50px; margin-top:50px; }
+.vgrid { display:grid; grid-template-columns:1fr 1fr; gap:50px; margin-top:50px; align-items:start; }
 .iblock { margin-bottom:30px; }
-.ilabel { font-family:'DM Sans',sans-serif; font-size:9px; letter-spacing:5px; text-transform:uppercase; color:var(--text-faint); margin-bottom:9px; }
-.ival { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:var(--text-secondary); line-height:1.7; }
+.ilabel { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:4px; text-transform:uppercase; color:var(--text-faint); margin-bottom:10px; }
+.ival { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:var(--text-secondary); line-height:1.65; }
 .ival a { color:var(--text-secondary); text-decoration:none; transition:color .3s; }
 .ival a:hover { color:var(--text-primary); text-decoration:underline; }
+.social-link {
+  display:inline-flex; align-items:center; gap:10px;
+  color:var(--text-secondary); text-decoration:none; transition:color .3s;
+}
+.social-link:hover { color:var(--text-primary); text-decoration:none; }
+.social-icon {
+  width:24px; height:24px; flex:0 0 auto;
+  stroke:currentColor; fill:none; stroke-width:1.8;
+}
 .hgrid { display:grid; grid-template-columns:auto 1fr; gap:5px 20px; }
-.hday { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--hours-day); }
-.htime { font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--hours-time); }
+.hday { font-family:'DM Sans',sans-serif; font-size:14px; letter-spacing:2px; text-transform:uppercase; color:var(--hours-day); }
+.htime { font-family:'Cormorant Garamond',serif; font-size:19px; color:var(--hours-time); }
+.metronote { color:var(--text-faint); }
 
 /* ── MAP (improved) ── */
 .mapbox {
   border:1px solid var(--border); overflow:hidden;
-  position:relative; min-height:310px; border-radius:2px;
+  position:relative; height:360px; border-radius:2px;
   cursor:pointer;
 }
-#mapCanvas { width:100%; min-height:310px; display:block; }
+#mapCanvas { width:100%; height:360px; display:block; }
 .maplabel {
   position:absolute; bottom:14px; left:14px;
   background:var(--card-bg); border:1px solid var(--border);
-  padding:11px 14px; border-radius:2px;
+  padding:9px 12px; border-radius:2px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 }
-.maplabel strong { font-family:'Cormorant Garamond',serif; font-size:15px; font-weight:600; color:var(--text-primary); display:block; margin-bottom:3px; }
-.maplabel p { font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:1px; color:var(--text-faint); line-height:1.6; }
+.maplabel strong { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:var(--text-primary); display:block; line-height:1.1; }
+.maplabel p { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:1px; color:var(--text-faint); line-height:1.35; margin-top:2px; }
 
 footer {
   background:var(--footer-bg); border-top:1px solid var(--border);
@@ -362,30 +383,73 @@ footer {
 }
 .flogo-img { height:32px; width:auto; max-width:120px; object-fit:contain; }
 .flinks { display:flex; gap:26px; flex-wrap:wrap; }
-.flinks a { font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-faint); text-decoration:none; transition:color .3s; }
+.flinks a { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--text-faint); text-decoration:none; transition:color .3s; }
 .flinks a:hover { color:var(--text-primary); }
-.fcopy { font-family:'DM Sans',sans-serif; font-size:10px; color:var(--text-faint); letter-spacing:1px; }
+.flinks .footer-social { display:inline-flex; align-items:center; gap:7px; }
+.flinks .footer-social svg { width:17px; height:17px; stroke:currentColor; fill:none; stroke-width:1.9; }
+.fcopy { font-family:'DM Sans',sans-serif; font-size:12px; color:var(--text-faint); letter-spacing:1px; }
 
 #story   { background:var(--bg); }
 #flavours{ background:var(--bg2); }
 #process { background:var(--bg); }
 #menu    { background:var(--bg2); }
 #visit   { background:var(--bg2); }
+section {
+  min-height:100vh;
+  display:flex; align-items:center;
+}
+section > .sw { width:100%; }
 
-.fi { opacity:0; transform:translateY(18px); transition:opacity .85s ease, transform .85s ease; }
+.fi { opacity:1; transform:none; transition:opacity .85s ease, transform .85s ease; }
 .fi.vis { opacity:1; transform:none; }
 
 @media(max-width:768px){
-  nav{padding:0 18px;} .nav-center{display:none;}
+  nav{
+    grid-template-columns:auto max-content;
+    justify-content:space-between;
+    column-gap:12px;
+    padding:0 18px;
+  }
+  .nav-center{display:none;}
+  .nav-right{justify-self:end; flex-wrap:nowrap; flex-shrink:0;}
+  .nav-cta{display:none;}
   .sw{padding:60px 20px;}
   .story-inner{grid-template-columns:1fr;gap:32px;}
   .mcols{grid-template-columns:1fr;}
   .vgrid{grid-template-columns:1fr;}
-  .psteps{grid-template-columns:1fr 1fr;}
+  .psteps{grid-template-columns:1fr;}
+  .pstep{border-right:none;}
   .seasonal{margin:0 20px 60px;padding:28px 20px;}
   footer{padding:28px 20px;flex-direction:column;}
-  .nav-logo-img{height:36px;}
+  .nav-logo-img{height:42px;}
   .hero-logo-img{height:clamp(70px,18vw,120px);}
+  .mapbox,#mapCanvas{height:320px;}
+}
+@media(max-width:1080px) and (min-width:769px){
+  nav{grid-template-columns:minmax(100px,0.75fr) auto minmax(220px,0.75fr); column-gap:16px; padding:0 24px;}
+  .nav-logo-img{height:50px; max-width:170px;}
+  .nav-center{gap:16px;}
+  .nav-center a{font-size:11px; letter-spacing:1px;}
+  .nav-right{gap:8px;}
+  .lang-toggle button{padding:6px 10px;}
+  .theme-toggle{width:34px;height:34px;}
+  .nav-cta{padding:8px 12px; font-size:11px; letter-spacing:1.4px;}
+}
+@media(max-width:930px) and (min-width:769px){
+  .nav-center{display:none;}
+  nav{grid-template-columns:auto max-content; justify-content:space-between; column-gap:16px; padding:0 22px;}
+  .nav-logo-img{height:46px; max-width:150px;}
+  .nav-right{justify-self:end; flex-shrink:0;}
+  .nav-cta{display:none;}
+}
+@media(max-width:480px){
+  nav{height:72px;}
+  section{min-height:100vh;}
+  .nav-right{gap:8px;}
+  .lang-toggle button{padding:6px 9px; font-size:11px; letter-spacing:1px;}
+  .theme-toggle{width:34px;height:34px;}
+  .hero-desc,.s-sub,.story-text p,.menu-soon-desc,.ival{font-size:20px;}
+  .pstep p{font-size:15px;}
 }
 </style>
 </head>
@@ -419,7 +483,7 @@ footer {
   <p class="hero-eyebrow fi" data-fr="Fait à la main à Montréal depuis 2026" data-en="Handcrafted in Montréal since 2026">Fait à la main à Montréal depuis 2026</p>
   <img class="hero-logo-img fi" src="logo.svg" alt="La Palette Gelato">
   <span class="hero-italic fi" data-fr="Gelato Artisanal" data-en="Artisan Gelato">Gelato Artisanal</span>
-  <p class="hero-desc fi" data-fr="Là où la tradition italienne rencontre le terroir québécois. Chaque boule est une petite peinture — préparée chaque jour, servie avec amour sur Prince Arthur." data-en="Where Italian tradition meets Québec terroir. Every scoop is a small painting — crafted daily, served with love on Prince Arthur.">Là où la tradition italienne rencontre le terroir québécois. Chaque boule est une petite peinture — préparée chaque jour, servie avec amour sur Prince Arthur.</p>
+  <p class="hero-desc fi" data-fr="Là où la tradition italienne rencontre le terroir québécois. Chaque boule est une petite peinture, préparée chaque jour, servie avec amour sur Prince Arthur." data-en="Where Italian tradition meets Québec terroir. Every scoop is a small painting, crafted daily, served with love on Prince Arthur.">Là où la tradition italienne rencontre le terroir québécois. Chaque boule est une petite peinture, préparée chaque jour, servie avec amour sur Prince Arthur.</p>
   <div class="hero-btns fi">
     <a href="#flavours" class="btn btn-p" data-fr="Explorer les Saveurs" data-en="Explore Flavours">Explorer les Saveurs</a>
     <a href="#visit" class="btn btn-s" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
@@ -437,14 +501,14 @@ footer {
         <p class="s-label" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</p>
         <h2 class="s-title" data-fr="Art. Saveur.<br>Caractère." data-en="Craft. Colour.<br>Character.">Art. Saveur.<br>Caractère.</h2>
         <div class="rule"></div>
-        <p data-fr="La Palette est née d'une seule obsession : que le gelato, à son meilleur, n'est pas qu'un dessert — c'est un moment de pur plaisir sensoriel. Nous sélectionnons les meilleurs ingrédients locaux des fermes québécoises et les associons à une technique italienne traditionnelle transmise sur trois générations." data-en="La Palette was born from a single obsession: that gelato, at its finest, is not just a dessert — it is a moment of pure sensory pleasure. We source the finest local ingredients from Québec farms and pair them with traditional Italian technique passed down through three generations.">La Palette est née d'une seule obsession : que le gelato, à son meilleur, n'est pas qu'un dessert — c'est un moment de pur plaisir sensoriel. Nous sélectionnons les meilleurs ingrédients locaux des fermes québécoises et les associons à une technique italienne traditionnelle transmise sur trois générations.</p>
+        <p data-fr="La Palette est née d'une seule obsession : que le gelato, à son meilleur, n'est pas qu'un dessert, c'est un moment de pur plaisir sensoriel. Nous sélectionnons les meilleurs ingrédients locaux des fermes québécoises et les associons à une technique italienne traditionnelle transmise sur trois générations." data-en="La Palette was born from a single obsession: that gelato, at its finest, is not just a dessert, it is a moment of pure sensory pleasure. We source the finest local ingredients from Québec farms and pair them with traditional Italian technique passed down through three generations.">La Palette est née d'une seule obsession : que le gelato, à son meilleur, n'est pas qu'un dessert, c'est un moment de pur plaisir sensoriel. Nous sélectionnons les meilleurs ingrédients locaux des fermes québécoises et les associons à une technique italienne traditionnelle transmise sur trois générations.</p>
         <p data-fr="Chaque fournée est préparée à la main chaque matin dans notre cuisine ouverte. Aucun stabilisant, aucune saveur artificielle. Seulement du lait, de la crème, des fruits de saison et une quantité déraisonnable de soin." data-en="Every batch is churned fresh each morning in our open kitchen. No stabilisers, no artificial flavours. Just milk, cream, seasonal fruit, and an unreasonable amount of care.">Chaque fournée est préparée à la main chaque matin dans notre cuisine ouverte. Aucun stabilisant, aucune saveur artificielle. Seulement du lait, de la crème, des fruits de saison et une quantité déraisonnable de soin.</p>
-        <p data-fr="Venez nous retrouver sur Prince Arthur — le cœur battant du Plateau — où chaque jour nous repeignons le menu à nouveau." data-en="Come find us on Prince Arthur — the beating heart of the Plateau — where every day we paint the menu anew.">Venez nous retrouver sur Prince Arthur — le cœur battant du Plateau — où chaque jour nous repeignons le menu à nouveau.</p>
+        <p data-fr="Venez nous retrouver sur Prince Arthur, le cœur battant du Plateau, où chaque jour nous repeignons le menu à nouveau." data-en="Come find us on Prince Arthur, the beating heart of the Plateau, where every day we paint the menu anew.">Venez nous retrouver sur Prince Arthur, le cœur battant du Plateau, où chaque jour nous repeignons le menu à nouveau.</p>
       </div>
       <div class="stats">
         <div class="stat"><div class="stat-n">16+</div><div class="stat-l" data-fr="Saveurs en rotation quotidienne" data-en="Rotating flavours daily">Saveurs en rotation quotidienne</div></div>
         <div class="stat"><div class="stat-n">100%</div><div class="stat-l" data-fr="Ingrédients naturels" data-en="Natural ingredients">Ingrédients naturels</div></div>
-        <div class="stat"><div class="stat-n">3</div><div class="stat-l" data-fr="Générations de savoir-faire" data-en="Generations of craft">Générations de savoir-faire</div></div>
+        <div class="stat"><div class="stat-n">3</div><div class="stat-l" data-fr="Générations de savoir faire" data-en="Generations of craft">Générations de savoir faire</div></div>
       </div>
     </div>
   </div>
@@ -461,7 +525,7 @@ footer {
       <div class="menu-soon-inner">
         <div class="menu-soon-icon">☽</div>
         <p class="menu-soon-title" data-fr="Saveurs bientôt révélées" data-en="Flavours to be revealed">Saveurs bientôt révélées</p>
-        <p class="menu-soon-desc" data-fr="Notre palette est en préparation. Les saveurs seront dévoilées à l'ouverture — revenez nous voir bientôt." data-en="Our palette is in preparation. Flavours will be revealed at opening — come back and see us soon.">Notre palette est en préparation. Les saveurs seront dévoilées à l'ouverture — revenez nous voir bientôt.</p>
+        <p class="menu-soon-desc" data-fr="Notre palette est en préparation. Les saveurs seront dévoilées à l'ouverture, revenez nous voir bientôt." data-en="Our palette is in preparation. Flavours will be revealed at opening, come back and see us soon.">Notre palette est en préparation. Les saveurs seront dévoilées à l'ouverture, revenez nous voir bientôt.</p>
         <a href="#visit" class="btn btn-p" style="margin-top:28px;" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
       </div>
     </div>
@@ -478,10 +542,10 @@ footer {
     <p class="s-label fi" data-fr="Notre Méthode" data-en="How We Make It">Notre Méthode</p>
     <h2 class="s-title fi" data-fr="Le Processus" data-en="The Process">Le Processus</h2>
     <div class="psteps fi">
-      <div class="pstep"><div class="pnum">01</div><h4 data-fr="Sélection" data-en="Source">Sélection</h4><p data-fr="Nous visitons nos fournisseurs — fermes québécoises, importateurs italiens, producteurs locaux. Les ingrédients arrivent frais chaque jour." data-en="We visit our suppliers personally — Québec farms, Italian importers, local producers. Ingredients arrive fresh daily.">Nous visitons nos fournisseurs — fermes québécoises, importateurs italiens, producteurs locaux. Les ingrédients arrivent frais chaque jour.</p></div>
+      <div class="pstep"><div class="pnum">01</div><h4 data-fr="Sélection" data-en="Source">Sélection</h4><p data-fr="Nous visitons nos fournisseurs, fermes québécoises, importateurs italiens, producteurs locaux. Les ingrédients arrivent frais chaque jour." data-en="We visit our suppliers personally, Québec farms, Italian importers, local producers. Ingredients arrive fresh daily.">Nous visitons nos fournisseurs, fermes québécoises, importateurs italiens, producteurs locaux. Les ingrédients arrivent frais chaque jour.</p></div>
       <div class="pstep"><div class="pnum">02</div><h4 data-fr="Préparation" data-en="Craft">Préparation</h4><p data-fr="Chaque base est préparée à la main chaque matin. Aucun prémélange. Aucun raccourci." data-en="Every base is prepared by hand each morning. No premixes. No shortcuts.">Chaque base est préparée à la main chaque matin. Aucun prémélange. Aucun raccourci.</p></div>
-      <div class="pstep"><div class="pnum">03</div><h4 data-fr="Turbinage" data-en="Churn">Turbinage</h4><p data-fr="Nos turbines italiennes fonctionnent avec un foisonnement plus faible — donnant au gelato sa texture dense et soyeuse caractéristique." data-en="Our Italian batch freezers run at lower overrun — giving gelato its signature dense, silky body.">Nos turbines italiennes fonctionnent avec un foisonnement plus faible — donnant au gelato sa texture dense et soyeuse caractéristique.</p></div>
-      <div class="pstep"><div class="pnum">04</div><h4 data-fr="Service" data-en="Serve">Service</h4><p data-fr="Le gelato est servi à -11°C — plus chaud que la crème glacée — pour que chaque saveur s'épanouisse pleinement en bouche." data-en="Gelato is served at -11°C — warmer than ice cream — so every flavour blooms fully on the palate.">Le gelato est servi à -11°C — plus chaud que la crème glacée — pour que chaque saveur s'épanouisse pleinement en bouche.</p></div>
+      <div class="pstep"><div class="pnum">03</div><h4 data-fr="Turbinage" data-en="Churn">Turbinage</h4><p data-fr="Nos turbines italiennes fonctionnent avec un foisonnement plus faible, donnant au gelato sa texture dense et soyeuse caractéristique." data-en="Our Italian batch freezers run at lower overrun, giving gelato its signature dense, silky body.">Nos turbines italiennes fonctionnent avec un foisonnement plus faible, donnant au gelato sa texture dense et soyeuse caractéristique.</p></div>
+      <div class="pstep"><div class="pnum">04</div><h4 data-fr="Service" data-en="Serve">Service</h4><p data-fr="Le gelato est servi à moins 12°C, plus chaud que la crème glacée, pour que chaque saveur s'épanouisse pleinement en bouche." data-en="Gelato is served at minus 12°C, warmer than ice cream, so every flavour blooms fully on the palate.">Le gelato est servi à moins 12°C, plus chaud que la crème glacée, pour que chaque saveur s'épanouisse pleinement en bouche.</p></div>
     </div>
   </div>
 </section>
@@ -497,8 +561,7 @@ footer {
       <div class="menu-soon-inner">
         <div class="menu-soon-icon">☽</div>
         <p class="menu-soon-title" data-fr="Le menu arrive bientôt" data-en="Menu coming soon">Le menu arrive bientôt</p>
-        <p class="menu-soon-desc" data-fr="Nous finalisons notre carte — saveurs, tarifs et spécialités. Revenez nous voir à l'ouverture." data-en="We're finalising our menu — flavours, pricing, and specialties. Come back and see us at opening.">Nous finalisons notre carte — saveurs, tarifs et spécialités. Revenez nous voir à l'ouverture.</p>
-        <a href="#visit" class="btn btn-p" style="margin-top:28px;" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
+        <p class="menu-soon-desc" data-fr="Nous finalisons notre carte, saveurs, tarifs et spécialités. Revenez nous voir à l'ouverture." data-en="We're finalising our menu, flavours, pricing, and specialties. Come back and see us at opening.">Nous finalisons notre carte, saveurs, tarifs et spécialités. Revenez nous voir à l'ouverture.</p>
       </div>
     </div>
   </div>
@@ -511,22 +574,35 @@ footer {
   <div class="sw">
     <p class="s-label fi" data-fr="Venez Nous Voir" data-en="Come See Us">Venez Nous Voir</p>
     <h2 class="s-title fi" data-fr="Trouver La Palette" data-en="Find La Palette">Trouver La Palette</h2>
-    <p class="s-sub fi" data-fr="Nous sommes sur le tronçon piétonnier de Prince Arthur — la rue gastronomique la plus aimée de Montréal." data-en="We're on the pedestrian stretch of Prince Arthur — Montréal's most beloved food street.">Nous sommes sur le tronçon piétonnier de Prince Arthur — la rue gastronomique la plus aimée de Montréal.</p>
+    <p class="s-sub fi" data-fr="Nous sommes sur le tronçon piétonnier de Prince Arthur, la rue gastronomique la plus aimée de Montréal." data-en="We're on the pedestrian stretch of Prince Arthur, Montréal's most beloved food street.">Nous sommes sur le tronçon piétonnier de Prince Arthur, la rue gastronomique la plus aimée de Montréal.</p>
     <div class="vgrid fi">
       <div>
         <div class="iblock"><p class="ilabel" data-fr="Adresse" data-en="Address">Adresse</p><p class="ival">108 Prince Arthur Est<br>Montréal, QC H2X 1B5</p></div>
-        <div class="iblock"><p class="ilabel" data-fr="Téléphone" data-en="Phone">Téléphone</p><p class="ival"><a href="tel:5146656623">514 665-6623</a></p></div>
+        <div class="iblock"><p class="ilabel" data-fr="Téléphone" data-en="Phone">Téléphone</p><p class="ival"><a href="tel:5146656623">514 665 6623</a></p></div>
         <div class="iblock"><p class="ilabel" data-fr="Courriel" data-en="Email">Courriel</p><p class="ival"><a href="mailto:lapalette.gelato@gmail.com">lapalette.gelato@gmail.com</a></p></div>
         <div class="iblock">
-          <p class="ilabel" data-fr="Heures d'Ouverture" data-en="Hours">Heures d'Ouverture</p>
-          <p class="ival" style="font-style:italic; color:var(--text-faint);" data-fr="À déterminer — suivez-nous pour les mises à jour." data-en="To be determined — follow us for updates.">À déterminer — suivez-nous pour les mises à jour.</p>
+          <p class="ilabel">Instagram</p>
+          <p class="ival">
+            <a class="social-link" href="https://www.instagram.com/gelateria_lapalette" target="_blank" rel="noopener noreferrer" aria-label="Instagram La Palette">
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <circle cx="12" cy="12" r="4"></circle>
+                <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"></circle>
+              </svg>
+              @gelateria_lapalette
+            </a>
+          </p>
         </div>
-        <div class="iblock"><p class="ilabel" data-fr="Métro" data-en="Nearest Metro">Métro</p><p class="ival" data-fr="Sherbrooke (Ligne Orange)<br><small style='color:var(--text-faint)'>7 min à pied vers le sud sur St-Denis</small>" data-en="Sherbrooke (Orange Line)<br><small style='color:var(--text-faint)'>7 min walk south on St-Denis</small>">Sherbrooke (Ligne Orange)<br><small style="color:var(--text-faint)">7 min à pied vers le sud sur St-Denis</small></p></div>
+        <div class="iblock">
+          <p class="ilabel" data-fr="Heures d'Ouverture" data-en="Hours">Heures d'Ouverture</p>
+          <p class="ival" style="font-style:italic; color:var(--text-faint);" data-fr="À déterminer, suivez nous pour les mises à jour." data-en="To be determined, follow us for updates.">À déterminer, suivez nous pour les mises à jour.</p>
+        </div>
+        <div class="iblock"><p class="ilabel" data-fr="Métro" data-en="Nearest Metro">Métro</p><p class="ival" data-fr="Sherbrooke (Ligne Orange)<br><small class='metronote'>7 min à pied vers le sud sur St Denis</small>" data-en="Sherbrooke (Orange Line)<br><small class='metronote'>7 min walk south on St Denis</small>">Sherbrooke (Ligne Orange)<br><small class="metronote">7 min à pied vers le sud sur St Denis</small></p></div>
       </div>
       <div class="mapbox" onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=108+Prince+Arthur+E,+Montreal,+QC','_blank')" style="cursor:pointer;">
         <canvas id="mapCanvas"></canvas>
-        <div class="maplabel"><strong>La Palette Gelato</strong><p>108 Prince Arthur Est<br>Montréal, QC</p></div>
-        <div style="position:absolute;top:12px;right:12px;background:var(--warm-brown);color:#fff;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 13px;border-radius:2px;pointer-events:none;" data-fr="→ Itinéraire" data-en="→ Directions">→ Itinéraire</div>
+        <div class="maplabel"><strong>La Palette</strong><p data-fr="Ouvrir l'itinéraire" data-en="Open directions">Ouvrir l'itinéraire</p></div>
+        <div style="position:absolute;top:12px;right:12px;background:var(--warm-brown);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;padding:8px 14px;border-radius:2px;pointer-events:none;" data-fr="→ Itinéraire" data-en="→ Directions">→ Itinéraire</div>
       </div>
     </div>
   </div>
@@ -540,7 +616,15 @@ footer {
     <a href="#flavours" data-fr="Saveurs" data-en="Flavours">Saveurs</a>
     <a href="#menu">Menu</a>
     <a href="#visit" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
-    <a href="tel:5146656623">514 665-6623</a>
+    <a href="tel:5146656623">514 665 6623</a>
+    <a class="footer-social" href="https://www.instagram.com/gelateria_lapalette" target="_blank" rel="noopener noreferrer" aria-label="Instagram La Palette">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+        <circle cx="12" cy="12" r="4"></circle>
+        <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"></circle>
+      </svg>
+      Instagram
+    </a>
   </div>
   <p class="fcopy">© 2026 La Palette Gelato · 108 Prince Arthur Est, Montréal</p>
 </footer>
@@ -580,9 +664,9 @@ function setLang(l){
 }
 
 // ── MAP (accurate: 108 Prince Arthur Est, Plateau-Mont-Royal) ──
-// Real layout: Prince Arthur runs E-W (pedestrian). St-Laurent is ~3 blocks west,
-// St-Denis is ~2 blocks east. Sherbrooke runs E-W to the south.
-// Metro Sherbrooke (Orange) is at St-Denis & Sherbrooke, ~7 min walk south.
+// Real layout: Prince Arthur runs east west in the pedestrian area. St Laurent is about 3 blocks west,
+// St Denis is about 2 blocks east. Sherbrooke runs east west to the south.
+// Metro Sherbrooke on the Orange line is at St Denis and Sherbrooke, about 7 min walk south.
 // Square Saint-Louis is just NE of the address.
 function drawMap(){
   const mc = document.getElementById('mapCanvas');
@@ -601,17 +685,17 @@ function drawMap(){
 
   // ── Road positions (proportional) ──
   // Horizontal roads
-  const yPrinceArthur = H * 0.42;   // Prince Arthur Est — main road, upper-mid
-  const ySherbrooke   = H * 0.82;   // Sherbrooke — bottom area
-  const yRachel       = H * 0.08;   // Rachel — top
-  const yRoy          = H * 0.72;   // Rue Roy — between Prince Arthur & Sherbrooke
+  const yPrinceArthur = H * 0.42;   // Prince Arthur Est main road
+  const ySherbrooke   = H * 0.82;   // Sherbrooke bottom area
+  const yRachel       = H * 0.08;   // Rachel top
+  const yRoy          = H * 0.72;   // Rue Roy between Prince Arthur and Sherbrooke
 
   // Vertical roads
-  const xStLaurent    = W * 0.12;   // St-Laurent — far left
-  const xStUrbain     = W * 0.28;   // St-Urbain
-  const xHotelDeVille = W * 0.44;   // De l'Hôtel-de-Ville
-  const xStDenis      = W * 0.62;   // St-Denis — right of centre
-  const xBerri        = W * 0.78;   // Berri — far right
+  const xStLaurent    = W * 0.12;   // St Laurent far left
+  const xStUrbain     = W * 0.28;   // St Urbain
+  const xHotelDeVille = W * 0.44;   // De l Hotel de Ville
+  const xStDenis      = W * 0.62;   // St Denis right of centre
+  const xBerri        = W * 0.78;   // Berri far right
 
   const roadW  = 9;   // main road half-width
   const roadW2 = 6;   // secondary road half-width
@@ -691,45 +775,45 @@ function drawMap(){
   const lc  = dark ? 'rgba(235,205,155,0.92)' : 'rgba(65,42,18,0.92)';
   const lc2 = dark ? 'rgba(175,145,95,0.68)'  : 'rgba(95,70,38,0.68)';
 
-  m.font = 'bold 11px "DM Sans",sans-serif';
+  m.font = 'bold 13px "DM Sans",sans-serif';
   m.fillStyle = lc;
   m.fillText('Prince Arthur Est', xStLaurent + 12, yPrinceArthur - roadW - 5);
 
-  m.font = 'bold 11px "DM Sans",sans-serif';
+  m.font = 'bold 13px "DM Sans",sans-serif';
   m.fillStyle = lc;
   m.fillText('Sherbrooke', xStLaurent + 12, ySherbrooke - roadW - 5);
 
-  m.font = '9px "DM Sans",sans-serif';
+  m.font = '11px "DM Sans",sans-serif';
   m.fillStyle = lc2;
   m.fillText('Rachel', xStLaurent + 12, yRachel - roadW2 - 4);
   m.fillText('Roy', xStLaurent + 12, yRoy - roadW2 - 4);
 
   // Vertical labels (rotated)
   [
-    [xStLaurent, 'St-Laurent', lc],
-    [xStUrbain,  'St-Urbain',  lc2],
-    [xHotelDeVille, 'Hôtel-de-Ville', lc2],
-    [xStDenis,   'St-Denis',   lc],
+    [xStLaurent, 'St Laurent', lc],
+    [xStUrbain,  'St Urbain',  lc2],
+    [xHotelDeVille, 'Hôtel de Ville', lc2],
+    [xStDenis,   'St Denis',   lc],
     [xBerri,     'Berri',      lc2],
   ].forEach(([x, label, color]) => {
     m.save();
     m.translate(x + 4, H - 10);
     m.rotate(-Math.PI / 2);
     m.fillStyle = color;
-    m.font = x === xStDenis || x === xStLaurent ? 'bold 10px "DM Sans",sans-serif' : '9px "DM Sans",sans-serif';
+    m.font = x === xStDenis || x === xStLaurent ? 'bold 12px "DM Sans",sans-serif' : '11px "DM Sans",sans-serif';
     m.fillText(label, 0, 0);
     m.restore();
   });
 
   // Square Saint-Louis label
   m.fillStyle = dark ? 'rgba(100,170,80,0.8)' : 'rgba(35,85,25,0.75)';
-  m.font = 'italic 8.5px "DM Sans",sans-serif';
+  m.font = 'italic 10px "DM Sans",sans-serif';
   m.textAlign = 'center';
   m.fillText('Square', sqX + sqW / 2, sqY + sqH / 2 - 5);
   m.fillText('Saint-Louis', sqX + sqW / 2, sqY + sqH / 2 + 7);
   m.textAlign = 'left';
 
-  // ── Metro Sherbrooke — at St-Denis & Sherbrooke ──
+  // Metro Sherbrooke at St Denis and Sherbrooke
   const mx = xStDenis, my = ySherbrooke;
   const mg = m.createRadialGradient(mx, my, 0, mx, my, 22);
   mg.addColorStop(0, dark ? 'rgba(210,95,25,0.45)' : 'rgba(195,75,15,0.35)');
@@ -741,19 +825,19 @@ function drawMap(){
   m.strokeStyle = 'rgba(255,255,255,0.55)'; m.lineWidth = 1.5; m.stroke();
 
   m.fillStyle = '#fff';
-  m.font = 'bold 9px "DM Sans",sans-serif';
+  m.font = 'bold 10px "DM Sans",sans-serif';
   m.textAlign = 'center';
   m.fillText('M', mx, my + 3.5);
   m.textAlign = 'left';
 
   m.fillStyle = dark ? 'rgba(215,165,95,0.9)' : 'rgba(85,50,15,0.9)';
-  m.font = 'bold 10px "DM Sans",sans-serif';
+  m.font = 'bold 12px "DM Sans",sans-serif';
   m.fillText('Sherbrooke', mx + 14, my - 4);
-  m.font = '9px "DM Sans",sans-serif';
+  m.font = '11px "DM Sans",sans-serif';
   m.fillStyle = dark ? 'rgba(175,140,85,0.7)' : 'rgba(110,80,40,0.7)';
   m.fillText('Ligne Orange · 7 min', mx + 14, my + 8);
 
-  // ── Destination pin — 108 Prince Arthur, between Hôtel-de-Ville & St-Denis ──
+  // Destination pin for 108 Prince Arthur, between Hotel de Ville and St Denis
   const px = (xHotelDeVille + xStDenis) / 2 + 10;
   const py = yPrinceArthur;
 
@@ -776,9 +860,9 @@ function drawMap(){
   m.beginPath(); m.arc(px, py, 4.5, 0, Math.PI * 2);
   m.fillStyle = 'rgba(255,255,255,0.88)'; m.fill();
 
-  // Label bubble — positioned above so it doesn't overlap Sherbrooke
-  const lx = px - 74, ly = py - 52;
-  const lw = 152, lh = 42;
+  // Compact label bubble positioned above so it does not overlap Sherbrooke
+  const lx = px - 48, ly = py - 40;
+  const lw = 96, lh = 28;
   m.fillStyle = dark ? 'rgba(0,0,0,0.22)' : 'rgba(0,0,0,0.09)';
   m.beginPath(); m.roundRect(lx - 2, ly - 2, lw + 4, lh + 4, 4); m.fill();
   m.fillStyle = dark ? 'rgba(26,20,14,0.97)' : 'rgba(255,252,246,0.97)';
@@ -797,11 +881,10 @@ function drawMap(){
   m.setLineDash([]);
 
   m.fillStyle = dark ? 'rgba(240,222,192,1)' : 'rgba(44,32,22,1)';
-  m.font = 'bold 12px "DM Sans",sans-serif';
-  m.fillText('La Palette', lx + 10, ly + 16);
-  m.fillStyle = dark ? 'rgba(178,150,108,0.82)' : 'rgba(110,90,65,0.82)';
-  m.font = '10px "DM Sans",sans-serif';
-  m.fillText('108 Prince Arthur Est', lx + 10, ly + 30);
+  m.font = 'bold 13px "DM Sans",sans-serif';
+  m.textAlign = 'center';
+  m.fillText('La Palette', lx + lw / 2, ly + 18);
+  m.textAlign = 'left';
 }
 
 window.addEventListener('load', () => setTimeout(drawMap, 200));

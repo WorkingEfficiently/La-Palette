@@ -231,51 +231,49 @@ nav {
 .stat-n { font-family:'Bebas Neue',sans-serif; font-size:50px; letter-spacing:2px; color:var(--gold); line-height:1; }
 .stat-l { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-faint); margin-top:6px; }
 
-/* ── FLAVOURS COMING SOON GRID ── */
+/* ── FLAVOURS GRID ── */
 .fgrid {
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(218px,1fr));
-  gap:1px; background:var(--border2); border:1px solid var(--border2); margin-top:50px;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:14px; margin-top:50px;
 }
-.fcard { padding:30px 24px; background:var(--card-bg); transition:background .3s; cursor:default; position:relative; }
-.fcard:hover { background:var(--card-hover); }
+.fcard {
+  min-height:168px; padding:0;
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:8px;
+  box-shadow:0 8px 22px rgba(112,93,81,0.07);
+  transition:transform .28s ease, box-shadow .28s ease, background .3s;
+  cursor:default; position:relative; overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.fcard:hover { transform:translateY(-4px); background:var(--card-hover); box-shadow:0 16px 36px rgba(112,93,81,0.14); }
 
-/* Coming soon styling for all flavour cards */
-.fcard-soon {
-  display:flex; flex-direction:column; align-items:flex-start;
+.fart {
+  height:72px; width:100%; position:relative;
+  background:rgba(112,93,81,0.055);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:2px;
+  text-transform:uppercase; color:var(--text-faint);
 }
-.fdot { width:10px; height:10px; border-radius:50%; margin-bottom:16px; }
+.fcopy { padding:18px; }
 .fname {
-  font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600;
-  color:var(--text-primary); margin-bottom:7px;
+  font-family:'Cormorant Garamond',serif; font-size:clamp(20px,1.8vw,24px); font-weight:600;
+  color:var(--text-primary); line-height:1.15; margin-bottom:14px;
 }
 .fdesc { font-family:'DM Sans',sans-serif; font-size:15px; color:var(--text-muted); line-height:1.7; }
 
-/* Teaser / coming-soon badge */
 .ftag {
-  display:inline-block; margin-top:13px;
-  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:2px;
+  display:inline-block;
+  font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:2px;
   text-transform:uppercase; color:var(--tag-text); border:1px solid var(--tag-border);
-  background:var(--tag-bg); padding:3px 9px; border-radius:1px;
+  background:var(--tag-bg); padding:4px 9px; border-radius:1px;
 }
-.ftag-soon {
-  display:inline-block; margin-top:13px;
-  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:2px;
-  text-transform:uppercase; color:var(--gold);
-  border:1px solid rgba(200,151,58,0.4);
-  background:rgba(200,151,58,0.08); padding:3px 9px; border-radius:1px;
-}
+.fcard:not(.vegan) .ftag { display:none; }
 
-/* Veil overlay on coming-soon cards */
-.fcard-soon::before {
-  content:''; position:absolute; inset:0;
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 12px,
-    rgba(112,93,81,0.03) 12px,
-    rgba(112,93,81,0.03) 13px
-  );
-  pointer-events:none;
+body.dark .fcard {
+  background:var(--card-bg);
+  box-shadow:0 12px 30px rgba(0,0,0,0.22);
 }
 
 /* Seasonal banner */
@@ -338,6 +336,55 @@ nav {
   font-family:'Cormorant Garamond',serif; font-size:22px; font-style:italic;
   color:var(--text-muted); max-width:540px; line-height:1.7;
 }
+.menuboard {
+  margin-top:50px; border:1px solid var(--border); border-radius:8px;
+  background:linear-gradient(180deg, var(--card-bg), rgba(255,250,242,0.72));
+  box-shadow:0 14px 34px rgba(112,93,81,0.1);
+  overflow:hidden;
+}
+.menuboard-head {
+  padding:28px 34px; border-bottom:1px solid var(--border);
+  display:flex; align-items:end; justify-content:space-between; gap:24px;
+  background:linear-gradient(135deg, rgba(255,230,136,0.1), transparent 58%);
+}
+.menuboard-head h3 {
+  font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,4vw,46px);
+  letter-spacing:4px; color:var(--text-primary); line-height:1;
+}
+.menuboard-head p {
+  font-family:'Cormorant Garamond',serif; font-size:20px; font-style:italic;
+  color:var(--text-muted); line-height:1.4; max-width:420px;
+}
+.mrows { padding:8px 34px 4px; }
+.mrow {
+  display:grid; grid-template-columns:1fr auto; align-items:baseline; gap:24px;
+  padding:22px 0; border-bottom:1px solid var(--border2);
+}
+.mrow:last-child { border-bottom:none; }
+.mname {
+  font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600;
+  color:var(--menu-name); line-height:1.15; margin-bottom:6px;
+}
+.mnote {
+  font-family:'DM Sans',sans-serif; font-size:14px; color:var(--text-muted);
+  line-height:1.55;
+}
+.mprice {
+  font-family:'Bebas Neue',sans-serif; font-size:42px; letter-spacing:2px;
+  color:var(--price); line-height:1; white-space:nowrap;
+}
+.mextras {
+  display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--border);
+  background:rgba(112,93,81,0.035);
+}
+.mextra {
+  padding:22px 24px; border-right:1px solid var(--border);
+  display:flex; flex-direction:column; gap:8px;
+}
+.mextra:last-child { border-right:none; }
+.mextra .mname { font-size:22px; }
+.mextra .mprice { font-size:34px; }
+body.dark .menuboard { background:linear-gradient(180deg, var(--card-bg), rgba(30,24,18,0.72)); }
 
 /* ── VISIT ── */
 .vgrid { display:grid; grid-template-columns:1fr 1fr; gap:50px; margin-top:50px; align-items:start; }
@@ -359,6 +406,49 @@ nav {
 .hday { font-family:'DM Sans',sans-serif; font-size:14px; letter-spacing:2px; text-transform:uppercase; color:var(--hours-day); }
 .htime { font-family:'Cormorant Garamond',serif; font-size:19px; color:var(--hours-time); }
 .metronote { color:var(--text-faint); }
+
+/* ── STORE PHOTOS ── */
+.store-slider {
+  margin:42px auto 0; max-width:880px; position:relative; border:1px solid var(--border);
+  border-radius:8px; overflow:hidden; background:var(--card-bg);
+  box-shadow:0 14px 34px rgba(112,93,81,0.1);
+}
+.store-track {
+  display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
+  scrollbar-width:none; scroll-behavior:smooth;
+}
+.store-track::-webkit-scrollbar { display:none; }
+.store-slide {
+  flex:0 0 100%; position:relative; scroll-snap-align:start;
+  height:clamp(260px,38vw,430px); background:var(--bg2);
+}
+.store-slide img {
+  width:100%; height:100%;
+  object-fit:cover; display:block;
+}
+.store-slide.portrait img { object-position:center 58%; }
+.store-slide.wide img { object-position:center center; }
+.store-caption {
+  position:absolute; left:18px; bottom:16px;
+  max-width:min(420px,calc(100% - 44px));
+  background:rgba(255,252,247,0.9); border:1px solid rgba(112,93,81,0.22);
+  padding:10px 13px; border-radius:4px;
+  font-family:'Cormorant Garamond',serif; font-size:17px; line-height:1.3;
+  color:var(--text-secondary);
+}
+.store-nav {
+  position:absolute; top:50%; transform:translateY(-50%); z-index:3;
+  width:36px; height:36px; border-radius:50%; border:1px solid var(--border);
+  background:rgba(255,252,247,0.88); color:var(--text-secondary);
+  font-size:22px; line-height:1; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .2s, color .2s, transform .2s;
+}
+.store-nav:hover { background:var(--warm-brown); color:#fff; transform:translateY(-50%) scale(1.04); }
+.store-nav.prev { left:12px; }
+.store-nav.next { right:12px; }
+body.dark .store-caption,
+body.dark .store-nav { background:rgba(30,24,18,0.9); }
 
 /* ── MAP (improved) ── */
 .mapbox {
@@ -419,6 +509,14 @@ section > .sw { width:100%; }
   .vgrid{grid-template-columns:1fr;}
   .psteps{grid-template-columns:1fr;}
   .pstep{border-right:none;}
+  .menuboard-head{align-items:flex-start; flex-direction:column; padding:24px 22px;}
+  .mrows{padding:4px 22px;}
+  .mextras{grid-template-columns:1fr;}
+  .mextra{border-right:none; border-bottom:1px solid var(--border);}
+  .mextra:last-child{border-bottom:none;}
+  .store-slider{max-width:100%; margin-top:34px;}
+  .store-slide{height:300px;}
+  .store-caption{font-size:15px; left:12px; bottom:12px; max-width:calc(100% - 24px);}
   .seasonal{margin:0 20px 60px;padding:28px 20px;}
   footer{padding:28px 20px;flex-direction:column;}
   .nav-logo-img{height:42px;}
@@ -483,7 +581,7 @@ section > .sw { width:100%; }
   <p class="hero-eyebrow fi" data-fr="Fait à la main à Montréal depuis 2026" data-en="Handcrafted in Montréal since 2026">Fait à la main à Montréal depuis 2026</p>
   <img class="hero-logo-img fi" src="logo.svg" alt="La Palette Gelato">
   <span class="hero-italic fi" data-fr="Gelato Artisanal" data-en="Artisan Gelato">Gelato Artisanal</span>
-  <p class="hero-desc fi" data-fr="Là où la tradition italienne rencontre le terroir québécois. Chaque boule est une petite peinture, préparée chaque jour, servie avec amour sur Prince Arthur." data-en="Where Italian tradition meets Québec terroir. Every scoop is a small painting, crafted daily, served with love on Prince Arthur.">Là où la tradition italienne rencontre le terroir québécois. Chaque boule est une petite peinture, préparée chaque jour, servie avec amour sur Prince Arthur.</p>
+  <p class="hero-desc fi" data-fr="Là où la tradition italienne rencontre l'esprit de Montréal. Chaque boule est une petite peinture, préparée chaque jour, servie avec amour sur Prince Arthur." data-en="Where Italian tradition meets the spirit of Montréal. Every scoop is a small painting, crafted daily, served with love on Prince Arthur.">Là où la tradition italienne rencontre l'esprit de Montréal. Chaque boule est une petite peinture, préparée chaque jour, servie avec amour sur Prince Arthur.</p>
   <div class="hero-btns fi">
     <a href="#flavours" class="btn btn-p" data-fr="Explorer les Saveurs" data-en="Explore Flavours">Explorer les Saveurs</a>
     <a href="#visit" class="btn btn-s" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
@@ -501,14 +599,14 @@ section > .sw { width:100%; }
         <p class="s-label" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</p>
         <h2 class="s-title" data-fr="Art. Saveur.<br>Caractère." data-en="Craft. Colour.<br>Character.">Art. Saveur.<br>Caractère.</h2>
         <div class="rule"></div>
-        <p data-fr="La Palette est née d'une seule obsession : que le gelato, à son meilleur, n'est pas qu'un dessert, c'est un moment de pur plaisir sensoriel. Nous sélectionnons les meilleurs ingrédients locaux des fermes québécoises et les associons à une technique italienne traditionnelle transmise sur trois générations." data-en="La Palette was born from a single obsession: that gelato, at its finest, is not just a dessert, it is a moment of pure sensory pleasure. We source the finest local ingredients from Québec farms and pair them with traditional Italian technique passed down through three generations.">La Palette est née d'une seule obsession : que le gelato, à son meilleur, n'est pas qu'un dessert, c'est un moment de pur plaisir sensoriel. Nous sélectionnons les meilleurs ingrédients locaux des fermes québécoises et les associons à une technique italienne traditionnelle transmise sur trois générations.</p>
-        <p data-fr="Chaque fournée est préparée à la main chaque matin dans notre cuisine ouverte. Aucun stabilisant, aucune saveur artificielle. Seulement du lait, de la crème, des fruits de saison et une quantité déraisonnable de soin." data-en="Every batch is churned fresh each morning in our open kitchen. No stabilisers, no artificial flavours. Just milk, cream, seasonal fruit, and an unreasonable amount of care.">Chaque fournée est préparée à la main chaque matin dans notre cuisine ouverte. Aucun stabilisant, aucune saveur artificielle. Seulement du lait, de la crème, des fruits de saison et une quantité déraisonnable de soin.</p>
+        <p data-fr="La Palette est née d'une seule obsession : que le gelato, à son meilleur, n'est pas qu'un dessert, c'est un moment de pur plaisir sensoriel. Notre chef a appris l'art du gelato en Italie et en est revenu certifié, avec le désir de servir une palette de saveurs précise, généreuse et faite avec soin." data-en="La Palette was born from a single obsession: that gelato, at its finest, is not just a dessert, it is a moment of pure sensory pleasure. Our chef learned the art of gelato in Italy and returned certified, with a desire to serve a precise, generous palette of flavours made with care.">La Palette est née d'une seule obsession : que le gelato, à son meilleur, n'est pas qu'un dessert, c'est un moment de pur plaisir sensoriel. Notre chef a appris l'art du gelato en Italie et en est revenu certifié, avec le désir de servir une palette de saveurs précise, généreuse et faite avec soin.</p>
+        <p data-fr="Chaque fournée est préparée à la main dans notre cuisine ouverte. Aucun stabilisant, aucune saveur artificielle. Seulement des ingrédients choisis avec attention, une technique italienne rigoureuse et une quantité déraisonnable de soin." data-en="Every batch is prepared by hand in our open kitchen. No stabilisers, no artificial flavours. Just carefully chosen ingredients, rigorous Italian technique, and an unreasonable amount of care.">Chaque fournée est préparée à la main dans notre cuisine ouverte. Aucun stabilisant, aucune saveur artificielle. Seulement des ingrédients choisis avec attention, une technique italienne rigoureuse et une quantité déraisonnable de soin.</p>
         <p data-fr="Venez nous retrouver sur Prince Arthur, le cœur battant du Plateau, où chaque jour nous repeignons le menu à nouveau." data-en="Come find us on Prince Arthur, the beating heart of the Plateau, where every day we paint the menu anew.">Venez nous retrouver sur Prince Arthur, le cœur battant du Plateau, où chaque jour nous repeignons le menu à nouveau.</p>
       </div>
       <div class="stats">
-        <div class="stat"><div class="stat-n">16+</div><div class="stat-l" data-fr="Saveurs en rotation quotidienne" data-en="Rotating flavours daily">Saveurs en rotation quotidienne</div></div>
+        <div class="stat"><div class="stat-n">15</div><div class="stat-l" data-fr="Saveurs à découvrir" data-en="Flavours to discover">Saveurs à découvrir</div></div>
         <div class="stat"><div class="stat-n">100%</div><div class="stat-l" data-fr="Ingrédients naturels" data-en="Natural ingredients">Ingrédients naturels</div></div>
-        <div class="stat"><div class="stat-n">3</div><div class="stat-l" data-fr="Générations de savoir faire" data-en="Generations of craft">Générations de savoir faire</div></div>
+        <div class="stat"><div class="stat-n">1</div><div class="stat-l" data-fr="Chef certifié en Italie" data-en="Chef certified in Italy">Chef certifié en Italie</div></div>
       </div>
     </div>
   </div>
@@ -521,13 +619,22 @@ section > .sw { width:100%; }
   <div class="sw">
     <p class="s-label fi" data-fr="La Palette du Jour" data-en="Today's Palette">La Palette du Jour</p>
     <h2 class="s-title fi" data-fr="Nos Saveurs" data-en="Our Flavours">Nos Saveurs</h2>
-    <div class="menu-soon fi" style="margin-top:50px;">
-      <div class="menu-soon-inner">
-        <div class="menu-soon-icon">☽</div>
-        <p class="menu-soon-title" data-fr="Saveurs bientôt révélées" data-en="Flavours to be revealed">Saveurs bientôt révélées</p>
-        <p class="menu-soon-desc" data-fr="Notre palette est en préparation. Les saveurs seront dévoilées à l'ouverture, revenez nous voir bientôt." data-en="Our palette is in preparation. Flavours will be revealed at opening, come back and see us soon.">Notre palette est en préparation. Les saveurs seront dévoilées à l'ouverture, revenez nous voir bientôt.</p>
-        <a href="#visit" class="btn btn-p" style="margin-top:28px;" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
-      </div>
+    <div class="fgrid fi">
+      <div class="fcard vegan"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Citron et aneth" data-en="Lemon and dill">Citron et aneth</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Fraise et hibiscus" data-en="Strawberry and hibiscus">Fraise et hibiscus</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Caramel salé" data-en="Salted caramel">Caramel salé</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Pistache" data-en="Pistachio">Pistache</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Avocat et coco" data-en="Avocado and coconut">Avocat et coco</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Ananas et mangue, yogourt à la vanille" data-en="Pineapple and mango, vanilla yogurt">Ananas et mangue, yogourt à la vanille</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Chocolat" data-en="Chocolate">Chocolat</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Hojicha et café" data-en="Hojicha and coffee">Hojicha et café</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Matcha" data-en="Matcha">Matcha</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Ricotta et miel" data-en="Ricotta and honey">Ricotta et miel</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Pastèque" data-en="Watermelon">Pastèque</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Noix de coco et lime" data-en="Coconut and lime">Noix de coco et lime</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Earl Grey et pamplemousse" data-en="Earl Grey and grapefruit">Earl Grey et pamplemousse</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Stracciatella" data-en="Stracciatella">Stracciatella</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Chocolat blanc et Oreo" data-en="White chocolate and Oreo">Chocolat blanc et Oreo</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
     </div>
   </div>
 </section>
@@ -542,10 +649,10 @@ section > .sw { width:100%; }
     <p class="s-label fi" data-fr="Notre Méthode" data-en="How We Make It">Notre Méthode</p>
     <h2 class="s-title fi" data-fr="Le Processus" data-en="The Process">Le Processus</h2>
     <div class="psteps fi">
-      <div class="pstep"><div class="pnum">01</div><h4 data-fr="Sélection" data-en="Source">Sélection</h4><p data-fr="Nous visitons nos fournisseurs, fermes québécoises, importateurs italiens, producteurs locaux. Les ingrédients arrivent frais chaque jour." data-en="We visit our suppliers personally, Québec farms, Italian importers, local producers. Ingredients arrive fresh daily.">Nous visitons nos fournisseurs, fermes québécoises, importateurs italiens, producteurs locaux. Les ingrédients arrivent frais chaque jour.</p></div>
+      <div class="pstep"><div class="pnum">01</div><h4 data-fr="Sélection" data-en="Source">Sélection</h4><p data-fr="Nous choisissons nos ingrédients avec soin auprès de fournisseurs de confiance. Chaque saveur commence par une base propre, fraîche et pensée pour le gelato." data-en="We choose our ingredients with care from trusted suppliers. Every flavour begins with a clean, fresh base made for gelato.">Nous choisissons nos ingrédients avec soin auprès de fournisseurs de confiance. Chaque saveur commence par une base propre, fraîche et pensée pour le gelato.</p></div>
       <div class="pstep"><div class="pnum">02</div><h4 data-fr="Préparation" data-en="Craft">Préparation</h4><p data-fr="Chaque base est préparée à la main chaque matin. Aucun prémélange. Aucun raccourci." data-en="Every base is prepared by hand each morning. No premixes. No shortcuts.">Chaque base est préparée à la main chaque matin. Aucun prémélange. Aucun raccourci.</p></div>
       <div class="pstep"><div class="pnum">03</div><h4 data-fr="Turbinage" data-en="Churn">Turbinage</h4><p data-fr="Nos turbines italiennes fonctionnent avec un foisonnement plus faible, donnant au gelato sa texture dense et soyeuse caractéristique." data-en="Our Italian batch freezers run at lower overrun, giving gelato its signature dense, silky body.">Nos turbines italiennes fonctionnent avec un foisonnement plus faible, donnant au gelato sa texture dense et soyeuse caractéristique.</p></div>
-      <div class="pstep"><div class="pnum">04</div><h4 data-fr="Service" data-en="Serve">Service</h4><p data-fr="Le gelato est servi à moins 12°C, plus chaud que la crème glacée, pour que chaque saveur s'épanouisse pleinement en bouche." data-en="Gelato is served at -12°C, warmer than ice cream, so every flavour blooms fully on the palate.">Le gelato est servi à -12°C, plus chaud que la crème glacée, pour que chaque saveur s'épanouisse pleinement en bouche.</p></div>
+      <div class="pstep"><div class="pnum">04</div><h4 data-fr="Service" data-en="Serve">Service</h4><p data-fr="Le gelato est servi à moins 12°C, plus chaud que la crème glacée, pour que chaque saveur s'épanouisse pleinement en bouche." data-en="Gelato is served at minus 12°C, warmer than ice cream, so every flavour blooms fully on the palate.">Le gelato est servi à moins 12°C, plus chaud que la crème glacée, pour que chaque saveur s'épanouisse pleinement en bouche.</p></div>
     </div>
   </div>
 </section>
@@ -557,12 +664,50 @@ section > .sw { width:100%; }
   <div class="sw">
     <p class="s-label fi" data-fr="Menu & Tarifs" data-en="Menu & Pricing">Menu & Tarifs</p>
     <h2 class="s-title fi" data-fr="Notre Menu" data-en="Our Menu">Notre Menu</h2>
-    <div class="menu-soon fi">
-      <div class="menu-soon-inner">
-        <div class="menu-soon-icon">☽</div>
-        <p class="menu-soon-title" data-fr="Le menu arrive bientôt" data-en="Menu coming soon">Le menu arrive bientôt</p>
-        <p class="menu-soon-desc" data-fr="Nous finalisons notre carte, saveurs, tarifs et spécialités. Revenez nous voir à l'ouverture." data-en="We're finalising our menu, flavours, pricing, and specialties. Come back and see us at opening.">Nous finalisons notre carte, saveurs, tarifs et spécialités. Revenez nous voir à l'ouverture.</p>
+    <div class="menuboard fi">
+      <div class="menuboard-head">
+        <h3 data-fr="Formats" data-en="Sizes">Formats</h3>
+        <p data-fr="Choisissez votre format, puis composez votre palette de saveurs." data-en="Choose your size, then build your palette of flavours.">Choisissez votre format, puis composez votre palette de saveurs.</p>
       </div>
+      <div class="mrows">
+        <div class="mrow"><div><div class="mname" data-fr="Petit" data-en="Small">Petit</div><div class="mnote" data-fr="Une portion classique" data-en="A classic serving">Une portion classique</div></div><div class="mprice">6.25$</div></div>
+        <div class="mrow"><div><div class="mname" data-fr="Régulier" data-en="Regular">Régulier</div><div class="mnote" data-fr="Deux saveurs au choix" data-en="Two flavours of your choice">Deux saveurs au choix</div></div><div class="mprice">7.50$</div></div>
+        <div class="mrow"><div><div class="mname" data-fr="Grand" data-en="Large">Grand</div><div class="mnote" data-fr="Trois saveurs au choix" data-en="Three flavours of your choice">Trois saveurs au choix</div></div><div class="mprice">8.85$</div></div>
+      </div>
+      <div class="mextras">
+        <div class="mextra"><div class="mname" data-fr="Coupe Pitou" data-en="Pitou Cup">Coupe Pitou</div><div class="mnote" data-fr="Gelato pour chiens" data-en="Gelato for dogs">Gelato pour chiens</div><div class="mprice">3.50$</div></div>
+        <div class="mextra"><div class="mname" data-fr="Cône gaufré" data-en="Waffle Cone">Cône gaufré</div><div class="mnote" data-fr="Supplément pour votre gelato" data-en="Add it to your gelato">Supplément pour votre gelato</div><div class="mprice">1.50$</div></div>
+        <div class="mextra"><div class="mname" data-fr="Boîte à emporter" data-en="Takeout Box">Boîte à emporter</div><div class="mnote" data-fr="Quatre saveurs au choix" data-en="Four flavours of your choice">Quatre saveurs au choix</div><div class="mprice">15$</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- STORE PHOTOS -->
+<section id="inside">
+  <div class="sw">
+    <p class="s-label fi" data-fr="Dans La Boutique" data-en="Inside The Shop">Dans La Boutique</p>
+    <h2 class="s-title fi" data-fr="Un Aperçu De L'espace" data-en="A Look Inside">Un Aperçu De L'espace</h2>
+    <p class="s-sub fi" data-fr="Un espace lumineux sur Prince Arthur, pensé pour choisir ses saveurs tranquillement et profiter du moment." data-en="A bright space on Prince Arthur, made for choosing flavours slowly and enjoying the moment.">Un espace lumineux sur Prince Arthur, pensé pour choisir ses saveurs tranquillement et profiter du moment.</p>
+    <div class="store-slider fi">
+      <button class="store-nav prev" type="button" aria-label="Photo précédente" onclick="slideStore(-1)">‹</button>
+      <div class="store-track" id="storeTrack">
+        <figure class="store-slide portrait">
+          <img src="assets/store-1.jpg" alt="Intérieur de La Palette avec le mur de saveurs">
+          <figcaption class="store-caption" data-fr="Le mur des saveurs et le comptoir de service." data-en="The flavour wall and service counter.">Le mur des saveurs et le comptoir de service.</figcaption>
+        </figure>
+        <figure class="store-slide portrait">
+          <img src="assets/store-2.jpg" alt="Comptoir de gelato de La Palette">
+          <figcaption class="store-caption" data-fr="Le comptoir de gelato, prêt pour le service." data-en="The gelato counter, ready for service.">Le comptoir de gelato, prêt pour le service.</figcaption>
+        </figure>
+        <figure class="store-slide wide">
+          <img src="assets/store-3.jpg" alt="Détails de la boutique La Palette">
+          <figcaption class="store-caption" data-fr="Les détails simples et chaleureux de la boutique." data-en="Simple, warm details inside the shop.">Les détails simples et chaleureux de la boutique.</figcaption>
+        </figure>
+      </div>
+      <button class="store-nav next" type="button" aria-label="Photo suivante" onclick="slideStore(1)">›</button>
     </div>
   </div>
 </section>
@@ -595,7 +740,10 @@ section > .sw { width:100%; }
         </div>
         <div class="iblock">
           <p class="ilabel" data-fr="Heures d'Ouverture" data-en="Hours">Heures d'Ouverture</p>
-          <p class="ival" style="font-style:italic; color:var(--text-faint);" data-fr="À déterminer, suivez nous pour les mises à jour." data-en="To be determined, follow us for updates.">À déterminer, suivez nous pour les mises à jour.</p>
+          <div class="hgrid">
+            <span class="hday" data-fr="Lun à Ven" data-en="Mon to Fri">Lun à Ven</span><span class="htime">10h à 23h</span>
+            <span class="hday" data-fr="Sam et Dim" data-en="Sat and Sun">Sam et Dim</span><span class="htime" data-fr="13h à 23h" data-en="1 PM to 11 PM">13h à 23h</span>
+          </div>
         </div>
         <div class="iblock"><p class="ilabel" data-fr="Métro" data-en="Nearest Metro">Métro</p><p class="ival" data-fr="Sherbrooke (Ligne Orange)<br><small class='metronote'>7 min à pied vers le sud sur St Denis</small>" data-en="Sherbrooke (Orange Line)<br><small class='metronote'>7 min walk south on St Denis</small>">Sherbrooke (Ligne Orange)<br><small class="metronote">7 min à pied vers le sud sur St Denis</small></p></div>
       </div>
@@ -646,6 +794,12 @@ function toggleTheme(){
   const dark = document.body.classList.toggle('dark');
   document.getElementById('themeBtn').textContent = dark ? '☀' : '☾';
   setTimeout(drawMap, 50);
+}
+
+function slideStore(direction){
+  const track = document.getElementById('storeTrack');
+  if(!track) return;
+  track.scrollBy({ left: direction * track.clientWidth, behavior: 'smooth' });
 }
 
 // ── LANGUAGE ──

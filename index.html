@@ -130,11 +130,15 @@ nav {
 
 .theme-toggle {
   width:38px; height:38px; border-radius:50%;
-  background:var(--bg3); border:1px solid var(--border);
+  background:rgba(112,93,81,0.11); border:1px solid rgba(112,93,81,0.34);
   cursor:pointer; display:flex; align-items:center; justify-content:center;
-  font-size:17px; transition:all .3s; color:var(--text-muted);
+  font-size:17px; transition:all .3s; color:var(--text-secondary);
 }
-.theme-toggle:hover { background:var(--bg4); transform:scale(1.1); }
+.theme-toggle:hover { background:rgba(112,93,81,0.18); color:var(--text-primary); transform:scale(1.1); }
+body.dark .theme-toggle {
+  background:rgba(255,230,136,0.1); border-color:rgba(255,230,136,0.28);
+  color:var(--text-secondary);
+}
 
 .nav-cta {
   padding:9px 20px; border:1px solid var(--border); color:var(--text-secondary);
@@ -237,7 +241,7 @@ nav {
   gap:14px; margin-top:50px;
 }
 .fcard {
-  min-height:168px; padding:0;
+  min-height:120px; padding:22px 20px;
   background:var(--card-bg);
   border:1px solid var(--border);
   border-radius:8px;
@@ -248,15 +252,23 @@ nav {
 }
 .fcard:hover { transform:translateY(-4px); background:var(--card-hover); box-shadow:0 16px 36px rgba(112,93,81,0.14); }
 
-.fart {
-  height:72px; width:100%; position:relative;
-  background:rgba(112,93,81,0.055);
-  border-bottom:1px solid var(--border);
-  display:flex; align-items:center; justify-content:center;
-  font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:2px;
-  text-transform:uppercase; color:var(--text-faint);
-}
 .fcopy { padding:18px; }
+.fcard .fcopy { padding:0; }
+.flavour-heading {
+  display:flex; align-items:end; justify-content:space-between; gap:18px; flex-wrap:wrap;
+}
+.image-soon-note {
+  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:2px;
+  text-transform:uppercase; color:var(--text-muted);
+  border:1px solid var(--border); padding:5px 10px; border-radius:2px;
+  background:rgba(255,252,247,0.78);
+  margin-bottom:14px;
+}
+body.dark .image-soon-note {
+  color:var(--text-secondary);
+  background:rgba(30,24,18,0.78);
+  border-color:rgba(255,230,136,0.18);
+}
 .fname {
   font-family:'Cormorant Garamond',serif; font-size:clamp(20px,1.8vw,24px); font-weight:600;
   color:var(--text-primary); line-height:1.15; margin-bottom:14px;
@@ -618,23 +630,26 @@ section > .sw { width:100%; }
 <section id="flavours">
   <div class="sw">
     <p class="s-label fi" data-fr="La Palette du Jour" data-en="Today's Palette">La Palette du Jour</p>
-    <h2 class="s-title fi" data-fr="Nos Saveurs" data-en="Our Flavours">Nos Saveurs</h2>
+    <div class="flavour-heading fi">
+      <h2 class="s-title" data-fr="Nos Saveurs" data-en="Our Flavours">Nos Saveurs</h2>
+      <span class="image-soon-note" data-fr="Images bientôt" data-en="Images coming soon">Images bientôt</span>
+    </div>
     <div class="fgrid fi">
-      <div class="fcard vegan"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Citron et aneth" data-en="Lemon and dill">Citron et aneth</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard vegan"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Fraise et hibiscus" data-en="Strawberry and hibiscus">Fraise et hibiscus</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Caramel salé" data-en="Salted caramel">Caramel salé</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Pistache" data-en="Pistachio">Pistache</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard vegan"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Avocat et coco" data-en="Avocado and coconut">Avocat et coco</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard vegan"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Ananas et mangue, yogourt à la vanille" data-en="Pineapple and mango, vanilla yogurt">Ananas et mangue, yogourt à la vanille</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard vegan"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Chocolat" data-en="Chocolate">Chocolat</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Hojicha et café" data-en="Hojicha and coffee">Hojicha et café</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Matcha" data-en="Matcha">Matcha</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Ricotta et miel" data-en="Ricotta and honey">Ricotta et miel</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard vegan"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Pastèque" data-en="Watermelon">Pastèque</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Noix de coco et lime" data-en="Coconut and lime">Noix de coco et lime</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Earl Grey et pamplemousse" data-en="Earl Grey and grapefruit">Earl Grey et pamplemousse</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Stracciatella" data-en="Stracciatella">Stracciatella</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard"><div class="fart" data-fr="Image bientôt" data-en="Image coming soon">Image bientôt</div><div class="fcopy"><p class="fname" data-fr="Chocolat blanc et Oreo" data-en="White chocolate and Oreo">Chocolat blanc et Oreo</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Citron et aneth" data-en="Lemon and dill">Citron et aneth</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Fraise et hibiscus" data-en="Strawberry and hibiscus">Fraise et hibiscus</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Caramel salé" data-en="Salted caramel">Caramel salé</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Pistache" data-en="Pistachio">Pistache</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Avocat et coco" data-en="Avocado and coconut">Avocat et coco</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Ananas et mangue, yogourt à la vanille" data-en="Pineapple and mango, vanilla yogurt">Ananas et mangue, yogourt à la vanille</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Chocolat" data-en="Chocolate">Chocolat</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Hojicha et café" data-en="Hojicha and coffee">Hojicha et café</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Matcha" data-en="Matcha">Matcha</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Ricotta et miel" data-en="Ricotta and honey">Ricotta et miel</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Pastèque" data-en="Watermelon">Pastèque</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Noix de coco et lime" data-en="Coconut and lime">Noix de coco et lime</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Earl Grey et pamplemousse" data-en="Earl Grey and grapefruit">Earl Grey et pamplemousse</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Stracciatella" data-en="Stracciatella">Stracciatella</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Chocolat blanc et Oreo" data-en="White chocolate and Oreo">Chocolat blanc et Oreo</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
     </div>
   </div>
 </section>

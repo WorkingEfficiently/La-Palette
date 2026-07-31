@@ -170,7 +170,7 @@ body::before {
 .hero-content { position:relative; z-index:2; max-width:860px; margin:0 auto; }
 
 .hero-eyebrow {
-  font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:5px;
+  font-family:'Inter', sans-serif; font-size:12px; letter-spacing:5px;
   text-transform:uppercase; color:var(--text-faint); margin-bottom:22px; font-weight:500;
 }
 .hero-logo-img {
@@ -179,18 +179,18 @@ body::before {
   filter: drop-shadow(0 4px 12px rgba(0,0,0,0.08));
 }
 .hero-italic {
-  font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300;
-  font-size:clamp(26px,3.5vw,44px); letter-spacing:3px; color:var(--text-primary);
+  font-family:'P22 Mackinac W01 Book', 'Georgia', serif; font-style:italic; font-weight:400;
+  font-size:clamp(28px,3.8vw,48px); letter-spacing:1px; color:var(--text-primary);
   display:block; margin:6px 0 24px;
 }
 .hero-desc {
-  max-width:620px; font-size:22px; font-weight:400; line-height:1.7;
+  max-width:620px; font-size:18px; font-weight:400; line-height:1.7;
   color:var(--text-muted); letter-spacing:.2px; margin:0 auto 42px;
 }
 .hero-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
 
 .btn {
-  font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:3px;
+  font-family:'Inter', sans-serif; font-size:12px; letter-spacing:3px;
   text-transform:uppercase; padding:16px 32px; border-radius:6px; font-weight:500;
   cursor:pointer; transition:all .3s; text-decoration:none; display:inline-block;
 }
@@ -198,19 +198,6 @@ body::before {
 .btn-p:hover { background:rgba(25,25,25,0.85); }
 .btn-s { background:rgba(255,255,255,0.85); border:1px solid var(--border); color:var(--text-primary); backdrop-filter:blur(6px); }
 .btn-s:hover { background:rgba(255,255,255,1); }
-
-.scroll-hint {
-  position:absolute; bottom:30px; left:50%; transform:translateX(-50%); z-index:2;
-  display:flex; flex-direction:column; align-items:center; gap:8px;
-  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:3px;
-  text-transform:uppercase; color:var(--text-faint);
-  animation:bounce 2s infinite;
-}
-.scroll-hint::after { content:''; width:1px; height:26px; background:linear-gradient(to bottom,var(--text-faint),transparent); }
-@keyframes bounce {
-  0%,100%{transform:translateX(-50%) translateY(0)}
-  50%{transform:translateX(-50%) translateY(7px)}
-}
 
 .gold-rule {
   width:100%; height:1px; margin:0;
@@ -435,8 +422,6 @@ section > .sw { width:100%; }
       <a href="#visit" class="btn btn-s" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
     </div>
   </div>
-
-  <div class="scroll-hint fi" data-fr="Défiler" data-en="Scroll">Défiler</div>
 </header>
 
 <div class="gold-rule"></div>
@@ -520,7 +505,7 @@ section > .sw { width:100%; }
       <div class="mrows">
         <div class="mrow"><div><div class="mname" data-fr="Petit" data-en="Small">Petit</div><div class="mnote" data-fr="Une portion classique" data-en="A classic serving">Une portion classique</div></div><div class="mprice">6.25$</div></div>
         <div class="mrow"><div><div class="mname" data-fr="Régulier" data-en="Regular">Régulier</div><div class="mnote" data-fr="Deux saveurs au choix" data-en="Two flavours of your choice">Deux saveurs au choix</div></div><div class="mprice">7.50$</div></div>
-        <div class="mrow"><div><div class="mname" data-fr="Grand" data-en="Large">Grand</div><div class="mnote" data-fr="Trois saveurs au choix" data-en="Three flavours of your choice">Trois saveurs au choice</div></div><div class="mprice">8.85$</div></div>
+        <div class="mrow"><div><div class="mname" data-fr="Grand" data-en="Large">Grand</div><div class="mnote" data-fr="Trois saveurs au choix" data-en="Three flavours of your choice">Trois saveurs au choix</div></div><div class="mprice">8.85$</div></div>
       </div>
       <div class="mextras">
         <div class="mextra"><div class="mname">Coupe Pitou</div><div class="mnote" data-fr="Gelato pour chiens" data-en="Gelato for dogs">Gelato pour chiens</div><div class="mprice">3.50$</div></div>

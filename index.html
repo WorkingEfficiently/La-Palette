@@ -3,89 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Palette Gelato Artisanal · Montréal</title>
-<meta name="description" content="La Palette Gelato offre du gelato artisanal préparé avec des ingrédients de qualité. Découvrez nos saveurs uniques et desserts rafraîchissants au Québec.">
+<title>La Palette Gelato Artisanal · Montréal | Gelateria Prince Arthur</title>
+<meta name="description" content="La Palette Gelato offre du gelato artisanal fraîchement préparé chaque jour sur Prince Arthur à Montréal. Découvrez nos saveurs uniques et sorbets véganes.">
+<meta name="keywords" content="gelato montreal, gelato artisanal, creme glacee prince arthur, sorbet vegan montreal, plateau mont royal gelato">
 <meta name="author" content="La Palette Gelato">
+<link rel="canonical" href="https://lapalettemtl.ca/">
+
+<!-- Open Graph / Social Media SEO -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lapalettemtl.ca/">
+<meta property="og:title" content="La Palette Gelato Artisanal · Montréal">
+<meta property="og:description" content="Gelato artisanal fait à la main sur la rue Prince Arthur à Montréal. Saveurs uniques et ingrédients naturels.">
+<meta property="og:image" content="https://lapalettemtl.ca/assets/store-1.jpg">
+
+<!-- Favicons -->
 <link rel="icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Structured Data (Schema.org) for Google Local SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "IceCreamShop",
+  "name": "La Palette Gelato",
+  "image": "https://lapalettemtl.ca/assets/store-1.jpg",
+  "@id": "https://lapalettemtl.ca/#organization",
+  "url": "https://lapalettemtl.ca/",
+  "telephone": "+15146656623",
+  "email": "lapalette.gelato@gmail.com",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "108 Prince Arthur Est",
+    "addressLocality": "Montréal",
+    "addressRegion": "QC",
+    "postalCode": "H2X 1B5",
+    "addressCountry": "CA"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 45.5168,
+    "longitude": -73.5705
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+      "opens": "13:00",
+      "closes": "22:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Friday", "Saturday"],
+      "opens": "13:00",
+      "closes": "23:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/gelateria_lapalette"
+  ]
+}
+</script>
+
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
-body { font-family:'Cormorant Garamond',serif; overflow-x:hidden; }
-
 body {
-  --bg:         #f5efe4;
-  --bg2:        #ede5d8;
-  --bg3:        rgba(127,110,100,0.07);
-  --bg4:        rgba(127,110,100,0.13);
-  --text-primary:   #2e2219;
-  --text-secondary: #3d2e22;
-  --text-muted:     #6b5545;
-  --text-faint:     #9e8878;
-  --border:     rgba(112,93,81,0.18);
-  --border2:    rgba(112,93,81,0.09);
-  --nav-bg:     rgba(245,239,228,0.94);
-  --card-bg:    rgba(255,252,247,0.85);
-  --card-hover: rgba(255,250,242,1);
-  --input-bg:   rgba(112,93,81,0.06);
-  --btn-primary-bg:     rgba(112,93,81,0.1);
-  --btn-primary-border: rgba(112,93,81,0.55);
-  --btn-primary-text:   #3d2e22;
-  --tag-bg:     rgba(255,230,136,0.22);
-  --tag-border: rgba(127,110,100,0.25);
-  --tag-text:   #705d51;
-  --stat-num:   #2e2219;
-  --section-num:rgba(112,93,81,0.35);
-  --hours-day:  #9e8878;
-  --hours-time: #3d2e22;
-  --price:      #4a3828;
-  --menu-name:  #2e2219;
-  --footer-bg:  rgba(237,229,216,0.95);
-  --gold:       #c8973a;
-  --gold-light: #ffe688;
-  --warm-brown: #705d51;
-  --deep-brown: #3d2e22;
+  font-family:'Cormorant Garamond',serif;
+  overflow-x:hidden;
+  background: #f8f4ee;
+  color: #191919;
+  transition: background .4s;
 }
 
-body.dark {
-  --bg:         #1a1410;
-  --bg2:        #221a14;
-  --bg3:        rgba(255,230,136,0.05);
-  --bg4:        rgba(255,230,136,0.09);
-  --text-primary:   #f0e8d8;
-  --text-secondary: #e0d4c0;
-  --text-muted:     #c0aa90;
-  --text-faint:     #8a7060;
-  --border:     rgba(255,230,136,0.14);
-  --border2:    rgba(255,230,136,0.07);
-  --nav-bg:     rgba(20,16,12,0.94);
-  --card-bg:    rgba(30,24,18,0.85);
-  --card-hover: rgba(40,32,24,1);
-  --input-bg:   rgba(255,230,136,0.06);
-  --btn-primary-bg:     rgba(255,230,136,0.08);
-  --btn-primary-border: rgba(255,230,136,0.45);
-  --btn-primary-text:   #f0e8d8;
-  --tag-bg:     rgba(255,230,136,0.08);
-  --tag-border: rgba(255,230,136,0.2);
-  --tag-text:   #c8a860;
-  --stat-num:   #f0e8d8;
-  --section-num:rgba(255,230,136,0.3);
-  --hours-day:  #8a7060;
-  --hours-time: #d0b890;
-  --price:      #c0aa90;
-  --menu-name:  #e0d0b8;
-  --footer-bg:  rgba(18,14,10,0.95);
+:root {
+  --bg: #f8f4ee;
+  --bg2: #f0e8dc;
+  --text-primary: #191919;
+  --text-secondary: #2d241e;
+  --text-muted: #5e4f44;
+  --text-faint: #8c7b6e;
+  --border: rgba(25,25,25,0.12);
+  --border2: rgba(25,25,25,0.06);
+  --nav-bg: rgba(248,244,238,0.88);
+  --card-bg: rgba(255,253,250,0.9);
+  --card-hover: rgba(255,255,255,1);
+  --tag-bg: rgba(200,151,58,0.12);
+  --tag-border: rgba(200,151,58,0.3);
+  --tag-text: #8a6218;
+  --gold: #d4a359;
+  --gold-light: #f3e5c8;
 }
-
-body.dark nav {
-  border-bottom-color:rgba(255,230,136,0.22);
-  box-shadow:0 8px 24px rgba(0,0,0,0.28);
-}
-
-body { background:var(--bg); transition:background .4s; }
 
 body::before {
   content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
@@ -96,97 +114,93 @@ body::before {
 
 #site { position:relative; z-index:1; }
 
-nav {
-  position:fixed; top:0; left:0; right:0; z-index:200;
-  display:grid; grid-template-columns:minmax(120px,1fr) auto minmax(260px,1fr);
-  align-items:center; column-gap:24px;
-  padding:0 56px; height:82px;
-  background:var(--nav-bg); backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(112,93,81,0.32);
-  box-shadow:0 8px 24px rgba(46,34,25,0.08);
-  transition:background .4s, border-color .4s, box-shadow .4s;
-}
-.nav-logo-img { height:56px; width:auto; max-width:220px; object-fit:contain; display:block; }
-.nav-logo { display:flex; align-items:center; justify-self:start; text-decoration:none; position:relative; z-index:2; }
-.nav-center {
-  display:flex; gap:28px; align-items:center; justify-content:center;
-  min-width:0; white-space:nowrap;
-}
+.nav-logo-img, .hero-logo-img, .flogo-img { display:block; }
 
-.nav-center a {
-  font-family:'DM Sans',sans-serif; font-size:13px; letter-spacing:2px;
-  text-transform:uppercase; color:var(--text-muted); text-decoration:none; transition:color .3s;
+/* NAVBAR STYLES */
+.custom-nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 36px;
+  background:var(--nav-bg);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
 }
-.nav-center a:hover { color:var(--text-primary); }
-.nav-right { display:flex; gap:12px; align-items:center; justify-self:end; min-width:0; position:relative; z-index:2; }
+.nav-logo-link { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.nav-logo-img { height:32px; width:auto; }
+.nav-title {
+  font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:2px;
+  color:var(--text-primary); line-height:1;
+}
+.nav-links { display:flex; align-items:center; gap:28px; }
+.nav-links a {
+  font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:2px;
+  text-transform:uppercase; color:var(--text-muted); text-decoration:none;
+  font-weight:500; transition:color .2s;
+}
+.nav-links a:hover { color:var(--text-primary); }
+.nav-actions { display:flex; align-items:center; gap:14px; }
 
-.lang-toggle { display:flex; border:1px solid var(--border); border-radius:2px; overflow:hidden; }
+.lang-toggle { display:flex; border:1px solid var(--border); border-radius:4px; overflow:hidden; }
 .lang-toggle button {
-  background:transparent; border:none; cursor:pointer; padding:7px 12px;
-  font-size:12px; letter-spacing:1.5px; font-family:'DM Sans',sans-serif;
+  background:transparent; border:none; cursor:pointer; padding:6px 10px;
+  font-size:11px; letter-spacing:1px; font-family:'DM Sans',sans-serif;
   color:var(--text-faint); transition:all .2s;
 }
-.lang-toggle button.active { background:var(--warm-brown); color:#fff; }
-.lang-toggle button:hover:not(.active) { color:var(--text-primary); }
+.lang-toggle button.active { background:#191919; color:#fff; }
 
-.theme-toggle {
-  width:38px; height:38px; border-radius:50%;
-  background:rgba(112,93,81,0.11); border:1px solid rgba(112,93,81,0.34);
-  cursor:pointer; display:flex; align-items:center; justify-content:center;
-  font-size:17px; transition:all .3s; color:var(--text-secondary);
-}
-.theme-toggle:hover { background:rgba(112,93,81,0.18); color:var(--text-primary); transform:scale(1.1); }
-body.dark .theme-toggle {
-  background:rgba(255,230,136,0.1); border-color:rgba(255,230,136,0.28);
-  color:var(--text-secondary);
-}
-
-.nav-cta {
-  padding:9px 20px; border:1px solid var(--border); color:var(--text-secondary);
-  font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:2px;
-  text-transform:uppercase; text-decoration:none; border-radius:2px;
-  transition:all .3s; white-space:nowrap;
-}
-.nav-cta:hover { background:var(--bg3); color:var(--text-primary); }
-
+/* HERO & SLIDESHOW */
 #hero {
   min-height:100vh; display:flex; flex-direction:column;
   align-items:center; justify-content:center; text-align:center;
-  padding:100px 60px 80px; position:relative;
-  background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255,230,136,0.18) 0%, transparent 70%),
-              var(--bg);
+  padding:140px 24px 80px; position:relative; overflow:hidden;
 }
+
+.hero-slideshow { position:absolute; inset:0; z-index:0; pointer-events:none; }
+.hero-slide {
+  position:absolute; inset:0; opacity:0; transition:opacity 1.8s ease-in-out;
+  background-size:cover; background-position:center;
+}
+.hero-slide.active { opacity:0.98; }
+
+.hero-overlay {
+  position:absolute; inset:0; z-index:1;
+  background:radial-gradient(circle at center, rgba(248,244,238,0.2) 0%, rgba(248,244,238,0.75) 90%);
+}
+
+.hero-content { position:relative; z-index:2; max-width:860px; margin:0 auto; }
+
 .hero-eyebrow {
   font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:5px;
-  text-transform:uppercase; color:var(--text-faint); margin-bottom:22px;
+  text-transform:uppercase; color:var(--text-faint); margin-bottom:22px; font-weight:500;
 }
 .hero-logo-img {
   height:clamp(90px,14vw,160px); width:auto; max-width:420px;
-  object-fit:contain; display:block; margin:0 auto 18px;
+  object-fit:contain; margin:0 auto 18px;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.08));
 }
 .hero-italic {
   font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300;
-  font-size:clamp(24px,3vw,40px); letter-spacing:4px; color:var(--text-muted);
-  display:block; margin:6px 0 28px;
+  font-size:clamp(26px,3.5vw,44px); letter-spacing:3px; color:var(--text-primary);
+  display:block; margin:6px 0 24px;
 }
 .hero-desc {
-  max-width:560px; font-size:22px; font-weight:400; line-height:1.75;
-  color:var(--text-muted); letter-spacing:.3px; margin-bottom:42px;
+  max-width:620px; font-size:22px; font-weight:400; line-height:1.7;
+  color:var(--text-muted); letter-spacing:.2px; margin:0 auto 42px;
 }
-.hero-btns { display:flex; gap:13px; justify-content:center; flex-wrap:wrap; }
+.hero-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
 
 .btn {
   font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:3px;
-  text-transform:uppercase; padding:15px 30px; border-radius:2px;
+  text-transform:uppercase; padding:16px 32px; border-radius:6px; font-weight:500;
   cursor:pointer; transition:all .3s; text-decoration:none; display:inline-block;
 }
-.btn-p { background:var(--warm-brown); border:1px solid var(--warm-brown); color:#fff; }
-.btn-p:hover { background:var(--deep-brown); border-color:var(--deep-brown); }
-.btn-s { background:transparent; border:1px solid var(--border); color:var(--text-muted); }
-.btn-s:hover { color:var(--text-primary); background:var(--bg3); }
+.btn-p { background:#191919; border:1px solid #191919; color:#fff; }
+.btn-p:hover { background:rgba(25,25,25,0.85); }
+.btn-s { background:rgba(255,255,255,0.85); border:1px solid var(--border); color:var(--text-primary); backdrop-filter:blur(6px); }
+.btn-s:hover { background:rgba(255,255,255,1); }
 
 .scroll-hint {
-  position:absolute; bottom:30px; left:50%; transform:translateX(-50%);
+  position:absolute; bottom:30px; left:50%; transform:translateX(-50%); z-index:2;
   display:flex; flex-direction:column; align-items:center; gap:8px;
   font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:3px;
   text-transform:uppercase; color:var(--text-faint);
@@ -201,17 +215,17 @@ body.dark .theme-toggle {
 .gold-rule {
   width:100%; height:1px; margin:0;
   background:linear-gradient(to right, transparent, var(--gold-light), var(--gold), var(--gold-light), transparent);
-  opacity:.6;
+  opacity:.5;
 }
 
 .sw { max-width:1080px; margin:0 auto; padding:88px 56px; }
 .s-label {
   font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:4px;
-  text-transform:uppercase; color:var(--text-faint); margin-bottom:16px;
+  text-transform:uppercase; color:var(--text-faint); margin-bottom:16px; font-weight:500;
 }
 .s-title {
   font-family:'Bebas Neue',sans-serif; font-size:clamp(42px,5.2vw,64px);
-  letter-spacing:5px; color:var(--text-primary); line-height:1; margin-bottom:12px;
+  letter-spacing:4px; color:var(--text-primary); line-height:1; margin-bottom:12px;
 }
 .s-sub {
   font-size:21px; font-weight:400; font-style:italic; color:var(--text-muted);
@@ -221,342 +235,148 @@ body.dark .theme-toggle {
 
 .story-inner { display:grid; grid-template-columns:1.1fr 0.9fr; gap:68px; align-items:start; }
 .story-text p { font-size:20px; font-weight:400; line-height:1.8; color:var(--text-muted); margin-bottom:18px; }
-.stats { display:flex; flex-direction:column; gap:12px; }
+.stats { display:flex; flex-direction:column; gap:14px; }
 .stat {
-  border:1px solid var(--border); padding:24px 26px;
-  background:var(--card-bg); transition:all .3s;
-  position:relative; overflow:hidden;
+  border:1px solid var(--border); padding:24px 26px; border-radius:8px;
+  background:var(--card-bg); transition:all .3s; position:relative; overflow:hidden;
 }
 .stat::before {
   content:''; position:absolute; top:0; left:0; right:0; height:2px;
-  background:linear-gradient(to right, var(--gold-light), var(--gold));
-  opacity:.5;
+  background:linear-gradient(to right, var(--gold-light), var(--gold)); opacity:.6;
 }
-.stat:hover { background:var(--card-hover); box-shadow:0 4px 20px rgba(112,93,81,.08); }
+.stat:hover { background:var(--card-hover); box-shadow:0 8px 24px rgba(0,0,0,0.04); }
 .stat-n { font-family:'Bebas Neue',sans-serif; font-size:50px; letter-spacing:2px; color:var(--gold); line-height:1; }
-.stat-l { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-faint); margin-top:6px; }
+.stat-l { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-faint); margin-top:6px; font-weight:500; }
 
-/* ── FLAVOURS GRID ── */
+/* FLAVOURS GRID */
 .fgrid {
   display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:14px; margin-top:50px;
+  gap:16px; margin-top:50px;
 }
 .fcard {
   min-height:120px; padding:22px 20px;
-  background:var(--card-bg);
-  border:1px solid var(--border);
-  border-radius:8px;
-  box-shadow:0 8px 22px rgba(112,93,81,0.07);
-  transition:transform .28s ease, box-shadow .28s ease, background .3s;
-  cursor:default; position:relative; overflow:hidden;
+  background:var(--card-bg); border:1px solid var(--border);
+  border-radius:10px; box-shadow:0 4px 16px rgba(0,0,0,0.03);
+  transition:transform .28s ease, box-shadow .28s ease;
   display:flex; flex-direction:column;
 }
-.fcard:hover { transform:translateY(-4px); background:var(--card-hover); box-shadow:0 16px 36px rgba(112,93,81,0.14); }
-
-.fcopy { padding:18px; }
-.fcard .fcopy { padding:0; }
-.flavour-heading {
-  display:flex; align-items:end; justify-content:space-between; gap:18px; flex-wrap:wrap;
-}
-.image-soon-note {
-  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:2px;
-  text-transform:uppercase; color:var(--text-muted);
-  border:1px solid var(--border); padding:5px 10px; border-radius:2px;
-  background:rgba(255,252,247,0.78);
-  margin-bottom:14px;
-}
-body.dark .image-soon-note {
-  color:var(--text-secondary);
-  background:rgba(30,24,18,0.78);
-  border-color:rgba(255,230,136,0.18);
-}
+.fcard:hover { transform:translateY(-4px); background:var(--card-hover); box-shadow:0 12px 28px rgba(0,0,0,0.08); }
 .fname {
   font-family:'Cormorant Garamond',serif; font-size:clamp(20px,1.8vw,24px); font-weight:600;
   color:var(--text-primary); line-height:1.15; margin-bottom:14px;
 }
-.fdesc { font-family:'DM Sans',sans-serif; font-size:15px; color:var(--text-muted); line-height:1.7; }
-
 .ftag {
-  display:inline-block;
-  font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:2px;
+  display:inline-block; font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:2px;
   text-transform:uppercase; color:var(--tag-text); border:1px solid var(--tag-border);
-  background:var(--tag-bg); padding:4px 9px; border-radius:1px;
+  background:var(--tag-bg); padding:4px 9px; border-radius:4px; font-weight:600;
 }
 .fcard:not(.vegan) .ftag { display:none; }
 
-body.dark .fcard {
-  background:var(--card-bg);
-  box-shadow:0 12px 30px rgba(0,0,0,0.22);
-}
-
-/* Seasonal banner */
-.seasonal {
-  margin:0 56px; border:1px solid var(--border); background:var(--card-bg);
-  padding:42px 50px; display:flex; align-items:center;
-  justify-content:space-between; gap:32px; flex-wrap:wrap;
-  position:relative; overflow:hidden;
-}
-.seasonal::before {
-  content:''; position:absolute; inset:0;
-  background:linear-gradient(135deg, rgba(255,230,136,.09) 0%, transparent 60%);
-  pointer-events:none;
-}
-.seasonal h3 { font-family:'Bebas Neue',sans-serif; font-size:36px; letter-spacing:4px; color:var(--text-primary); margin-bottom:9px; }
-.seasonal p { font-size:19px; font-weight:400; font-style:italic; color:var(--text-muted); max-width:460px; line-height:1.7; }
-
+/* PROCESS */
 .psteps {
   display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:36px 0;
   margin-top:50px; border-left:1px solid var(--border);
 }
 .pstep { padding:0 38px 0 30px; border-right:1px solid var(--border); }
-.pnum { font-family:'Bebas Neue',sans-serif; font-size:58px; color:var(--gold-light); opacity:.7; line-height:1; margin-bottom:16px; }
-.pstep h4 { font-family:'Cormorant Garamond',serif; font-size:23px; font-weight:600; color:var(--text-secondary); margin-bottom:10px; }
-.pstep p { font-family:'DM Sans',sans-serif; font-size:18px; color:var(--text-muted); line-height:1.65; }
+.pnum { font-family:'Bebas Neue',sans-serif; font-size:58px; color:var(--gold); opacity:.8; line-height:1; margin-bottom:16px; }
+.pstep h3 { font-family:'Cormorant Garamond',serif; font-size:23px; font-weight:600; color:var(--text-secondary); margin-bottom:10px; }
+.pstep p { font-family:'DM Sans',sans-serif; font-size:16px; color:var(--text-muted); line-height:1.65; }
 
-/* ── MENU COMING SOON ── */
-.menu-soon {
-  margin-top:50px; border:1px solid var(--border);
-  background:var(--card-bg); position:relative; overflow:hidden;
-}
-.menu-soon::before {
-  content:''; position:absolute; inset:0;
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent, transparent 18px,
-    rgba(112,93,81,0.025) 18px, rgba(112,93,81,0.025) 19px
-  );
-  pointer-events:none;
-}
-.menu-soon::after {
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,230,136,0.08), transparent);
-  pointer-events:none;
-}
-.menu-soon-inner {
-  position:relative; z-index:1;
-  display:flex; flex-direction:column; align-items:center;
-  text-align:center; padding:72px 40px;
-}
-.menu-soon-icon {
-  font-size:36px; color:var(--gold); margin-bottom:24px; opacity:.7;
-  display:block; line-height:1;
-}
-.menu-soon-title {
-  font-family:'Bebas Neue',sans-serif; font-size:clamp(34px,4vw,52px);
-  letter-spacing:6px; color:var(--text-primary); margin-bottom:16px;
-}
-.menu-soon-desc {
-  font-family:'Cormorant Garamond',serif; font-size:22px; font-style:italic;
-  color:var(--text-muted); max-width:540px; line-height:1.7;
-}
+/* MENU */
 .menuboard {
-  margin-top:50px; border:1px solid var(--border); border-radius:8px;
-  background:linear-gradient(180deg, var(--card-bg), rgba(255,250,242,0.72));
-  box-shadow:0 14px 34px rgba(112,93,81,0.1);
-  overflow:hidden;
+  margin-top:50px; border:1px solid var(--border); border-radius:12px;
+  background:var(--card-bg); box-shadow:0 12px 32px rgba(0,0,0,0.04); overflow:hidden;
 }
 .menuboard-head {
   padding:28px 34px; border-bottom:1px solid var(--border);
   display:flex; align-items:end; justify-content:space-between; gap:24px;
-  background:linear-gradient(135deg, rgba(255,230,136,0.1), transparent 58%);
+  background:rgba(200,151,58,0.05);
 }
-.menuboard-head h3 {
-  font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,4vw,46px);
-  letter-spacing:4px; color:var(--text-primary); line-height:1;
-}
-.menuboard-head p {
-  font-family:'Cormorant Garamond',serif; font-size:20px; font-style:italic;
-  color:var(--text-muted); line-height:1.4; max-width:420px;
-}
+.menuboard-head h3 { font-family:'Bebas Neue',sans-serif; font-size:clamp(32px,4vw,46px); letter-spacing:3px; color:var(--text-primary); line-height:1; }
+.menuboard-head p { font-family:'Cormorant Garamond',serif; font-size:20px; font-style:italic; color:var(--text-muted); line-height:1.4; max-width:420px; }
 .mrows { padding:8px 34px 4px; }
-.mrow {
-  display:grid; grid-template-columns:1fr auto; align-items:baseline; gap:24px;
-  padding:22px 0; border-bottom:1px solid var(--border2);
-}
+.mrow { display:grid; grid-template-columns:1fr auto; align-items:baseline; gap:24px; padding:22px 0; border-bottom:1px solid var(--border2); }
 .mrow:last-child { border-bottom:none; }
-.mname {
-  font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600;
-  color:var(--menu-name); line-height:1.15; margin-bottom:6px;
-}
-.mnote {
-  font-family:'DM Sans',sans-serif; font-size:14px; color:var(--text-muted);
-  line-height:1.55;
-}
-.mprice {
-  font-family:'Bebas Neue',sans-serif; font-size:42px; letter-spacing:2px;
-  color:var(--price); line-height:1; white-space:nowrap;
-}
-.mextras {
-  display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--border);
-  background:rgba(112,93,81,0.035);
-}
-.mextra {
-  padding:22px 24px; border-right:1px solid var(--border);
-  display:flex; flex-direction:column; gap:8px;
-}
+.mname { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:600; color:var(--text-primary); line-height:1.15; margin-bottom:6px; }
+.mnote { font-family:'DM Sans',sans-serif; font-size:14px; color:var(--text-muted); line-height:1.55; }
+.mprice { font-family:'Bebas Neue',sans-serif; font-size:42px; letter-spacing:2px; color:var(--text-primary); line-height:1; white-space:nowrap; }
+.mextras { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--border); background:rgba(0,0,0,0.015); }
+.mextra { padding:22px 24px; border-right:1px solid var(--border); display:flex; flex-direction:column; gap:8px; }
 .mextra:last-child { border-right:none; }
-.mextra .mname { font-size:22px; }
-.mextra .mprice { font-size:34px; }
-body.dark .menuboard { background:linear-gradient(180deg, var(--card-bg), rgba(30,24,18,0.72)); }
 
-/* ── VISIT ── */
+/* VISIT */
 .vgrid { display:grid; grid-template-columns:minmax(260px,0.65fr) minmax(0,1.35fr); gap:36px; margin-top:50px; align-items:start; }
 .iblock { margin-bottom:30px; }
-.ilabel { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:4px; text-transform:uppercase; color:var(--text-faint); margin-bottom:10px; }
+.ilabel { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:4px; text-transform:uppercase; color:var(--text-faint); margin-bottom:10px; font-weight:500; }
 .ival { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:var(--text-secondary); line-height:1.65; }
 .ival a { color:var(--text-secondary); text-decoration:none; transition:color .3s; }
 .ival a:hover { color:var(--text-primary); text-decoration:underline; }
-.social-link {
-  display:inline-flex; align-items:center; gap:10px;
-  color:var(--text-secondary); text-decoration:none; transition:color .3s;
-}
-.social-link:hover { color:var(--text-primary); text-decoration:none; }
-.social-icon {
-  width:24px; height:24px; flex:0 0 auto;
-  stroke:currentColor; fill:none; stroke-width:1.8;
-}
+.social-link { display:inline-flex; align-items:center; gap:10px; color:var(--text-secondary); text-decoration:none; }
+.social-icon { width:24px; height:24px; stroke:currentColor; fill:none; stroke-width:1.8; }
 .hgrid { display:grid; grid-template-columns:auto 1fr; gap:5px 20px; }
-.hday { font-family:'DM Sans',sans-serif; font-size:14px; letter-spacing:2px; text-transform:uppercase; color:var(--hours-day); }
-.htime { font-family:'Cormorant Garamond',serif; font-size:19px; color:var(--hours-time); }
-.metronote { color:var(--text-faint); }
+.hday { font-family:'DM Sans',sans-serif; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--text-faint); font-weight:500; }
+.htime { font-family:'Cormorant Garamond',serif; font-size:19px; color:var(--text-secondary); }
 
-/* ── STORE PHOTOS ── */
-.store-slider {
-  margin:42px auto 0; max-width:960px; position:relative; border:1px solid var(--border);
-  border-radius:8px; overflow:hidden; background:var(--card-bg);
-  box-shadow:0 14px 34px rgba(112,93,81,0.1);
-}
-.store-track {
-  display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
-  scrollbar-width:none; scroll-behavior:smooth;
-}
-.store-track::-webkit-scrollbar { display:none; }
-.store-slide {
-  flex:0 0 100%; position:relative; scroll-snap-align:start;
-  height:clamp(340px,42vw,500px); background:var(--bg2);
-}
-.store-slide img {
-  width:100%; height:100%;
-  object-fit:cover; display:block;
-}
-.store-slide.portrait img { object-position:center 58%; }
-.store-slide.wide img { object-position:center center; }
-.store-caption {
-  position:absolute; left:18px; bottom:16px;
-  max-width:min(420px,calc(100% - 44px));
-  background:rgba(255,252,247,0.9); border:1px solid rgba(112,93,81,0.22);
-  padding:10px 13px; border-radius:4px;
-  font-family:'Cormorant Garamond',serif; font-size:17px; line-height:1.3;
-  color:var(--text-secondary);
-}
-.store-nav {
-  position:absolute; top:50%; transform:translateY(-50%); z-index:3;
-  width:36px; height:36px; border-radius:50%; border:1px solid var(--border);
-  background:rgba(255,252,247,0.88); color:var(--text-secondary);
-  font-size:22px; line-height:1; cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  transition:background .2s, color .2s, transform .2s;
-}
-.store-nav:hover { background:var(--warm-brown); color:#fff; transform:translateY(-50%) scale(1.04); }
-.store-nav.prev { left:12px; }
-.store-nav.next { right:12px; }
-body.dark .store-caption,
-body.dark .store-nav { background:rgba(30,24,18,0.9); }
-
-/* ── MAP ── */
+/* MAP */
 .mapbox {
   border:1px solid var(--border); overflow:hidden;
-  position:relative; aspect-ratio:1564 / 1006; border-radius:2px;
-  cursor:pointer;
-  width:100%;
-  background:var(--bg2);
+  position:relative; aspect-ratio:1564 / 1006; border-radius:8px;
+  cursor:pointer; width:100%; background:var(--bg2);
 }
 .mapbox img { width:100%; height:100%; object-fit:cover; display:block; }
 .maplabel {
   position:absolute; bottom:14px; left:14px;
   background:var(--card-bg); border:1px solid var(--border);
-  padding:9px 12px; border-radius:2px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  padding:9px 12px; border-radius:6px; backdrop-filter:blur(8px);
 }
-.maplabel strong { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:var(--text-primary); display:block; line-height:1.1; }
-.maplabel p { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:1px; color:var(--text-faint); line-height:1.35; margin-top:2px; }
 .mapbadge {
-  position:absolute; top:12px; right:12px;
-  background:var(--warm-brown); color:#fff;
-  font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:2px;
-  text-transform:uppercase; padding:8px 14px; border-radius:2px;
-  pointer-events:none;
+  position:absolute; top:12px; right:12px; background:#191919; color:#fff;
+  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:2px;
+  text-transform:uppercase; padding:8px 14px; border-radius:4px; font-weight:500;
 }
 .map-choice {
-  position:absolute; inset:0; display:none;
-  align-items:center; justify-content:center;
-  padding:20px; background:rgba(30,24,18,0.28);
+  position:absolute; inset:0; display:none; align-items:center; justify-content:center;
+  padding:20px; background:rgba(0,0,0,0.35); backdrop-filter:blur(4px);
 }
 .mapbox.choice-open .map-choice { display:flex; }
 .map-choice-panel {
-  width:min(340px,100%); background:var(--card-bg);
-  border:1px solid var(--border); border-radius:6px;
-  box-shadow:0 18px 44px rgba(0,0,0,0.22);
-  padding:18px;
-}
-.map-choice-panel h3 {
-  font-family:'Cormorant Garamond',serif; font-size:27px; line-height:1.1;
-  color:var(--text-primary); margin-bottom:12px; font-weight:600;
+  width:min(340px,100%); background:var(--card-bg); border:1px solid var(--border);
+  border-radius:8px; padding:20px;
 }
 .map-choice-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-.map-choice-actions a,
-.map-choice-actions button {
-  border:1px solid var(--border); background:var(--bg);
-  color:var(--text-secondary); min-height:42px; border-radius:4px;
-  font-family:'DM Sans',sans-serif; font-size:14px; letter-spacing:1px;
-  text-decoration:none; display:flex; align-items:center; justify-content:center;
-  cursor:pointer;
+.map-choice-actions a, .map-choice-actions button {
+  border:1px solid var(--border); background:var(--bg); color:var(--text-secondary);
+  min-height:42px; border-radius:6px; font-family:'DM Sans',sans-serif; font-size:13px;
+  text-decoration:none; display:flex; align-items:center; justify-content:center; cursor:pointer;
 }
-.map-choice-actions a:first-child { background:var(--warm-brown); color:#fff; border-color:var(--warm-brown); }
-.map-choice-actions button { grid-column:1 / -1; }
-.map-choice-actions button:hover,
-.map-choice-actions a:hover { border-color:var(--warm-brown); }
+.map-choice-actions a:first-child { background:#191919; color:#fff; }
 
 footer {
-  background:var(--footer-bg); border-top:1px solid var(--border);
-  padding:34px 56px; display:flex; align-items:center;
-  justify-content:space-between; flex-wrap:wrap; gap:16px;
+  background:#ebdccb; border-top:1px solid var(--border);
+  padding:36px 56px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;
 }
 .flogo-img { height:32px; width:auto; max-width:120px; object-fit:contain; }
 .flinks { display:flex; gap:26px; flex-wrap:wrap; }
-.flinks a { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--text-faint); text-decoration:none; transition:color .3s; }
+.flinks a { font-family:'DM Sans',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--text-faint); text-decoration:none; font-weight:500; }
 .flinks a:hover { color:var(--text-primary); }
-.flinks .footer-social { display:inline-flex; align-items:center; gap:7px; }
-.flinks .footer-social svg { width:17px; height:17px; stroke:currentColor; fill:none; stroke-width:1.9; }
-.fcopy { font-family:'DM Sans',sans-serif; font-size:12px; color:var(--text-faint); letter-spacing:1px; }
+.fcopy { font-family:'DM Sans',sans-serif; font-size:12px; color:var(--text-faint); }
 
-#story   { background:var(--bg); }
-#flavours{ background:var(--bg2); }
+#story { background:var(--bg); }
+#flavours { background:var(--bg2); }
 #process { background:var(--bg); }
-#menu    { background:var(--bg2); }
-#visit   { background:var(--bg2); }
-section {
-  min-height:100vh;
-  display:flex; align-items:center;
-}
+#menu { background:var(--bg2); }
+#visit { background:var(--bg2); }
+section { min-height:100vh; display:flex; align-items:center; }
 section > .sw { width:100%; }
 
-.fi { opacity:1; transform:none; transition:opacity .85s ease, transform .85s ease; }
+.fi { opacity:0; transform:translateY(18px); transition:opacity .85s ease, transform .85s ease; }
 .fi.vis { opacity:1; transform:none; }
 
 @media(max-width:768px){
-  nav{
-    grid-template-columns:auto max-content;
-    justify-content:space-between;
-    column-gap:12px;
-    padding:0 18px;
-  }
-  .nav-center{display:none;}
-  .nav-right{justify-self:end; flex-wrap:nowrap; flex-shrink:0;}
-  .nav-cta{display:none;}
+  .custom-nav{padding:12px 20px;}
+  .nav-links{display:none;}
   .sw{padding:60px 20px;}
   .story-inner{grid-template-columns:1fr;gap:32px;}
-  .mcols{grid-template-columns:1fr;}
   .vgrid{grid-template-columns:1fr;}
   .psteps{grid-template-columns:1fr;}
   .pstep{border-right:none;}
@@ -565,40 +385,7 @@ section > .sw { width:100%; }
   .mextras{grid-template-columns:1fr;}
   .mextra{border-right:none; border-bottom:1px solid var(--border);}
   .mextra:last-child{border-bottom:none;}
-  .store-slider{max-width:100%; margin-top:34px;}
-  .store-slide{height:clamp(340px,78vw,460px);}
-  .store-caption{font-size:15px; left:12px; bottom:12px; max-width:calc(100% - 24px);}
-  .seasonal{margin:0 20px 60px;padding:28px 20px;}
   footer{padding:28px 20px;flex-direction:column;}
-  .nav-logo-img{height:42px;}
-  .hero-logo-img{height:clamp(70px,18vw,120px);}
-  .map-choice-actions{grid-template-columns:1fr;}
-}
-@media(max-width:1080px) and (min-width:769px){
-  nav{grid-template-columns:minmax(100px,0.75fr) auto minmax(220px,0.75fr); column-gap:16px; padding:0 24px;}
-  .nav-logo-img{height:50px; max-width:170px;}
-  .nav-center{gap:16px;}
-  .nav-center a{font-size:11px; letter-spacing:1px;}
-  .nav-right{gap:8px;}
-  .lang-toggle button{padding:6px 10px;}
-  .theme-toggle{width:34px;height:34px;}
-  .nav-cta{padding:8px 12px; font-size:11px; letter-spacing:1.4px;}
-}
-@media(max-width:930px) and (min-width:769px){
-  .nav-center{display:none;}
-  nav{grid-template-columns:auto max-content; justify-content:space-between; column-gap:16px; padding:0 22px;}
-  .nav-logo-img{height:46px; max-width:150px;}
-  .nav-right{justify-self:end; flex-shrink:0;}
-  .nav-cta{display:none;}
-}
-@media(max-width:480px){
-  nav{height:72px;}
-  section{min-height:100vh;}
-  .nav-right{gap:8px;}
-  .lang-toggle button{padding:6px 9px; font-size:11px; letter-spacing:1px;}
-  .theme-toggle{width:34px;height:34px;}
-  .hero-desc,.s-sub,.story-text p,.menu-soon-desc,.ival{font-size:20px;}
-  .pstep p{font-size:15px;}
 }
 </style>
 </head>
@@ -606,39 +393,51 @@ section > .sw { width:100%; }
 
 <div id="site">
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#hero">
-    <img class="nav-logo-img" src="logo.svg" alt="La Palette Gelato">
+<!-- NAVBAR -->
+<nav class="custom-nav">
+  <a href="#hero" class="nav-logo-link">
+    <img src="logo.svg" alt="La Palette Logo" class="nav-logo-img">
+    <span class="nav-title">La Palette</span>
   </a>
-  <div class="nav-center">
-    <a href="#story" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</a>
+
+  <div class="nav-links">
+    <a href="#story" data-fr="Histoire" data-en="Story">Histoire</a>
     <a href="#flavours" data-fr="Saveurs" data-en="Flavours">Saveurs</a>
-    <a href="#menu" data-fr="Menu" data-en="Menu">Menu</a>
-    <a href="#visit" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
+    <a href="#process" data-fr="Méthode" data-en="Process">Méthode</a>
+    <a href="#menu">Menu</a>
+    <a href="#visit" data-fr="Visiter" data-en="Visit">Visiter</a>
   </div>
-  <div class="nav-right">
+
+  <div class="nav-actions">
     <div class="lang-toggle">
       <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
       <button id="btn-en" onclick="setLang('en')">EN</button>
     </div>
-    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()" title="Thème / Theme">☾</button>
-    <a href="#visit" class="nav-cta" data-fr="Nous Visiter" data-en="Visit Us">Nous Visiter</a>
   </div>
 </nav>
 
 <!-- HERO -->
-<div id="hero">
-  <p class="hero-eyebrow fi" data-fr="Fait à la main à Montréal depuis 2026" data-en="Handcrafted in Montréal since 2026">Fait à la main à Montréal depuis 2026</p>
-  <img class="hero-logo-img fi" src="logo.svg" alt="La Palette Gelato">
-  <span class="hero-italic fi" data-fr="Gelato Artisanal" data-en="Artisan Gelato">Gelato Artisanal</span>
-  <p class="hero-desc fi" data-fr="Là où la tradition italienne rencontre l'esprit de Montréal. Chaque boule est une petite peinture, préparée chaque jour, servie avec amour sur Prince Arthur." data-en="Where Italian tradition meets the spirit of Montréal. Every scoop is a small painting, crafted daily, served with love on Prince Arthur.">Là où la tradition italienne rencontre l'esprit de Montréal. Chaque boule est une petite peinture, préparée chaque jour, servie avec amour sur Prince Arthur.</p>
-  <div class="hero-btns fi">
-    <a href="#flavours" class="btn btn-p" data-fr="Explorer les Saveurs" data-en="Explore Flavours">Explorer les Saveurs</a>
-    <a href="#visit" class="btn btn-s" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
+<header id="hero">
+  <div class="hero-slideshow">
+    <div class="hero-slide active" style="background-image: url('assets/store-1.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('assets/store-2.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('assets/store-3.jpg');"></div>
   </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow fi" data-fr="Fait à la main à Montréal depuis 2026" data-en="Handcrafted in Montréal since 2026">Fait à la main à Montréal depuis 2026</p>
+    <img class="hero-logo-img fi" src="logo.svg" alt="La Palette Gelato Artisanal">
+    <h1 class="hero-italic fi" data-fr="Gelato Artisanal à Montréal" data-en="Artisan Gelato in Montréal">Gelato Artisanal à Montréal</h1>
+    <p class="hero-desc fi" data-fr="Là où la tradition italienne rencontre l'esprit de Montréal. Chaque boule est préparée chaque jour sur la rue Prince Arthur." data-en="Where Italian tradition meets the spirit of Montréal. Every scoop is crafted daily on Prince Arthur Street.">Là où la tradition italienne rencontre l'esprit de Montréal. Chaque boule est préparée chaque jour sur la rue Prince Arthur.</p>
+    <div class="hero-btns fi">
+      <a href="#flavours" class="btn btn-p" data-fr="Explorer les Saveurs" data-en="Explore Flavours">Explorer les Saveurs</a>
+      <a href="#visit" class="btn btn-s" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
+    </div>
+  </div>
+
   <div class="scroll-hint fi" data-fr="Défiler" data-en="Scroll">Défiler</div>
-</div>
+</header>
 
 <div class="gold-rule"></div>
 
@@ -650,9 +449,7 @@ section > .sw { width:100%; }
         <p class="s-label" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</p>
         <h2 class="s-title" data-fr="Art. Saveur.<br>Caractère." data-en="Craft. Colour.<br>Character.">Art. Saveur.<br>Caractère.</h2>
         <div class="rule"></div>
-        <p data-fr="La Palette est née d'une seule obsession : que le gelato, à son meilleur, n'est pas qu'un dessert, c'est un moment de pur plaisir sensoriel. Notre chef a appris l'art du gelato en Italie et en est revenu certifié, avec le désir de servir une palette de saveurs précise, généreuse et faite avec soin." data-en="La Palette was born from a single obsession: that gelato, at its finest, is not just a dessert, it is a moment of pure sensory pleasure. Our chef learned the art of gelato in Italy and returned certified, with a desire to serve a precise, generous palette of flavours made with care.">La Palette est née d'une seule obsession : que le gelato, à son meilleur, n'est pas qu'un dessert, c'est un moment de pur plaisir sensoriel. Notre chef a appris l'art du gelato en Italie et en est revenu certifié, avec le désir de servir une palette de saveurs précise, généreuse et faite avec soin.</p>
-        <p data-fr="Chaque fournée est préparée à la main dans notre cuisine ouverte. Aucun stabilisant, aucune saveur artificielle. Seulement des ingrédients choisis avec attention, une technique italienne rigoureuse et une quantité déraisonnable de soin." data-en="Every batch is prepared by hand in our open kitchen. No stabilisers, no artificial flavours. Just carefully chosen ingredients, rigorous Italian technique, and an unreasonable amount of care.">Chaque fournée est préparée à la main dans notre cuisine ouverte. Aucun stabilisant, aucune saveur artificielle. Seulement des ingrédients choisis avec attention, une technique italienne rigoureuse et une quantité déraisonnable de soin.</p>
-        <p data-fr="Venez nous retrouver sur Prince Arthur, le cœur battant du Plateau, où chaque jour nous repeignons le menu à nouveau." data-en="Come find us on Prince Arthur, the beating heart of the Plateau, where every day we paint the menu anew.">Venez nous retrouver sur Prince Arthur, le cœur battant du Plateau, où chaque jour nous repeignons le menu à nouveau.</p>
+        <p data-fr="La Palette est née d'une seule obsession : que le gelato, à son meilleur, est un moment de pur plaisir sensoriel. Notre chef a appris l'art du gelato en Italie pour servir une palette de saveurs généreuse et faite avec soin." data-en="La Palette was born from a single obsession: gelato at its finest is a moment of pure sensory pleasure. Our chef learned the craft in Italy to offer a rich palette of handcrafted gelato.">La Palette est née d'une seule obsession : que le gelato, à son meilleur, est un moment de pur plaisir sensoriel. Notre chef a appris l'art du gelato en Italie pour servir une palette de saveurs généreuse et faite avec soin.</p>
       </div>
       <div class="stats">
         <div class="stat"><div class="stat-n">16</div><div class="stat-l" data-fr="Saveurs à découvrir" data-en="Flavours to discover">Saveurs à découvrir</div></div>
@@ -669,68 +466,30 @@ section > .sw { width:100%; }
 <section id="flavours">
   <div class="sw">
     <p class="s-label fi" data-fr="La Palette du Jour" data-en="Today's Palette">La Palette du Jour</p>
-    <div class="flavour-heading fi">
-      <h2 class="s-title" data-fr="Nos Saveurs" data-en="Our Flavours">Nos Saveurs</h2>
-      <span class="image-soon-note" data-fr="Images bientôt" data-en="Images coming soon">Images bientôt</span>
-    </div>
- 
- <div class="fgrid fi">
-      <!-- Pistache -->
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Pistache" data-en="Pistachio">Pistache</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Ricotta & miel -->
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Ricotta & miel" data-en="Ricotta & Honey">Ricotta & miel</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Earl Grey & Pamplemousse -->
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Earl Grey & Pamplemousse" data-en="Earl Grey & Grapefruit">Earl Grey & Pamplemousse</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Chaï -->
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Chaï" data-en="Chai">Chaï</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Nocciola -->
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Nocciola" data-en="Nocciola">Nocciola</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Chocolat blanc & oreo -->
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Chocolat blanc & oreo" data-en="White chocolate & oreo">Chocolat blanc & oreo</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Yogourt à la vanille -->
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Yogourt à la vanille" data-en="Vanilla Yogurt">Yogourt à la vanille</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Érable & toffee -->
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Érable & toffee" data-en="Maple & toffee">Érable & toffee</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Matcha -->
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Matcha" data-en="Matcha">Matcha</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Chocolat -->
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Chocolat" data-en="Chocolate">Chocolat</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Fior di latte Stracciatella -->
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Fior di latte Stracciatella" data-en="Fior di latte Stracciatella">Fior di latte Stracciatella</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Citron & Aneth -->
-      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Citron & Aneth" data-en="Lemon & Dill">Citron & Aneth</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Fraise & Hibiscus -->
-      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Fraise & Hibiscus" data-en="Strawberry & Hibiscus">Fraise & Hibiscus</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Kiwi & Menthe -->
-      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Kiwi & Menthe" data-en="Kiwi & Mint">Kiwi & Menthe</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Avocat & Crème de coco -->
-      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Avocat & Crème de coco" data-en="Avocado & Coconut cream">Avocat & Crème de coco</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
-      <!-- Ananas & Mangue -->
-      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Ananas & Mangue" data-en="Pineapple & Mango">Ananas & Mangue</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-    </div>
+    <h2 class="s-title fi" data-fr="Nos Saveurs de Gelato" data-en="Our Gelato Flavours">Nos Saveurs de Gelato</h2>
 
-
+    <div class="fgrid fi">
+      <div class="fcard"><div class="fcopy"><p class="fname">Pistache</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname">Ricotta & miel</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname">Earl Grey & Pamplemousse</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname">Chaï</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname">Nocciola</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname">Chocolat blanc & oreo</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname">Yogourt à la vanille</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname">Érable & toffee</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname">Matcha</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname">Chocolat</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname">Fior di latte Stracciatella</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname">Citron & Aneth</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname">Fraise & Hibiscus</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname">Kiwi & Menthe</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname">Avocat & Crème de coco</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname">Ananas & Mangue</p><span class="ftag">Végane</span></div></div>
+    </div>
   </div>
 </section>
 
 <div class="gold-rule"></div>
-
-
 
 <!-- PROCESS -->
 <section id="process">
@@ -738,10 +497,10 @@ section > .sw { width:100%; }
     <p class="s-label fi" data-fr="Notre Méthode" data-en="How We Make It">Notre Méthode</p>
     <h2 class="s-title fi" data-fr="Le Processus" data-en="The Process">Le Processus</h2>
     <div class="psteps fi">
-      <div class="pstep"><div class="pnum">01</div><h4 data-fr="Sélection" data-en="Source">Sélection</h4><p data-fr="Nous choisissons nos ingrédients avec soin auprès de fournisseurs de confiance. Chaque saveur commence par une base propre, fraîche et pensée pour le gelato." data-en="We choose our ingredients with care from trusted suppliers. Every flavour begins with a clean, fresh base made for gelato.">Nous choisissons nos ingrédients avec soin auprès de fournisseurs de confiance. Chaque saveur commence par une base propre, fraîche et pensée pour le gelato.</p></div>
-      <div class="pstep"><div class="pnum">02</div><h4 data-fr="Préparation" data-en="Craft">Préparation</h4><p data-fr="Chaque base est préparée à la main chaque matin. Aucun prémélange. Aucun raccourci." data-en="Every base is prepared by hand each morning. No premixes. No shortcuts.">Chaque base est préparée à la main chaque matin. Aucun prémélange. Aucun raccourci.</p></div>
-      <div class="pstep"><div class="pnum">03</div><h4 data-fr="Turbinage" data-en="Churn">Turbinage</h4><p data-fr="Nos turbines italiennes fonctionnent avec un foisonnement plus faible, donnant au gelato sa texture dense et soyeuse caractéristique." data-en="Our Italian batch freezers run at lower overrun, giving gelato its signature dense, silky body.">Nos turbines italiennes fonctionnent avec un foisonnement plus faible, donnant au gelato sa texture dense et soyeuse caractéristique.</p></div>
-      <div class="pstep"><div class="pnum">04</div><h4 data-fr="Service" data-en="Serve">Service</h4><p data-fr="Le gelato est servi à moins 12°C, plus chaud que la crème glacée, pour que chaque saveur s'épanouisse pleinement en bouche." data-en="Gelato is served at minus 12°C, warmer than ice cream, so every flavour blooms fully on the palate.">Le gelato est servi à moins 12°C, plus chaud que la crème glacée, pour que chaque saveur s'épanouisse pleinement en bouche.</p></div>
+      <div class="pstep"><div class="pnum">01</div><h3 data-fr="Sélection" data-en="Source">Sélection</h3><p data-fr="Ingrédients choisis avec soin auprès de fournisseurs de confiance." data-en="Ingredients selected with care from trusted sources.">Ingrédients choisis avec soin auprès de fournisseurs de confiance.</p></div>
+      <div class="pstep"><div class="pnum">02</div><h3 data-fr="Préparation" data-en="Craft">Préparation</h3><p data-fr="Préparé à la main chaque matin sans aucun prémélange." data-en="Handcrafted fresh every morning with zero premixes.">Préparé à la main chaque matin sans aucun prémélange.</p></div>
+      <div class="pstep"><div class="pnum">03</div><h3 data-fr="Turbinage" data-en="Churn">Turbinage</h3><p data-fr="Turbines italiennes pour une texture dense et soyeuse." data-en="Italian batch freezers for a dense, silky body.">Turbines italiennes pour une texture dense et soyeuse.</p></div>
+      <div class="pstep"><div class="pnum">04</div><h3 data-fr="Service" data-en="Serve">Service</h3><p data-fr="Servi à température idéale (-12°C) pour libérer tous les arômes." data-en="Served at ideal temperature (-12°C) for full flavour release.">Servi à température idéale (-12°C) pour libérer tous les arômes.</p></div>
     </div>
   </div>
 </section>
@@ -752,55 +511,22 @@ section > .sw { width:100%; }
 <section id="menu">
   <div class="sw">
     <p class="s-label fi" data-fr="Menu & Tarifs" data-en="Menu & Pricing">Menu & Tarifs</p>
-    <h2 class="s-title fi" data-fr="Notre Menu" data-en="Our Menu">Notre Menu</h2>
+    <h2 class="s-title fi" data-fr="Menu Gelato" data-en="Gelato Menu">Menu Gelato</h2>
     <div class="menuboard fi">
       <div class="menuboard-head">
         <h3 data-fr="Formats" data-en="Sizes">Formats</h3>
-        <p data-fr="Choisissez votre format, puis composez votre palette de saveurs." data-en="Choose your size, then build your palette of flavours.">Choisissez votre format, puis composez votre palette de saveurs.</p>
+        <p data-fr="Choisissez votre format, puis composez votre palette de saveurs." data-en="Choose your size, then build your palette.">Choisissez votre format, puis composez votre palette de saveurs.</p>
       </div>
       <div class="mrows">
         <div class="mrow"><div><div class="mname" data-fr="Petit" data-en="Small">Petit</div><div class="mnote" data-fr="Une portion classique" data-en="A classic serving">Une portion classique</div></div><div class="mprice">6.25$</div></div>
         <div class="mrow"><div><div class="mname" data-fr="Régulier" data-en="Regular">Régulier</div><div class="mnote" data-fr="Deux saveurs au choix" data-en="Two flavours of your choice">Deux saveurs au choix</div></div><div class="mprice">7.50$</div></div>
-        <div class="mrow"><div><div class="mname" data-fr="Grand" data-en="Large">Grand</div><div class="mnote" data-fr="Trois saveurs au choix" data-en="Three flavours of your choice">Trois saveurs au choix</div></div><div class="mprice">8.85$</div></div>
+        <div class="mrow"><div><div class="mname" data-fr="Grand" data-en="Large">Grand</div><div class="mnote" data-fr="Trois saveurs au choix" data-en="Three flavours of your choice">Trois saveurs au choice</div></div><div class="mprice">8.85$</div></div>
       </div>
       <div class="mextras">
-        <div class="mextra"><div class="mname" data-fr="Coupe Pitou" data-en="Pitou Cup">Coupe Pitou</div><div class="mnote" data-fr="Gelato pour chiens" data-en="Gelato for dogs">Gelato pour chiens</div><div class="mprice">3.50$</div></div>
-        <div class="mextra"><div class="mname" data-fr="Cône gaufré" data-en="Waffle Cone">Cornet</div><div class="mnote" data-fr="Supplément pour votre gelato" data-en="Add it to your gelato">Supplément pour votre gelato</div><div class="mprice">1.50$</div></div>
-        <div class="mextra">
-          <div class="mname" data-fr="Boîte à emporter" data-en="Takeout Box">Boîte à emporter</div>
-          <div class="mnote" data-fr="Trois saveurs : 16.95$ | Quatre saveurs : 22.95$" data-en="Three flavours: $16.95 | Four flavours: $22.95">Trois saveurs : 16.95$ | Quatre saveurs : 22.95$</div>
-          <div class="mprice">16.95$ - 22.95$</div>
-        </div>
+        <div class="mextra"><div class="mname">Coupe Pitou</div><div class="mnote" data-fr="Gelato pour chiens" data-en="Gelato for dogs">Gelato pour chiens</div><div class="mprice">3.50$</div></div>
+        <div class="mextra"><div class="mname">Cornet</div><div class="mnote" data-fr="Cône gaufré" data-en="Waffle Cone">Cône gaufré</div><div class="mprice">1.50$</div></div>
+        <div class="mextra"><div class="mname" data-fr="Boîte à emporter" data-en="Takeout Box">Boîte à emporter</div><div class="mnote">16.95$ - 22.95$</div><div class="mprice">16.95$+</div></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<div class="gold-rule"></div>
-
-<!-- STORE PHOTOS -->
-<section id="inside">
-  <div class="sw">
-    <p class="s-label fi" data-fr="Dans La Boutique" data-en="Inside The Shop">Dans La Boutique</p>
-    <h2 class="s-title fi" data-fr="Un Aperçu De L'espace" data-en="A Look Inside">Un Aperçu De L'espace</h2>
-    <p class="s-sub fi" data-fr="Un espace lumineux sur Prince Arthur, pensé pour choisir ses saveurs tranquillement et profiter du moment." data-en="A bright space on Prince Arthur, made for choosing flavours slowly and enjoying the moment.">Un espace lumineux sur Prince Arthur, pensé pour choisir ses saveurs tranquillement et profiter du moment.</p>
-    <div class="store-slider fi">
-      <button class="store-nav prev" type="button" aria-label="Photo précédente" onclick="slideStore(-1)">‹</button>
-      <div class="store-track" id="storeTrack">
-        <figure class="store-slide portrait">
-          <img src="assets/store-1.jpg" alt="Intérieur de La Palette avec le mur de saveurs">
-          <figcaption class="store-caption" data-fr="Le mur des saveurs et le comptoir de service." data-en="The flavour wall and service counter.">Le mur des saveurs et le comptoir de service.</figcaption>
-        </figure>
-        <figure class="store-slide portrait">
-          <img src="assets/store-2.jpg" alt="Comptoir de gelato de La Palette">
-          <figcaption class="store-caption" data-fr="Le comptoir de gelato, prêt pour le service." data-en="The gelato counter, ready for service.">Le comptoir de gelato, prêt pour le service.</figcaption>
-        </figure>
-        <figure class="store-slide wide">
-          <img src="assets/store-3.jpg" alt="Détails de la boutique La Palette">
-          <figcaption class="store-caption" data-fr="Les détails simples et chaleureux de la boutique." data-en="Simple, warm details inside the shop.">Les détails simples et chaleureux de la boutique.</figcaption>
-        </figure>
-      </div>
-      <button class="store-nav next" type="button" aria-label="Photo suivante" onclick="slideStore(1)">›</button>
     </div>
   </div>
 </section>
@@ -811,46 +537,34 @@ section > .sw { width:100%; }
 <section id="visit">
   <div class="sw">
     <p class="s-label fi" data-fr="Venez Nous Voir" data-en="Come See Us">Venez Nous Voir</p>
-    <h2 class="s-title fi" data-fr="Trouver La Palette" data-en="Find La Palette">Trouver La Palette</h2>
-    <p class="s-sub fi" data-fr="Nous sommes sur le tronçon piétonnier de Prince Arthur, la rue gastronomique la plus aimée de Montréal." data-en="We're on the pedestrian stretch of Prince Arthur, Montréal's most beloved food street.">Nous sommes sur le tronçon piétonnier de Prince Arthur, la rue gastronomique la plus aimée de Montréal.</p>
+    <h2 class="s-title fi" data-fr="Où Nous Trouver" data-en="Where to Find Us">Où Nous Trouver</h2>
+    <p class="s-sub fi" data-fr="Situé sur la rue piétonne Prince Arthur dans le Plateau-Mont-Royal à Montréal." data-en="Located on the pedestrian Prince Arthur street in Plateau-Mont-Royal, Montréal.">Situé sur la rue piétonne Prince Arthur dans le Plateau-Mont-Royal à Montréal.</p>
     <div class="vgrid fi">
       <div>
-        <div class="iblock"><p class="ilabel" data-fr="Adresse" data-en="Address">Adresse</p><p class="ival">108 Prince Arthur Est<br>Montréal, QC H2X 1B5</p></div>
-        <div class="iblock"><p class="ilabel" data-fr="Téléphone" data-en="Phone">Téléphone</p><p class="ival"><a href="tel:5146656623">514 665 6623</a></p></div>
-        <div class="iblock"><p class="ilabel" data-fr="Courriel" data-en="Email">Courriel</p><p class="ival"><a href="mailto:lapalette.gelato@gmail.com">lapalette.gelato@gmail.com</a></p></div>
+        <div class="iblock"><p class="ilabel">Adresse</p><p class="ival">108 Prince Arthur Est<br>Montréal, QC H2X 1B5</p></div>
+        <div class="iblock"><p class="ilabel">Téléphone</p><p class="ival"><a href="tel:5146656623">514 665 6623</a></p></div>
+        <div class="iblock"><p class="ilabel">Courriel</p><p class="ival"><a href="mailto:lapalette.gelato@gmail.com">lapalette.gelato@gmail.com</a></p></div>
         <div class="iblock">
           <p class="ilabel">Instagram</p>
           <p class="ival">
-            <a class="social-link" href="https://www.instagram.com/gelateria_lapalette" target="_blank" rel="noopener noreferrer" aria-label="Instagram La Palette">
-              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-                <circle cx="12" cy="12" r="4"></circle>
-                <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"></circle>
-              </svg>
+            <a class="social-link" href="https://www.instagram.com/gelateria_lapalette" target="_blank" rel="noopener noreferrer">
+              <svg class="social-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"></circle></svg>
               @gelateria_lapalette
             </a>
           </p>
         </div>
-        <div class="iblock">
-          <p class="ilabel" data-fr="Heures d'Ouverture" data-en="Hours">Heures d'Ouverture</p>
-          <div class="hgrid">
-            <span class="hday" data-fr="Dimanche à Jeudi" data-en="Sunday to Thursday">Dimanche à Jeudi</span><span class="htime" data-fr="13h à 22h" data-en="1 PM to 10 PM">13h à 22h</span>
-            <span class="hday" data-fr="Vendredi et Samedi" data-en="Friday and Saturday">Vendredi et Samedi</span><span class="htime" data-fr="13h à 23h" data-en="1 PM to 11 PM">13h à 23h</span>
-          </div>
-        </div>
-        <div class="iblock"><p class="ilabel" data-fr="Métro" data-en="Nearest Metro">Métro</p><p class="ival" data-fr="Sherbrooke (Ligne Orange)<br><small class='metronote'>7 min à pied vers le sud sur St Denis</small>" data-en="Sherbrooke (Orange Line)<br><small class='metronote'>7 min walk south on St Denis</small>">Sherbrooke (Ligne Orange)<br><small class="metronote">7 min à pied vers le sud sur St Denis</small></p></div>
       </div>
-      <div class="mapbox" onclick="openMapChoice(this)" role="button" tabindex="0" onkeydown="handleMapKey(event, this)" aria-label="Choisir une carte">
-        <img src="assets/lapalettemap.png" alt="Carte de La Palette près de Prince Arthur et Sherbrooke">
-        <div class="maplabel"><strong>La Palette</strong><p data-fr="Ouvrir l'itinéraire" data-en="Open directions">Ouvrir l'itinéraire</p></div>
-        <div class="mapbadge" data-fr="Itinéraire" data-en="Directions">Itinéraire</div>
-        <div class="map-choice" onclick="event.stopPropagation()" aria-hidden="true">
+      <div class="mapbox" onclick="openMapChoice(this)" role="button" tabindex="0">
+        <img src="assets/lapalettemap.png" alt="Carte de localisation La Palette Gelato Prince Arthur Montreal">
+        <div class="maplabel"><strong>La Palette</strong><p>108 Prince Arthur E, Montréal</p></div>
+        <div class="mapbadge">Itinéraire</div>
+        <div class="map-choice" onclick="event.stopPropagation()">
           <div class="map-choice-panel">
-            <h3 data-fr="Ouvrir avec" data-en="Open with">Ouvrir avec</h3>
+            <h3>Ouvrir avec</h3>
             <div class="map-choice-actions">
               <a href="https://www.google.com/maps/dir/?api=1&destination=108+Prince+Arthur+E,+Montreal,+QC" target="_blank" rel="noopener noreferrer">Google Maps</a>
               <a href="https://maps.apple.com/?daddr=108%20Prince%20Arthur%20E%2C%20Montreal%2C%20QC" target="_blank" rel="noopener noreferrer">Apple Maps</a>
-              <button type="button" onclick="closeMapChoice(this)" data-fr="Fermer" data-en="Close">Fermer</button>
+              <button type="button" onclick="closeMapChoice(this)">Fermer</button>
             </div>
           </div>
         </div>
@@ -861,76 +575,40 @@ section > .sw { width:100%; }
 
 <!-- FOOTER -->
 <footer>
-  <img class="flogo-img" src="logo.svg" alt="La Palette">
+  <img class="flogo-img" src="logo.svg" alt="La Palette Gelato Logo">
   <div class="flinks">
-    <a href="#story" data-fr="Histoire" data-en="Story">Histoire</a>
-    <a href="#flavours" data-fr="Saveurs" data-en="Flavours">Saveurs</a>
+    <a href="#story">Histoire</a>
+    <a href="#flavours">Saveurs</a>
     <a href="#menu">Menu</a>
-    <a href="#visit" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a>
-    <a href="tel:5146656623">514 665 6623</a>
-    <a class="footer-social" href="https://www.instagram.com/gelateria_lapalette" target="_blank" rel="noopener noreferrer" aria-label="Instagram La Palette">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-        <circle cx="12" cy="12" r="4"></circle>
-        <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"></circle>
-      </svg>
-      Instagram
-    </a>
+    <a href="#visit">Nous Trouver</a>
   </div>
-  <p class="fcopy">© 2026 La Palette Gelato · 108 Prince Arthur Est, Montréal</p>
+  <p class="fcopy">© 2026 La Palette Gelato · Montréal</p>
 </footer>
 
-</div><!-- #site -->
+</div>
 
 <script>
-// ── SMOOTH SCROLL (no URL/history change) ──
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+function nextSlide() {
+  if(!slides.length) return;
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}
+setInterval(nextSlide, 5000);
+
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     const target = document.querySelector(link.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
   });
 });
 
-// ── THEME TOGGLE ──
-function toggleTheme(){
-  const dark = document.body.classList.toggle('dark');
-  document.getElementById('themeBtn').textContent = dark ? '☀' : '☾';
-}
+function openMapChoice(box){ box.classList.add('choice-open'); }
+function closeMapChoice(button){ button.closest('.mapbox').classList.remove('choice-open'); }
 
-function slideStore(direction){
-  const track = document.getElementById('storeTrack');
-  if(!track) return;
-  track.scrollBy({ left: direction * track.clientWidth, behavior: 'smooth' });
-}
-
-function openMapChoice(box){
-  box.classList.add('choice-open');
-  const choice = box.querySelector('.map-choice');
-  if(choice) choice.setAttribute('aria-hidden', 'false');
-}
-
-function closeMapChoice(button){
-  const box = button.closest('.mapbox');
-  if(!box) return;
-  box.classList.remove('choice-open');
-  const choice = box.querySelector('.map-choice');
-  if(choice) choice.setAttribute('aria-hidden', 'true');
-}
-
-function handleMapKey(event, box){
-  if(event.key === 'Enter' || event.key === ' '){
-    event.preventDefault();
-    openMapChoice(box);
-  }
-  if(event.key === 'Escape'){
-    box.classList.remove('choice-open');
-    const choice = box.querySelector('.map-choice');
-    if(choice) choice.setAttribute('aria-hidden', 'true');
-  }
-}
-
-// ── LANGUAGE ──
 let lang = 'fr';
 function setLang(l){
   lang = l;
@@ -941,238 +619,8 @@ function setLang(l){
     const v = el.getAttribute('data-' + l);
     if(v) el.innerHTML = v;
   });
-  const ph = document.querySelector('[data-fr-ph]');
-  if(ph) ph.placeholder = ph.getAttribute('data-' + l + '-ph');
 }
 
-// ── MAP (accurate: 108 Prince Arthur Est, Plateau-Mont-Royal) ──
-// Real layout: Prince Arthur runs east west in the pedestrian area. St Laurent is about 3 blocks west,
-// St Denis is about 2 blocks east. Sherbrooke runs east west to the south.
-// Metro Sherbrooke on the Orange line is at St Denis and Sherbrooke, about 7 min walk south.
-// Square Saint-Louis is just NE of the address.
-function drawMap(){
-  const mc = document.getElementById('mapCanvas');
-  if(!mc || !mc.offsetWidth) return;
-  const dark = document.body.classList.contains('dark');
-  const dpr = window.devicePixelRatio || 1;
-  mc.width  = mc.offsetWidth  * dpr;
-  mc.height = mc.offsetHeight * dpr;
-  const m = mc.getContext('2d');
-  m.scale(dpr, dpr);
-  const W = mc.offsetWidth, H = mc.offsetHeight;
-
-  // Background
-  m.fillStyle = dark ? '#1e1810' : '#f0e8d8';
-  m.fillRect(0, 0, W, H);
-
-  // ── Road positions (proportional) ──
-  // Horizontal roads
-  const yPrinceArthur = H * 0.42;   // Prince Arthur Est main road
-  const ySherbrooke   = H * 0.82;   // Sherbrooke bottom area
-  const yRachel       = H * 0.08;   // Rachel top
-  const yRoy          = H * 0.72;   // Rue Roy between Prince Arthur and Sherbrooke
-
-  // Vertical roads
-  const xStLaurent    = W * 0.12;   // St Laurent far left
-  const xStUrbain     = W * 0.28;   // St Urbain
-  const xHotelDeVille = W * 0.44;   // De l Hotel de Ville
-  const xStDenis      = W * 0.62;   // St Denis right of centre
-  const xBerri        = W * 0.78;   // Berri far right
-
-  const roadW  = 9;   // main road half-width
-  const roadW2 = 6;   // secondary road half-width
-
-  // ── City block fill ──
-  const blockFill = dark ? 'rgba(255,235,190,0.055)' : 'rgba(170,140,100,0.11)';
-  // Fill all blocks between roads
-  const vLines = [0, xStLaurent, xStUrbain, xHotelDeVille, xStDenis, xBerri, W];
-  const hLines = [0, yRachel, yPrinceArthur, yRoy, ySherbrooke, H];
-  for (let i = 0; i < vLines.length - 1; i++) {
-    for (let j = 0; j < hLines.length - 1; j++) {
-      m.fillStyle = (i + j) % 2 === 0 ? blockFill : 'transparent';
-      m.fillRect(vLines[i], hLines[j], vLines[i+1]-vLines[i], hLines[j+1]-hLines[j]);
-    }
-  }
-
-  // ── Square Saint-Louis (park, NE of address) ──
-  const sqX = xStDenis + 8, sqY = yRachel + 6;
-  const sqW = xBerri - xStDenis - 16, sqH = yPrinceArthur - yRachel - 12;
-  m.fillStyle = dark ? 'rgba(45,85,45,0.5)' : 'rgba(95,150,75,0.3)';
-  m.fillRect(sqX, sqY, sqW, sqH);
-  for (let i = 0; i < 15; i++) {
-    m.fillStyle = dark ? 'rgba(70,130,60,0.35)' : 'rgba(50,100,35,0.22)';
-    m.beginPath();
-    m.arc(sqX + 8 + (i % 5) * (sqW - 16) / 4, sqY + 8 + Math.floor(i / 5) * (sqH - 16) / 2, 2.5, 0, Math.PI * 2);
-    m.fill();
-  }
-  m.strokeStyle = dark ? 'rgba(70,130,60,0.45)' : 'rgba(45,100,30,0.35)';
-  m.lineWidth = 1; m.strokeRect(sqX, sqY, sqW, sqH);
-
-  // ── Draw roads (fill first, then stroke) ──
-  const rfMain = dark ? 'rgba(58,46,34,0.95)' : 'rgba(212,196,172,1)';
-  const rfSec  = dark ? 'rgba(48,38,28,0.85)' : 'rgba(202,186,162,0.9)';
-
-  // Horizontal fills
-  [[yPrinceArthur, roadW, rfMain], [ySherbrooke, roadW, rfMain],
-   [yRachel, roadW2, rfSec], [yRoy, roadW2, rfSec]
-  ].forEach(([y, hw, fill]) => {
-    m.fillStyle = fill; m.fillRect(0, y - hw, W, hw * 2);
-  });
-
-  // Vertical fills
-  [[xStLaurent, roadW2, rfSec], [xStUrbain, roadW2, rfSec],
-   [xHotelDeVille, roadW2, rfSec], [xStDenis, roadW, rfMain], [xBerri, roadW2, rfSec]
-  ].forEach(([x, hw, fill]) => {
-    m.fillStyle = fill; m.fillRect(x - hw, 0, hw * 2, H);
-  });
-
-  // ── Road edge lines ──
-  const edgeMain  = dark ? 'rgba(190,150,55,0.4)'  : 'rgba(120,92,58,0.55)';
-  const edgeSec   = dark ? 'rgba(190,150,55,0.2)'  : 'rgba(120,92,58,0.3)';
-  [
-    [0, yPrinceArthur - roadW, W, yPrinceArthur - roadW, edgeMain],
-    [0, yPrinceArthur + roadW, W, yPrinceArthur + roadW, edgeMain],
-    [0, ySherbrooke - roadW,   W, ySherbrooke - roadW,   edgeMain],
-    [0, ySherbrooke + roadW,   W, ySherbrooke + roadW,   edgeMain],
-    [xStDenis - roadW, 0, xStDenis - roadW, H, edgeMain],
-    [xStDenis + roadW, 0, xStDenis + roadW, H, edgeMain],
-  ].forEach(([x1,y1,x2,y2,c]) => {
-    m.beginPath(); m.moveTo(x1,y1); m.lineTo(x2,y2);
-    m.strokeStyle = c; m.lineWidth = 0.8; m.stroke();
-  });
-
-  // ── Dashed centre lines ──
-  m.setLineDash([5, 7]);
-  m.lineWidth = 1;
-  m.strokeStyle = dark ? 'rgba(190,150,55,0.22)' : 'rgba(140,108,65,0.38)';
-  [[0, yPrinceArthur, W, yPrinceArthur],
-   [0, ySherbrooke,   W, ySherbrooke],
-   [xStDenis, 0, xStDenis, H]
-  ].forEach(([x1,y1,x2,y2]) => {
-    m.beginPath(); m.moveTo(x1,y1); m.lineTo(x2,y2); m.stroke();
-  });
-  m.setLineDash([]);
-
-  // ── Road labels ──
-  const lc  = dark ? 'rgba(235,205,155,0.92)' : 'rgba(65,42,18,0.92)';
-  const lc2 = dark ? 'rgba(175,145,95,0.68)'  : 'rgba(95,70,38,0.68)';
-
-  m.font = 'bold 13px "DM Sans",sans-serif';
-  m.fillStyle = lc;
-  m.fillText('Prince Arthur Est', xStLaurent + 12, yPrinceArthur - roadW - 5);
-
-  m.font = 'bold 13px "DM Sans",sans-serif';
-  m.fillStyle = lc;
-  m.fillText('Sherbrooke', xStLaurent + 12, ySherbrooke - roadW - 5);
-
-  m.font = '11px "DM Sans",sans-serif';
-  m.fillStyle = lc2;
-  m.fillText('Rachel', xStLaurent + 12, yRachel - roadW2 - 4);
-  m.fillText('Roy', xStLaurent + 12, yRoy - roadW2 - 4);
-
-  // Vertical labels (rotated)
-  [
-    [xStLaurent, 'St Laurent', lc],
-    [xStUrbain,  'St Urbain',  lc2],
-    [xHotelDeVille, 'Hôtel de Ville', lc2],
-    [xStDenis,   'St Denis',   lc],
-    [xBerri,     'Berri',      lc2],
-  ].forEach(([x, label, color]) => {
-    m.save();
-    m.translate(x + 4, H - 10);
-    m.rotate(-Math.PI / 2);
-    m.fillStyle = color;
-    m.font = x === xStDenis || x === xStLaurent ? 'bold 12px "DM Sans",sans-serif' : '11px "DM Sans",sans-serif';
-    m.fillText(label, 0, 0);
-    m.restore();
-  });
-
-  // Square Saint-Louis label
-  m.fillStyle = dark ? 'rgba(100,170,80,0.8)' : 'rgba(35,85,25,0.75)';
-  m.font = 'italic 10px "DM Sans",sans-serif';
-  m.textAlign = 'center';
-  m.fillText('Square', sqX + sqW / 2, sqY + sqH / 2 - 5);
-  m.fillText('Saint-Louis', sqX + sqW / 2, sqY + sqH / 2 + 7);
-  m.textAlign = 'left';
-
-  // Metro Sherbrooke at St Denis and Sherbrooke
-  const mx = xStDenis, my = ySherbrooke;
-  const mg = m.createRadialGradient(mx, my, 0, mx, my, 22);
-  mg.addColorStop(0, dark ? 'rgba(210,95,25,0.45)' : 'rgba(195,75,15,0.35)');
-  mg.addColorStop(1, 'rgba(195,75,15,0)');
-  m.beginPath(); m.arc(mx, my, 22, 0, Math.PI * 2); m.fillStyle = mg; m.fill();
-
-  m.beginPath(); m.arc(mx, my, 9, 0, Math.PI * 2);
-  m.fillStyle = dark ? '#d97025' : '#c04010'; m.fill();
-  m.strokeStyle = 'rgba(255,255,255,0.55)'; m.lineWidth = 1.5; m.stroke();
-
-  m.fillStyle = '#fff';
-  m.font = 'bold 10px "DM Sans",sans-serif';
-  m.textAlign = 'center';
-  m.fillText('M', mx, my + 3.5);
-  m.textAlign = 'left';
-
-  m.fillStyle = dark ? 'rgba(215,165,95,0.9)' : 'rgba(85,50,15,0.9)';
-  m.font = 'bold 12px "DM Sans",sans-serif';
-  m.fillText('Sherbrooke', mx + 14, my - 4);
-  m.font = '11px "DM Sans",sans-serif';
-  m.fillStyle = dark ? 'rgba(175,140,85,0.7)' : 'rgba(110,80,40,0.7)';
-  m.fillText('Ligne Orange · 7 min', mx + 14, my + 8);
-
-  // Destination pin for 108 Prince Arthur, between Hotel de Ville and St Denis
-  const px = (xHotelDeVille + xStDenis) / 2 + 10;
-  const py = yPrinceArthur;
-
-  // Pulse halos
-  [40, 26].forEach((r, i) => {
-    const pg = m.createRadialGradient(px, py, 0, px, py, r);
-    pg.addColorStop(0, dark ? `rgba(200,151,58,${0.2 - i * 0.07})` : `rgba(155,108,38,${0.18 - i * 0.06})`);
-    pg.addColorStop(1, 'rgba(0,0,0,0)');
-    m.beginPath(); m.arc(px, py, r, 0, Math.PI * 2); m.fillStyle = pg; m.fill();
-  });
-
-  // Shadow
-  m.beginPath(); m.arc(px + 2, py + 2, 11, 0, Math.PI * 2);
-  m.fillStyle = dark ? 'rgba(0,0,0,0.32)' : 'rgba(0,0,0,0.14)'; m.fill();
-
-  // Pin
-  m.beginPath(); m.arc(px, py, 11, 0, Math.PI * 2);
-  m.fillStyle = dark ? '#c8973a' : '#705d51'; m.fill();
-  m.strokeStyle = 'rgba(255,255,255,0.65)'; m.lineWidth = 2; m.stroke();
-  m.beginPath(); m.arc(px, py, 4.5, 0, Math.PI * 2);
-  m.fillStyle = 'rgba(255,255,255,0.88)'; m.fill();
-
-  // Compact label bubble positioned above so it does not overlap Sherbrooke
-  const lx = px - 48, ly = py - 40;
-  const lw = 96, lh = 28;
-  m.fillStyle = dark ? 'rgba(0,0,0,0.22)' : 'rgba(0,0,0,0.09)';
-  m.beginPath(); m.roundRect(lx - 2, ly - 2, lw + 4, lh + 4, 4); m.fill();
-  m.fillStyle = dark ? 'rgba(26,20,14,0.97)' : 'rgba(255,252,246,0.97)';
-  m.beginPath(); m.roundRect(lx, ly, lw, lh, 4); m.fill();
-  m.strokeStyle = dark ? 'rgba(255,220,120,0.18)' : 'rgba(112,93,81,0.2)';
-  m.lineWidth = 0.75; m.stroke();
-  // Gold accent line
-  m.strokeStyle = dark ? 'rgba(200,151,58,0.65)' : 'rgba(155,108,38,0.5)';
-  m.lineWidth = 1.5;
-  m.beginPath(); m.moveTo(lx + 5, ly); m.lineTo(lx + lw - 5, ly); m.stroke();
-  // Connector line from bubble to pin
-  m.strokeStyle = dark ? 'rgba(200,151,58,0.4)' : 'rgba(112,93,81,0.35)';
-  m.lineWidth = 1;
-  m.setLineDash([2, 3]);
-  m.beginPath(); m.moveTo(lx + lw / 2, ly + lh); m.lineTo(px, py - 12); m.stroke();
-  m.setLineDash([]);
-
-  m.fillStyle = dark ? 'rgba(240,222,192,1)' : 'rgba(44,32,22,1)';
-  m.font = 'bold 13px "DM Sans",sans-serif';
-  m.textAlign = 'center';
-  m.fillText('La Palette', lx + lw / 2, ly + 18);
-  m.textAlign = 'left';
-}
-
-window.addEventListener('load', () => setTimeout(drawMap, 200));
-window.addEventListener('resize', () => setTimeout(drawMap, 200));
-
-// ── SCROLL FADE IN ──
 const obs = new IntersectionObserver(entries =>
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); }),
   { threshold:0.1 }

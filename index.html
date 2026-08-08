@@ -402,139 +402,8 @@ section > .sw { width:100%; }
     </div>
   </div>
 </nav>
-
-
-<style>
-/* CSS Styles for Closure Popup */
-.closure-popup-overlay {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 9999;
-  max-width: 440px;
-  width: calc(100% - 48px);
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
-  transform: translateY(0);
-}
-
-.closure-popup-overlay.popup-hidden {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
-  pointer-events: none;
-}
-
-.closure-popup-card {
-  position: relative;
-  background: var(--card-bg);
-  border: 1px solid var(--gold);
-  border-radius: 12px;
-  padding: 24px 28px;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.closure-popup-close {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  background: transparent;
-  border: none;
-  font-size: 24px;
-  line-height: 1;
-  color: var(--text-faint);
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.closure-popup-close:hover {
-  color: var(--text-primary);
-}
-
-.closure-badge {
-  display: inline-block;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--tag-text);
-  background: var(--tag-bg);
-  border: 1px solid var(--tag-border);
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.closure-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 26px;
-  letter-spacing: 1.5px;
-  color: var(--text-primary);
-  margin-bottom: 6px;
-  line-height: 1.1;
-}
-
-.closure-text {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--text-muted);
-  margin-bottom: 6px;
-}
-
-.closure-text.highlight {
-  color: var(--text-primary);
-  background: rgba(212, 163, 89, 0.08);
-  padding: 8px 10px;
-  border-radius: 6px;
-  margin-top: 8px;
-  margin-bottom: 0;
-}
-
-.closure-text a {
-  color: var(--text-primary);
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.closure-divider {
-  height: 1px;
-  background: var(--border);
-  margin: 14px 0;
-}
-
-@media (max-width: 600px) {
-  .closure-popup-overlay {
-    bottom: 16px;
-    right: 16px;
-    left: 16px;
-    width: auto;
-  }
-}
-</style>
-
-<script>
-// JavaScript for Closure Popup Auto-Dismiss
-function closeClosurePopup() {
-  const popup = document.getElementById('temp-closure-popup');
-  if (popup) {
-    popup.classList.add('popup-hidden');
-  }
-}
-
-// Automatically hide after 10 seconds (10000 ms)
-setTimeout(() => {
-  closeClosurePopup();
-}, 10000);
-</script>
-
-
-
-
+ 
+  
 <!-- HERO -->
 <header id="hero">
   <div class="hero-slideshow">
@@ -586,25 +455,35 @@ setTimeout(() => {
     <h2 class="s-title fi" data-fr="Nos Saveurs de Gelato" data-en="Our Gelato Flavours">Nos Saveurs de Gelato</h2>
 
     <div class="fgrid fi">
-      <div class="fcard"><div class="fcopy"><p class="fname">Pistache</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard"><div class="fcopy"><p class="fname">Ricotta & miel</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard"><div class="fcopy"><p class="fname">Earl Grey & Pamplemousse</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard"><div class="fcopy"><p class="fname">Chaï</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard"><div class="fcopy"><p class="fname">Nocciola</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard"><div class="fcopy"><p class="fname">Chocolat blanc & oreo</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard"><div class="fcopy"><p class="fname">Yogourt à la vanille</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard"><div class="fcopy"><p class="fname">Érable & toffee</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard"><div class="fcopy"><p class="fname">Matcha</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard"><div class="fcopy"><p class="fname">Chocolat</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard"><div class="fcopy"><p class="fname">Fior di latte Stracciatella</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard vegan"><div class="fcopy"><p class="fname">Citron & Aneth</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard vegan"><div class="fcopy"><p class="fname">Fraise & Hibiscus</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard vegan"><div class="fcopy"><p class="fname">Kiwi & Menthe</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard vegan"><div class="fcopy"><p class="fname">Avocat & Crème de coco</p><span class="ftag">Végane</span></div></div>
-      <div class="fcard vegan"><div class="fcopy"><p class="fname">Ananas & Mangue</p><span class="ftag">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Pistache" data-en="Pistachio">Pistache</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Ricotta & miel" data-en="Ricotta & Honey">Ricotta & miel</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Earl Grey & Pamplemousse" data-en="Earl Grey & Grapefruit">Earl Grey & Pamplemousse</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      
+      <!-- <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Chaï" data-en="Chai">Chaï</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div> -->
+      
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Nocciola" data-en="Hazelnut">Nocciola</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Chocolat blanc & oreo" data-en="White Chocolate & Oreo">Chocolat blanc & oreo</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Yogourt à la vanille" data-en="Vanilla Yogurt">Yogourt à la vanille</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Pêche Abricot" data-en="Peach Apricot">Pêche Abricot</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+
+      <!-- <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Érable & toffee" data-en="Maple & Toffee">Érable & toffee</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div> -->
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Melon Miel" data-en="Honeydew Melon">Melon Miel</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Espresso Caramel" data-en="Espresso Caramel">Espresso Caramel</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Matcha" data-en="Matcha">Matcha</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Chocolat" data-en="Chocolate">Chocolat</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Fior di latte Stracciatella" data-en="Fior di Latte Stracciatella">Fior di latte Stracciatella</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Citron & Aneth" data-en="Lemon & Dill">Citron & Aneth</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Fraise & Hibiscus" data-en="Strawberry & Hibiscus">Fraise & Hibiscus</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Kiwi & Menthe" data-en="Kiwi & Mint">Kiwi & Menthe</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Avocat & Crème de coco" data-en="Avocado & Coconut Cream">Avocat & Crème de coco</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <!-- <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Ananas & Mangue" data-en="Pineapple & Mango">Ananas & Mangue</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div> -->
+       
     </div>
   </div>
 </section>
+
 
 <div class="gold-rule"></div>
 

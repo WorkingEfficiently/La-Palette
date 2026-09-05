@@ -4,17 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>La Palette Gelato Artisanal · Montréal | Gelateria Prince Arthur</title>
-<meta name="description" content="La Palette Gelato offre du gelato artisanal fraîchement préparé chaque jour sur Prince Arthur à Montréal. Découvrez nos saveurs uniques et sorbets véganes.">
-<meta name="keywords" content="gelato montreal, gelato artisanal, creme glacee prince arthur, sorbet vegan montreal, plateau mont royal gelato">
+<meta name="description" content="La Palette Gelato : le meilleur gelato artisanal et crème glacée italienne (ice cream) fraîchement préparés chaque jour sur Prince Arthur à Montréal. Découvrez nos saveurs uniques et sorbets véganes.">
+<meta name="keywords" content="gelato montreal, ice cream montreal, creme glacee montreal, gelato artisanal, creme glacee prince arthur, sorbet vegan montreal, plateau mont royal gelato, meilleur gelato montreal, italian ice cream montreal">
 <meta name="author" content="La Palette Gelato">
+<meta name="robots" content="index, follow">
+<meta name="language" content="French">
+<meta name="geo.region" content="CA-QC">
+<meta name="geo.placename" content="Montréal">
+<meta name="geo.position" content="45.5168;-73.5705">
+<meta name="ICBM" content="45.5168, -73.5705">
 <link rel="canonical" href="https://lapalettemtl.ca/">
 
 <!-- Open Graph / Social Media SEO -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lapalettemtl.ca/">
+<meta property="og:site_name" content="La Palette Gelato">
+<meta property="og:locale" content="fr_CA">
 <meta property="og:title" content="La Palette Gelato Artisanal · Montréal">
-<meta property="og:description" content="Gelato artisanal fait à la main sur la rue Prince Arthur à Montréal. Saveurs uniques et ingrédients naturels.">
-<meta property="og:image" content="https://lapalettemtl.ca/assets/store-1.jpg">
+<meta property="og:description" content="Gelato artisanal et crème glacée (ice cream) faits à la main sur la rue Prince Arthur à Montréal. Saveurs uniques et ingrédients naturels.">
+<meta property="og:image" content="https://lapalettemtl.ca/assets/gelato-artisanal-montreal-prince-arthur.jpg">
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="La Palette Gelato Artisanal · Montréal">
+<meta name="twitter:description" content="Gelato artisanal et crème glacée (ice cream) faits à la main sur la rue Prince Arthur à Montréal.">
+<meta name="twitter:image" content="https://lapalettemtl.ca/assets/gelato-artisanal-montreal-prince-arthur.jpg">
 
 <!-- Favicons -->
 <link rel="icon" href="favicon.ico">
@@ -36,12 +50,17 @@
   "@context": "https://schema.org",
   "@type": "IceCreamShop",
   "name": "La Palette Gelato",
-  "image": "https://lapalettemtl.ca/assets/store-1.jpg",
+  "image": "https://lapalettemtl.ca/assets/gelato-artisanal-montreal-prince-arthur.jpg",
   "@id": "https://lapalettemtl.ca/#organization",
   "url": "https://lapalettemtl.ca/",
   "telephone": "+15146656623",
   "email": "lapalette.gelato@gmail.com",
   "priceRange": "$$",
+  "servesCuisine": ["Gelato", "Ice Cream", "Italian Ice Cream", "Sorbet"],
+  "areaServed": {
+    "@type": "City",
+    "name": "Montréal"
+  },
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "108 Prince Arthur Est",
@@ -71,7 +90,8 @@
   ],
   "sameAs": [
     "https://www.instagram.com/gelateria_lapalette"
-  ]
+  ],
+  "hasMenu": "https://lapalettemtl.ca/#menu"
 }
 </script>
 
@@ -257,7 +277,7 @@ body::before {
   text-transform:uppercase; color:var(--tag-text); border:1px solid var(--tag-border);
   background:var(--tag-bg); padding:4px 9px; border-radius:4px; font-weight:600;
 }
-.fcard:not(.vegan) .ftag { display:none; }
+.fcard:not(.vegan):not(.new) .ftag { display:none; }
 
 /* PROCESS */
 .psteps {
@@ -407,9 +427,9 @@ section > .sw { width:100%; }
 <!-- HERO -->
 <header id="hero">
   <div class="hero-slideshow">
-    <div class="hero-slide active" style="background-image: url('assets/store-1.jpg');"></div>
-    <div class="hero-slide" style="background-image: url('assets/store-2.jpg');"></div>
-    <div class="hero-slide" style="background-image: url('assets/store-3.jpg');"></div>
+    <div class="hero-slide active" style="background-image: url('assets/gelato-artisanal-montreal-prince-arthur.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('assets/boutique-gelato-montreal-la-palette.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('assets/creme-glacee-artisanale-montreal.jpg');"></div>
   </div>
   <div class="hero-overlay"></div>
 
@@ -458,28 +478,27 @@ section > .sw { width:100%; }
       <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Pistache" data-en="Pistachio">Pistache</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
       <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Ricotta & miel" data-en="Ricotta & Honey">Ricotta & miel</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
       <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Earl Grey & Pamplemousse" data-en="Earl Grey & Grapefruit">Earl Grey & Pamplemousse</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
+      <div class="fcard new"><div class="fcopy"><p class="fname" data-fr="Tiramisu" data-en="Tiramisu">Tiramisu</p><span class="ftag" data-fr="Nouveau · Contient des œufs" data-en="New · Contains egg">Nouveau · Contient des œufs</span></div></div>
+      <div class="fcard new"><div class="fcopy"><p class="fname" data-fr="Croustade aux pommes" data-en="Apple Crumble">Croustade aux pommes</p><span class="ftag" data-fr="Nouveau" data-en="New">Nouveau</span></div></div>
+
       <!-- <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Chaï" data-en="Chai">Chaï</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div> -->
-      
+
       <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Nocciola" data-en="Hazelnut">Nocciola</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
       <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Chocolat blanc & oreo" data-en="White Chocolate & Oreo">Chocolat blanc & oreo</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Yogourt à la vanille" data-en="Vanilla Yogurt">Yogourt à la vanille</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Pêche Abricot" data-en="Peach Apricot">Pêche Abricot</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
 
       <!-- <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Érable & toffee" data-en="Maple & Toffee">Érable & toffee</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div> -->
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Melon Miel" data-en="Honeydew Melon">Melon Miel</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Espresso Caramel" data-en="Espresso Caramel">Espresso Caramel</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      
+
       <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Matcha" data-en="Matcha">Matcha</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
       <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Chocolat" data-en="Chocolate">Chocolat</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
-      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Fior di latte Stracciatella" data-en="Fior di Latte Stracciatella">Fior di latte Stracciatella</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard"><div class="fcopy"><p class="fname" data-fr="Stracciatella" data-en="Stracciatella">Stracciatella</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
       <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Citron & Aneth" data-en="Lemon & Dill">Citron & Aneth</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
       <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Fraise & Hibiscus" data-en="Strawberry & Hibiscus">Fraise & Hibiscus</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
       <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Kiwi & Menthe" data-en="Kiwi & Mint">Kiwi & Menthe</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
       <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Avocat & Crème de coco" data-en="Avocado & Coconut Cream">Avocat & Crème de coco</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div>
+      <div class="fcard vegan new"><div class="fcopy"><p class="fname" data-fr="Canneberge & Orange" data-en="Cranberry & Orange">Canneberge & Orange</p><span class="ftag" data-fr="Végane · Nouveau" data-en="Vegan · New">Végane · Nouveau</span></div></div>
+      <div class="fcard vegan new"><div class="fcopy"><p class="fname" data-fr="Mangue & Fruit de la Passion" data-en="Mango & Passion Fruit">Mangue & Fruit de la Passion</p><span class="ftag" data-fr="Végane · Nouveau" data-en="Vegan · New">Végane · Nouveau</span></div></div>
       <!-- <div class="fcard vegan"><div class="fcopy"><p class="fname" data-fr="Ananas & Mangue" data-en="Pineapple & Mango">Ananas & Mangue</p><span class="ftag" data-fr="Végane" data-en="Vegan">Végane</span></div></div> -->
-       
+
     </div>
   </div>
 </section>
@@ -551,7 +570,7 @@ section > .sw { width:100%; }
         </div>
       </div>
       <div class="mapbox" onclick="openMapChoice(this)" role="button" tabindex="0">
-        <img src="assets/lapalettemap.png" alt="Carte de localisation La Palette Gelato Prince Arthur Montreal">
+        <img src="assets/carte-gelato-montreal-prince-arthur.png" alt="Carte de localisation La Palette Gelato Prince Arthur Montreal">
         <div class="maplabel"><strong>La Palette</strong><p>108 Prince Arthur E, Montréal</p></div>
         <div class="mapbadge">Itinéraire</div>
         <div class="map-choice" onclick="event.stopPropagation()">
